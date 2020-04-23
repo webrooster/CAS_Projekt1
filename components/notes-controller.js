@@ -18,6 +18,10 @@ class NotesController {
     getNotes() {
        return notesDatas; 
     }
+
+    addNote() {
+        console.log('ADDNOTE() -> TO BE DEFINDED AND COMPLETE');     
+    }
 }
 
 export const notesctrl = new NotesController(noteslisting);

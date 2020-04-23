@@ -4,9 +4,15 @@ import { notesctrl } from '../components/notes-controller.js';
 
 class NotesListingView {
     init() {
-        this.showNotesListModule();       
+        this.showNotesListModule();
+        this.sortByFinishedDate();
+        this.addNewNote();
     }
-
+    
+    addNewNote() {
+        const newnote = notesctrl.addNote();
+    }
+    
     showNotesListModule() {
         const notes = notesctrl.getNotes();
         notes.sort();
@@ -24,19 +30,17 @@ class NotesListingView {
             $li.setAttribute('data-index', i);
             $li.innerHTML = `${notes[i]['title']} <span>${notes[i]['description']}</span>`;
             $notesListUI.append($li);
-        }
+        }    
     }
-
-    showNotesDetailsModule(e) {
-        let selectedIndex = null;
-
-        if (typeof e === 'object') {
-            e.stopProgagation();
-            selectedIndex = this.getAttribute('data-index');
-            console.log(selectedIndex);            
-        } else {
-            selectedIndex = e;
-        }
+    
+    sortByFinishedDate() {
+        const $sortByFinishedDate = document.getElementById('sortByFinishedDate');
+        const $notesListUI = document.getElementById('notes-list');
+        
+        $sortByFinishedDate.addEventListener('click', function() {
+            $notesListUI.innerHTML = '';
+            console.log('clicked');
+        });
     }
 }
 
