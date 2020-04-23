@@ -13,8 +13,6 @@ class Dashboard {
         sidebar.init();
         footer.init();
         notesctrl.init();
-
-        console.log('DASHBOARD loaded...');            
     }
 }
 
