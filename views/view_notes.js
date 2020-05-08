@@ -3,7 +3,6 @@
  * @class NotesView
  * 
  * @description Visual representation of the view.
- * @param notesview
  * 
  */
 
