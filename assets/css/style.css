@@ -37,6 +37,9 @@ header, form, section {
     justify-content: center;
     align-items: center;
     min-height: 20vh;
+
+    padding: 1rem;
+    margin: .5rem;
 }
 
 header {
