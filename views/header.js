@@ -1,22 +1,26 @@
 'use strict';
 /**
- * Render Header Datas 
+ * @class Header
+ * 
+ * @description Render header partial.
+ * 
  */
 
-import { staticContent } from '../components/static-content.js';
+import { staticContent } from '../models/ui_content.js';
 
 class Header {
 
     constructor() {
         this.headerContent = this.getStaticContent();
-        this.title = this.headerContent[0].title;
-        this.subtitle = this.headerContent[0].subtitle;
+        this.title = this.headerContent[0].header.title;
+        this.subtitle = this.headerContent[0].header.subtitle;
+        this.$headerElement = document.getElementById('header');
         this.position = 'afterbegin';
     }
 
     init() {
-        this.renderTemplate();
         this.getStaticContent();
+        this.renderTemplate();
     }
 
     getStaticContent() {        
@@ -24,7 +28,7 @@ class Header {
     }
 
     renderTemplate() {       
-        const $renderHeader = document.getElementById('header');
+        const $renderHeader = this.$headerElement;
         const template = `<h1>${ this.title }</h1><p>${ this.subtitle }</p>`;
         const position = this.position;
         $renderHeader.insertAdjacentHTML(position, template);

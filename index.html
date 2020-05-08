@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>HSR CAS - Project I - Notes</title>
 </head>
 <body>
-    <section id="header"></section>
-    <div id="root"></div>
-    <section>        
-        <button id="addnote">Add Note</button>
-        <button id="sortByFinishedDate">By finished date</button>
+
+    <header id="header"></header>
+
+    <form id="notes-form"action="">
+        <input type="text" placeholder="Add a note..." class="add-note">
+        <button id="addnote">
+            <i class="fas fa-plus"></i>
+        </button>
+        <!-- <button id="sortByFinishedDate">By finished date</button>
         <button id="bycreateddate">By created date</button>
         <button id="byimportance">By importance</button>
-        <button id="showfinished">Show finished</button>
-
+        <button id="showfinished">Show finished</button> -->
+    </form>
+    <section>
         <ul id="notes-list"></ul>
     </section>
+
     <script type="module" async src="./assets/js/app.js"></script>
 </body>
 </html>

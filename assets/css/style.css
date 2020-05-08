@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    min-height: 100vh ;
+    font-family: 'Anton', sans-serif;
+    font-size: 1rem;
+    background: rgb(56, 73, 80);
+    color: rgb(144, 186, 204);
+}
+
+header, form, section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20vh;
+}
+
+header {
+    flex-wrap: wrap;
+}
+
+form input, form button {
+    padding: 1rem;
+    font-size: 1.5rem;
+    border: none;
+    background: white;
+}
+
+form button {
+    color: rgb(144, 186, 204);
+    background: white;
+    cursor: pointer;
+    transition: background 0.2s ease-in;
+}
+
+form button:hover {
+    color: white;
+    background:rgb(144, 186, 204);
+}
+
+h1 {
+    font-size: 4rem;
+    width: 100%;
+    text-align: center;
+}

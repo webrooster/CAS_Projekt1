@@ -6,6 +6,6 @@ console.log('app.js loaded');
  * 
  */
 
-import { dashboard } from '../../dashboard/dashboard.js';
+import { dashboard } from '../../views/dashboard.js';
 
 dashboard.init();

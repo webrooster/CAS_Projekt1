@@ -1,8 +1,16 @@
 'use strict';
+/**
+ * @class NotesView
+ * 
+ * @description Visual representation of the view.
+ * @param notesview
+ * 
+ */
 
-import { notesctrl } from '../components/notes-controller.js';
+import { notesctrl } from '../controls/ctrl_notes.js';
 
-class NotesListingView {
+class NotesView {
+    
     init() {
         this.showNotesListModule();
         this.sortByFinishedDate();
@@ -39,9 +47,9 @@ class NotesListingView {
         
         $sortByFinishedDate.addEventListener('click', function() {
             $notesListUI.innerHTML = '';
-            console.log('clicked');
+            console.log('sortByFinishedDate');
         });
     }
 }
 
-export let noteslisting = new NotesListingView();
+export let notesview = new NotesView();
