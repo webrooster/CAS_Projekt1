@@ -8,11 +8,28 @@
 }
 
 body {
+    --accent-color: rgb(144, 186, 204);
+    --background-color: rgb(56, 73, 80);
+    --text-color: rgb(144, 186, 204);
+    --button-text-color: rgb(187, 198, 202);
+    --button-background-color: rgb(80, 104, 114);
+    --transition-delay: .3s;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+    
     min-height: 100vh ;
     font-family: 'Anton', sans-serif;
     font-size: 1rem;
-    background: rgb(56, 73, 80);
-    color: rgb(144, 186, 204);
+}
+
+body.bright {
+    --accent-color: rgb(17, 53, 68);
+    --background-color: rgb(187, 198, 202);
+    --text-color: rgb(29, 50, 59);
+    --button-text-color: rgb(17, 53, 68);
+    --button-background-color: rgb(144, 186, 204);
+    --transition-delay: .3s;
 }
 
 header, form, section {
@@ -33,16 +50,23 @@ form input, form button {
     background: white;
 }
 
-form button {
-    color: rgb(144, 186, 204);
-    background: white;
+form button, #toggleTheme {
+    color: var(--button-text-color);
+    background: var(--button-background-color);
     cursor: pointer;
     transition: background 0.2s ease-in;
+    border: none;
 }
 
-form button:hover {
+form button:hover, #toggleTheme:hover {
     color: white;
     background:rgb(144, 186, 204);
+}
+
+#toggleTheme {
+    padding: 1rem;
+    font-size: 1.125rem;
+    border-radius: 50%;
 }
 
 h1 {

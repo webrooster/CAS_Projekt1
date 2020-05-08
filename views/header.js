@@ -29,7 +29,7 @@ class Header {
 
     renderTemplate() {       
         const $renderHeader = this.$headerElement;
-        const template = `<h1>${ this.title }</h1><p>${ this.subtitle }</p>`;
+        const template = `<h1>${ this.title }</h1>`;
         const position = this.position;
         $renderHeader.insertAdjacentHTML(position, template);
     }

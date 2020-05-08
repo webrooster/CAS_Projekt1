@@ -14,14 +14,20 @@ class NotesView {
     init() {
         this.showNotesListModule();
         this.sortByFinishedDate();
-        this.addNewNote();
+        this.addNote();
+        this.toggleTheme();
     }
     
-    addNewNote() {
-        const newnote = notesctrl.addNote();
+    addNote() {
+        // const newnote = notesctrl.addNote();
+        const $addnote = document.querySelector('#addnote');
+        $addnote.addEventListener('click', (event) => {
+            event.preventDefault();
+            console.log('add note clicked', $addnote);            
+        })
     }
     
-    showNotesListModule() {
+    showNotesListModule = () => {
         const notes = notesctrl.getNotes();
         notes.sort();
 
@@ -39,17 +45,26 @@ class NotesView {
             $li.innerHTML = `${notes[i]['title']} <span>${notes[i]['description']}</span>`;
             $notesListUI.append($li);
         }    
-    }
+    };
     
-    sortByFinishedDate() {
+    sortByFinishedDate = () => {
         const $sortByFinishedDate = document.getElementById('sortByFinishedDate');
         const $notesListUI = document.getElementById('notes-list');
         
-        $sortByFinishedDate.addEventListener('click', function() {
+        $sortByFinishedDate.addEventListener('click', function(event) {
+            event.preventDefault();
             $notesListUI.innerHTML = '';
-            console.log('sortByFinishedDate');
+            console.log('sortByFinishedDate', $sortByFinishedDate);
         });
-    }
+    };
+
+    toggleTheme = () => {
+        const $toggleTheme = document.querySelector('#toggleTheme');
+        $toggleTheme.addEventListener('click', () => {
+            document.body.classList.toggle('bright');
+            console.log('toggleTheme clicked', $toggleTheme);
+        });
+    };
 }
 
 export let notesview = new NotesView();

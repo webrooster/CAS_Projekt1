@@ -7,17 +7,21 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>HSR CAS - Project I - Notes</title>
 </head>
-<body>
+<body class="bright">
 
-    <header id="header"></header>
+    <header id="header">
+        <button id="toggleTheme">
+            <i class="fas fa-toggle-on"></i>
+        </button>
+    </header>
 
     <form id="notes-form"action="">
         <input type="text" placeholder="Add a note..." class="add-note">
         <button id="addnote">
             <i class="fas fa-plus"></i>
         </button>
-        <!-- <button id="sortByFinishedDate">By finished date</button>
-        <button id="bycreateddate">By created date</button>
+        <button id="sortByFinishedDate">By finished date</button>
+        <!-- <button id="bycreateddate">By created date</button>
         <button id="byimportance">By importance</button>
         <button id="showfinished">Show finished</button> -->
     </form>
