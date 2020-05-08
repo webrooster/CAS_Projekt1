@@ -1,8 +1,7 @@
 'use strict';
 
 /**
- * @desc Static note datas
- * @author: Roland von Aesch
+ * Represnets notes mock datas.
  */
 
 export const notesDatas = [

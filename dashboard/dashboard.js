@@ -6,7 +6,7 @@
 import { header, sidebar, footer } from '../layouts/index.js';
 import { notesctrl } from '../components/interface.js';
 
-class Dashboard {
+class NotesView {
 
     init() {
         header.init();
@@ -16,4 +16,4 @@ class Dashboard {
     }
 }
 
-export const dashboard = new Dashboard();
+export const dashboard = new NotesView();
