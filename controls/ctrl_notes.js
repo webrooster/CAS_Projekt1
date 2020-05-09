@@ -3,35 +3,30 @@
  * @class NotesController
  * 
  * @description Controls input and output datas.
- * @param notesview
+ * @param notesView
  * @param notesDatas
  * 
  */
 
-import { notesview } from '../views/view_notes.js';
+import { notesView } from '../views/view_notes.js';
 import { notesDatas } from '../models/mock_datas.js';
 
 class NotesController {
-    constructor(notesview) {
-        this.notesview = notesview;
+    constructor(notesView) {
+        this.notesView = notesView;
     }
 
-    init() {
-        this.notesview.init();
+    init = () => { 
+        this.notesView.init(); 
     }
 
-    getNotes() {
-       return notesDatas; 
-    }
+    getNotes = () => notesDatas; 
 
-    addNote() {
-        console.log('ADDNOTE() -> TO BE DEFINDED AND COMPLETE');     
-    }
-
-    removeNotes() {
-
+    addNote = (note) => { 
+        notesDatas.push(note); 
+        console.table('addNote from controller', note, notesDatas);
     }
 }
 
-export const notesctrl = new NotesController(notesview);
+export const NotesApp = new NotesController(notesView);
 

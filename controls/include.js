@@ -3,4 +3,4 @@
  * 
  */
 
-export { notesctrl } from './ctrl_notes.js';
+export { NotesApp } from './ctrl_notes.js';

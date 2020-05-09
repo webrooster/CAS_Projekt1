@@ -3,13 +3,13 @@
  * @class Model
  * 
  * @description Manages the datas of the app.
- * @param notesview
+ * @param notesView
  * 
  */
 
  class NotesModel {
     constructor() {
-        
+
     }
 
     init() {

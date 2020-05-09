@@ -7,13 +7,13 @@
  */
 
 import { header, footer } from './include.js';
-import { notesctrl } from '../controls/include.js';
+import { NotesApp } from '../controls/include.js';
 
 class Dashboard {
 
     init() {
         header.init();
-        notesctrl.init();
+        NotesApp.init();
         footer.init();
     }
 }
