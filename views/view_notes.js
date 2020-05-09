@@ -78,30 +78,39 @@ class NotesView {
     showNotesListModule = () => {
         const notes = NotesApp.getNotes().sort();
         this.$notesList.innerHTML = '';
-
-        for (let i = 0; i < notes.length; i++) {
-            const item = notes[i];            
+        console.log('notes', notes.length);
+        
+        if (notes.length > 0) {
+            for (let i = 0; i < notes.length; i++) {
+                const item = notes[i];                        
+                let $li = document.createElement('li');          
+                $li.setAttribute('class', 'notes-list-item');
+                $li.setAttribute('id', i);
+                $li.setAttribute('data-index', i);
+                $li.innerHTML = `
+                    <button data-index="${i}">
+                        <i class="far fa-check-circle"></i>
+                    </button>
+                    <button data-index="${i}">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <input class="note-title" type="text" data-title="${notes[i]['title']}" value="${notes[i]['title']}">
+                    <input type="text" data-created_at="${notes[i]['created_at']}" value="${notes[i]['created_at']}">
+                    <input type="text" data-expire="${notes[i]['expire']}" value="${notes[i]['expire']}">
+                    <button class="deletenote" data-index="${i}" data-delete="1">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    `;
+                this.$notesList.append($li);
+                // console.table(item);
+            }
+        } else {
+            console.log('list is empty');
             let $li = document.createElement('li');          
             $li.setAttribute('class', 'notes-list-item');
-            $li.setAttribute('id', i);
-            $li.setAttribute('data-index', i);
-            $li.innerHTML = `
-                <button data-index="${i}">
-                    <i class="far fa-check-circle"></i>
-                </button>
-                <button data-index="${i}">
-                    <i class="fas fa-edit"></i>
-                </button>
-                <input class="note-title" type="text" data-title="${notes[i]['title']}" value="${notes[i]['title']}">
-                <input type="text" data-created_at="${notes[i]['created_at']}" value="${notes[i]['created_at']}">
-                <input type="text" data-expire="${notes[i]['expire']}" value="${notes[i]['expire']}">
-                <button class="deletenote" data-index="${i}" data-delete="1">
-                    <i class="fas fa-trash"></i>
-                </button>
-                `;
-            this.$notesList.append($li);
-            // console.table(item);
-        }    
+            $li.innerHTML = `Da sind keine Notes. Füge eine Note hinzu!`;
+            this.$notesList.append($li);    
+        }
     };
 
     toggleTheme = () => {
