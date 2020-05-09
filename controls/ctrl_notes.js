@@ -20,12 +20,18 @@ class NotesController {
         this.notesView.init(); 
     }
 
-    getNotes = () => notesDatas; 
+    getNotes = () => {
+        console.table(notesDatas);
+        return notesDatas;   
+    };
 
-    addNote = (note) => { 
-        notesDatas.push(note); 
-        console.table('addNote from controller', note, notesDatas);
-    }
+    addNote = (note) => notesDatas.push(note);
+
+    deleteNote = (index) => {
+        console.log('index to delete', index);
+        console.table(notesDatas);
+        return notesDatas.splice(index, 1)
+    };
 }
 
 export const NotesApp = new NotesController(notesView);
