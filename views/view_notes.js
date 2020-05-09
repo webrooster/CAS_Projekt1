@@ -29,27 +29,17 @@ class NotesView {
 
     
     deleteNote = () => {
-        this.$notesList.addEventListener('click', event => {
-            let clickedElem = event.target;
-            
-            if (clickedElem.classList[1] === 'fa-trash') {
-                let element = clickedElem.parentNode;
-                let getIndex = element.getAttribute('data-index');
-                // console.log('trash clicked', getIndex);
-                this.deleteNoteClicked(getIndex);
-            } else {
-                let element = clickedElem;
-                let getIndex = element.getAttribute('data-index');
-                this.deleteNoteClicked(getIndex);
-                // console.log('deletenote clicked', getIndex);
-            }                 
-            
-            // console.log(clickedElem, getIndex, clickedElem.classList);
-        });
+        const list = this.$notesList;
+        list.addEventListener('click', event => {
+            if (event.target.className == 'deletenote' || event.target.classList[1] == 'fa-trash') {
+                const noteToBeDeleted = event.target.parentElement.getAttribute('data-index');
+                this.deleteNoteClicked(noteToBeDeleted);
+            }
+        })
     };
     
     deleteNoteClicked = (id) => {
-        NotesApp.deleteNote(id);
+        if (id !== null) NotesApp.deleteNote(id);
         this.showNotesListModule();
     };
     
