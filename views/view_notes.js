@@ -99,11 +99,12 @@ class NotesView {
     // };
 
     showNotesListModule() {
-        const notes = NotesApp.getNotes().sort();
-        this.$notesList.innerHTML = '';
-        console.log('notes', notes.length);
+        const notes = NotesApp.getNotes();
+        console.log('notes shoNotesListModule', notes);
         
-        if (notes.length > 0) {
+        this.$notesList.innerHTML = '';
+        
+        if (notes) {
             for (let i = 0; i < notes.length; i++) {
                 const item = notes[i];              
                 console.log(item.finished);
@@ -130,7 +131,6 @@ class NotesView {
                 // console.table(item);
             }
         } else {
-            console.log('Notes list is empty');
             let $li = document.createElement('li');          
             $li.setAttribute('class', 'notes-list-item');
             $li.innerHTML = `Da sind keine Notes. Füge eine Note hinzu!`;

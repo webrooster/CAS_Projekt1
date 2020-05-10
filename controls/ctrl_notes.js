@@ -9,33 +9,37 @@
  */
 
 import { notesView } from '../views/view_notes.js';
+// import { notesDatas } from '../models/mock_datas.js';
 import { notesDatas } from '../models/mock_datas.js';
 
 class NotesController {
-    constructor(notesView) {
+    constructor(notesView, notesDatas) {
         this.notesView = notesView;
+        this.notesDatas = notesDatas;
     }
 
     init(){ 
-        return this.notesView.init(); 
+        this.notesView.init(); 
     }
 
     getNotes() {
-        return notesDatas;   
+        return notesDatas.getNotes();   
     };
     
     addNote(note) {
-        return notesDatas.push(note);
+        // return notesDatas.push(note);
+        notesDatas.addNote(note);
     }
     
     doneNote(noteDone) {
-        return notesDatas[noteDone.index].done = noteDone.done;
+        notesDatas.doneNote(noteDone);
+        // return notesDatas[noteDone.index].done = noteDone.done;
     }
 
     deleteNote(index) {
-        return notesDatas.splice(index, 1);
+        notesDatas.deleteNote(index);
+        // return notesDatas.splice(index, 1);
     }
 }
 
-export const NotesApp = new NotesController(notesView);
-
+export const NotesApp = new NotesController(notesView, notesDatas);
