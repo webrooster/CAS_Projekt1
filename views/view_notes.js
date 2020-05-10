@@ -17,9 +17,11 @@ class NotesView {
         this.$addNoteInput = document.querySelector('#addNoteInput');
         this.$sortByFinishedDate = document.querySelector('#sortByFinishedDate');
         this.$notesList = document.querySelector('#notes-list');
+        // this.$inputField = document.querySelectorAll('[data-field]');
     }
     
     init() {    
+        this.updateNote();
         this.addNote();
         this.doneNote();
         // this.sortByFinishedDate();
@@ -28,14 +30,35 @@ class NotesView {
         this.toggleTheme();
     }
 
+    updateNote() {
+        const list = this.$notesList;
+        list.addEventListener('click', event => {
+            if (event.target.classList == 'note-datas') {
+                const dataIndex = event.target.parentElement.getAttribute('data-index');
+                const dataField = event.target.getAttribute('data-field');
+                const dataValue = event.target.value;
+                this.updateNoteToStore(dataIndex, dataField, dataValue);
+                console.log('dataIndex', dataIndex, 'dataField', dataField, dataValue);
+            }
+        })
+    }
+
+    updateNoteToStore(dataIndex, dataField, dataValue) {
+        let updateNote = {
+            index: dataIndex,
+            title: dataValue
+        }
+        // console.log('UPDATEFIELD', updateNote, updateNote.index);
+        NotesApp.updateNote(updateNote);
+    }
+
     doneNote() {
         const list = this.$notesList;
         list.addEventListener('click', event => {
             if (event.target.classList[1] == 'done' || event.target.classList[2] == 'done') {
                 const dataIndex = event.target.parentElement.getAttribute('data-index');
                 const dataDone = event.target.parentElement.getAttribute('data-done');
-                this.doneNoteClicked(dataIndex, dataDone);
-                // console.log('noteFinished', noteFinished);    
+                this.doneNoteClicked(dataIndex, dataDone);   
             }
         })
     }
@@ -45,8 +68,6 @@ class NotesView {
             index: dataIndex,
             done: dataDone ^= true
         }
-        // console.log('noteDone done', noteDone.done, noteDone.index);
-
         NotesApp.doneNote(noteDone);
         this.showNotesListModule();
     };
@@ -65,17 +86,13 @@ class NotesView {
         if (id !== null) NotesApp.deleteNote(id);
         this.showNotesListModule();
     };
-    
-    
-    // addNoteOnBlur = () => {
-        //     this.$addNoteInput.value = '';
-        // };
         
     addNote() {
         // this.$addNoteInput.addEventListener('blur', this.addNoteOnBlur.bind(this));
         this.$addNote.addEventListener('click', this.addNoteClicked.bind(this));
     };
 
+    // TODO -> INCLUDE ALL FIELDS
     addNoteClicked(event) {
         event.preventDefault();
         const addNoteInputText = this.$addNoteInput.value;
@@ -104,7 +121,7 @@ class NotesView {
         
         this.$notesList.innerHTML = '';
         
-        if (notes) {
+        if (notes.length) {
             for (let i = 0; i < notes.length; i++) {
                 const item = notes[i];              
                 console.log(item.finished);
@@ -119,11 +136,11 @@ class NotesView {
                     <button class="note-datas edit" data-index="${i}">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <input class="note-datas" type="text" data-title="${ item.title }" value="${ item.title }">
+                    <input class="note-datas" type="text" data-index="${ i }" data-field="title" data-title="${ item.title }" value="${ item.title }">
                     <input class="note-datas" type="text" data-created_at="${ item.created_at}" value="${ item.created_at }">
                     <input class="note-datas" type="text" data-due_date="${ item.due_date }" value="${ item.due_date }">
                     <input class="note-datas" type="text" data-importance="${ item.importance }" value="${ item.importance }">
-                    <button class="deletenote" data-index="${i}" data-delete="1">
+                    <button class="deletenote" data-index="${ i }" data-delete="1">
                         <i class="fas fa-trash"></i>
                     </button>
                     `;

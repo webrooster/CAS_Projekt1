@@ -10,35 +10,37 @@
 
 import { notesView } from '../views/view_notes.js';
 // import { notesDatas } from '../models/mock_datas.js';
-import { notesDatas } from '../models/mock_datas.js';
+import { notesDatas } from '../models/model.js';
 
 class NotesController {
     constructor(notesView, notesDatas) {
         this.notesView = notesView;
         this.notesDatas = notesDatas;
     }
-
+    
     init(){ 
-        this.notesView.init(); 
+        this.notesView.init();
     }
 
     getNotes() {
         return notesDatas.getNotes();   
     };
+
+    updateNote(item) {
+        // console.log('UPDATEFIELD CONTROLLER', item, item.index);
+        notesDatas.updateNote(item);
+    }
     
-    addNote(note) {
-        // return notesDatas.push(note);
-        notesDatas.addNote(note);
+    addNote(item) {
+        notesDatas.addNote(item);
     }
     
     doneNote(noteDone) {
         notesDatas.doneNote(noteDone);
-        // return notesDatas[noteDone.index].done = noteDone.done;
     }
 
     deleteNote(index) {
         notesDatas.deleteNote(index);
-        // return notesDatas.splice(index, 1);
     }
 }
 
