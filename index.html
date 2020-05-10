@@ -16,19 +16,24 @@
     </header>
 
     <form id="notes-form"action="">
-        <input type="text" placeholder="Add a note..." id="addNoteInput">
+        <input class="note-datas" type="text" placeholder="Add a note..." data-title="" id="addNoteInput">
+        <input class="note-datas" type="text" placeholder="Zu erledigen bis:" data-due_date="due date" data-due_date="Today">
+        <input class="note-datas" type="hidden" placeholder="Heute" data-index="created_at" data-created_at="">
+        <input class="note-datas" type="text" placeholder="Wichtig" data-importance="5">
+        <input class="note-datas" type="text" placeholder="Wichtig" data-done="false">
         <button id="addnote">
             <i class="fas fa-plus"></i>
         </button>
         <!-- <button id="bycreateddate">By created date</button>
         <button id="byimportance">By importance</button> -->
         <!-- <button id="sortByFinishedDate">By finished date</button> -->
-            <!-- <button id="showfinished">Show finished</button> -->
+        <!-- <button id="showfinished">Show finished</button> -->
     </form>
     <section>
         <ul id="notes-list"></ul>
     </section>
-    <section id="add-notes-module"></section>
+
+    </section>
 
     <script type="module" async src="./assets/js/app.js"></script>
 </body>

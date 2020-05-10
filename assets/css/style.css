@@ -15,6 +15,8 @@ body {
     --button-background-color: rgb(80, 104, 114);
     --button-background-alert-color: rgb(127, 86, 161);
     --transition-delay: .3s;
+    --checked-color: rgb(0, 255, 221);
+    --unchecked-color: rgb(144, 186, 204);
 
     background-color: var(--background-color);
     color: var(--text-color);
@@ -32,9 +34,11 @@ body.bright {
     --button-background-color: rgb(144, 186, 204);
     --button-background-alert-color: rgb(116, 67, 107);
     --transition-delay: .3s;
+    --checked-color: rgb(187, 198, 202);
+    --unchecked-color: rgb(127, 255, 212);
 }
 
-header, form, section {
+header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,11 +49,24 @@ header, form, section {
 }
 
 section {
-    align-content: flex-start;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 header {
     flex-wrap: wrap;
+}
+
+/** */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;;
+}
+
+form input {
+    flex-grow: 0;
 }
 
 form input, form button, 
@@ -70,6 +87,14 @@ form button, #toggleTheme, #notes-list > li > button {
     border: none;
 }
 
+#notes-list > li > button.note-datas.done[data-done='0'] {
+    color: var(--unchecked-color);
+}
+
+#notes-list > li > button.note-datas.done[data-done='1'] {
+    color: var(--checked-color);
+}
+
 form button:hover, 
 #toggleTheme:hover,
 #notes-list > li > button:hover {
@@ -87,11 +112,11 @@ form input, #notes-list > li > input {
     color: var(--background-color);
 }
 
-form input#addNoteInput {
+/* form input#addNoteInput {
     width: 100%;
     min-width: 75%;
     max-width: 50%;
-}
+} */
 
 #notes-list > .notes-list-item > .note-title {
     width: 20%;
@@ -104,9 +129,18 @@ form input#addNoteInput {
 }
 
 #toggleTheme {
-    padding: 1rem;
+    background-color: var(--accent-color);
+    padding: .5rem;
     font-size: 1.125rem;
     border-radius: 50%;
+}
+
+#toggleTheme:hover {
+    background-color: var(--button-text-color);
+}
+
+#toggleTheme i {
+    color: var(--button-background-color);
 }
 
 #notes-list {

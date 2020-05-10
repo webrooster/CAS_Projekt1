@@ -16,22 +16,25 @@ class NotesController {
         this.notesView = notesView;
     }
 
-    init = () => { 
-        this.notesView.init(); 
+    init(){ 
+        return this.notesView.init(); 
     }
 
-    getNotes = () => {
-        console.table(notesDatas);
+    getNotes() {
         return notesDatas;   
     };
+    
+    addNote(note) {
+        return notesDatas.push(note);
+    }
+    
+    doneNote(noteDone) {
+        return notesDatas[noteDone.index].done = noteDone.done;
+    }
 
-    addNote = (note) => notesDatas.push(note);
-
-    deleteNote = (index) => {
-        console.log('index to delete', index);
-        console.table(notesDatas);
-        return notesDatas.splice(index, 1)
-    };
+    deleteNote(index) {
+        return notesDatas.splice(index, 1);
+    }
 }
 
 export const NotesApp = new NotesController(notesView);

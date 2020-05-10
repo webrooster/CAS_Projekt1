@@ -21,14 +21,37 @@ class NotesView {
     
     init() {    
         this.addNote();
+        this.doneNote();
         // this.sortByFinishedDate();
         this.showNotesListModule();
         this.deleteNote();
         this.toggleTheme();
     }
 
+    doneNote() {
+        const list = this.$notesList;
+        list.addEventListener('click', event => {
+            if (event.target.classList[1] == 'done' || event.target.classList[2] == 'done') {
+                const dataIndex = event.target.parentElement.getAttribute('data-index');
+                const dataDone = event.target.parentElement.getAttribute('data-done');
+                this.doneNoteClicked(dataIndex, dataDone);
+                // console.log('noteFinished', noteFinished);    
+            }
+        })
+    }
+
+    doneNoteClicked(dataIndex, dataDone) {
+        let noteDone = {
+            index: dataIndex,
+            done: dataDone ^= true
+        }
+        // console.log('noteDone done', noteDone.done, noteDone.index);
+
+        NotesApp.doneNote(noteDone);
+        this.showNotesListModule();
+    };
     
-    deleteNote = () => {
+    deleteNote() {
         const list = this.$notesList;
         list.addEventListener('click', event => {
             if (event.target.className == 'deletenote' || event.target.classList[1] == 'fa-trash') {
@@ -38,7 +61,7 @@ class NotesView {
         })
     };
     
-    deleteNoteClicked = (id) => {
+    deleteNoteClicked(id) {
         if (id !== null) NotesApp.deleteNote(id);
         this.showNotesListModule();
     };
@@ -48,12 +71,12 @@ class NotesView {
         //     this.$addNoteInput.value = '';
         // };
         
-    addNote = () => {
+    addNote() {
         // this.$addNoteInput.addEventListener('blur', this.addNoteOnBlur.bind(this));
         this.$addNote.addEventListener('click', this.addNoteClicked.bind(this));
     };
 
-    addNoteClicked = (event) => {
+    addNoteClicked(event) {
         event.preventDefault();
         const addNoteInputText = this.$addNoteInput.value;
         
@@ -75,28 +98,30 @@ class NotesView {
     //     });
     // };
 
-    showNotesListModule = () => {
+    showNotesListModule() {
         const notes = NotesApp.getNotes().sort();
         this.$notesList.innerHTML = '';
         console.log('notes', notes.length);
         
         if (notes.length > 0) {
             for (let i = 0; i < notes.length; i++) {
-                const item = notes[i];                        
+                const item = notes[i];              
+                console.log(item.finished);
+                
                 let $li = document.createElement('li');          
                 $li.setAttribute('class', 'notes-list-item');
-                $li.setAttribute('id', i);
                 $li.setAttribute('data-index', i);
                 $li.innerHTML = `
-                    <button data-index="${i}">
-                        <i class="far fa-check-circle"></i>
+                    <button class="note-datas done" data-index="${i}" type="text" data-done="${ item.done }">
+                        <i class="far fa-check-circle done"></i>
                     </button>
-                    <button data-index="${i}">
+                    <button class="note-datas edit" data-index="${i}">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <input class="note-title" type="text" data-title="${notes[i]['title']}" value="${notes[i]['title']}">
-                    <input type="text" data-created_at="${notes[i]['created_at']}" value="${notes[i]['created_at']}">
-                    <input type="text" data-expire="${notes[i]['expire']}" value="${notes[i]['expire']}">
+                    <input class="note-datas" type="text" data-title="${ item.title }" value="${ item.title }">
+                    <input class="note-datas" type="text" data-created_at="${ item.created_at}" value="${ item.created_at }">
+                    <input class="note-datas" type="text" data-due_date="${ item.due_date }" value="${ item.due_date }">
+                    <input class="note-datas" type="text" data-importance="${ item.importance }" value="${ item.importance }">
                     <button class="deletenote" data-index="${i}" data-delete="1">
                         <i class="fas fa-trash"></i>
                     </button>
@@ -105,7 +130,7 @@ class NotesView {
                 // console.table(item);
             }
         } else {
-            console.log('list is empty');
+            console.log('Notes list is empty');
             let $li = document.createElement('li');          
             $li.setAttribute('class', 'notes-list-item');
             $li.innerHTML = `Da sind keine Notes. Füge eine Note hinzu!`;
@@ -113,11 +138,10 @@ class NotesView {
         }
     };
 
-    toggleTheme = () => {
+    toggleTheme() {
         const $toggleTheme = document.querySelector('#toggleTheme');
         $toggleTheme.addEventListener('click', () => {
             document.body.classList.toggle('bright');
-            console.log('toggleTheme clicked', $toggleTheme);
         });
     };
 }
