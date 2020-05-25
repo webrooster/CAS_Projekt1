@@ -50,6 +50,8 @@ fieldset {
     background: var(--light-grey);
     margin: 0 0 5px;
     padding: 10px 15px;
+
+    -webkit-appearance: none;
 }
 
 #note__form input[type="text"]:hover,
@@ -74,7 +76,7 @@ fieldset {
 #note__form input:focus,
 #note__form textarea:focus {
     outline: 0;
-    border: 1px solid #aaa;
+    border: 1px solid var(--contrast-color);
 }
 
 ::-webkit-input-placeholder {
@@ -91,4 +93,42 @@ fieldset {
 
 :-ms-input-placeholder {
     color: #888;
+}
+
+input[type="date"] {
+    display:block;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    min-height: 1.2em; 
+}
+
+select {
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 0px;
+    background: url(http://dropdown/arrow/url/) no-repeat;
+}
+
+.form__buttons  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form__buttons button {
+    width: 30%;
+}
+
+.form__buttons button[name='reset'] {
+    background-color: var(--light-grey);
+}
+
+.form__buttons button[name='reset']:hover {
+    color: var(--font-color);
+    background-color: var(--chromatic-light-color-2);
 }
