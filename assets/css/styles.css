@@ -39,6 +39,8 @@ body {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: var(--contrast-color); 
+
+    cursor: grab;
 }
 
 /* Handle on hover */

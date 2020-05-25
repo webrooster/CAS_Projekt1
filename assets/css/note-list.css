@@ -97,7 +97,7 @@
 
 .note--dark.note--completed {
     border-left: 5px solid var(--success-color);
-    background-color: var(--background-dark-completed-color);
+    background-color: var(--chromatic-light-color);
 }
 
 
@@ -134,8 +134,6 @@
 .note__created,
 .note__completed,
 .note__importance {
-    /* font-size: 75%; */
-
     margin-bottom: 1rem;
     color: var(--success-color);
 }

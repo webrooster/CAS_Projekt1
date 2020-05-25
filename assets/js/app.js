@@ -27,7 +27,7 @@ $formsubmit.addEventListener('click', (e) => {
     alert('Form submit clicked!')
 });
 
-$formreset.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('Form reset clicked!')
-});
+// $formreset.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     // alert('Form reset clicked!')
+// });

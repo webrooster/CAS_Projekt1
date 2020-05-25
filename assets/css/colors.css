@@ -18,7 +18,7 @@
 
 body.theme__dark {
     --background-color: #FFC432;
-    --font-color: #0D212C;
+    --font-color: rgb(97, 76, 24);
 
     --contrast-color: #079BAB;
 
