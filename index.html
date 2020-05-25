@@ -3,38 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>HSR CAS - Project I - Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <title>CAS-FEE-2020 - Project 1</title>
 </head>
 <body class="">
+    <div class="container">
+        <header>
+            <h1>My awesome notes</h1>
+            <label class="switch">
+                <input id="theme__toggler" type="checkbox" name="checkbox">
+                <span class="slider"></span>
+            </label>
+        </header>
+        <section class="col-1">
+            <!-- FORM START -->
+            <form id="note__form" action="" method="post">
+                <h3>Add your note</h3>
+                <h4>Add your description to your note. Fill in a description and a expire date.</h4>
 
-    <header id="header">
-        <button id="toggleTheme">
-            <i class="fas fa-toggle-on"></i>
-        </button>
-    </header>
+                <fieldset>
+                    <label for="title">Title</label>
+                    <input placeholder="Add a note" type="text" name="title" tabindex="1" required autofocus>
+                </fieldset>
+                
+                <fieldset>
+                    <label for="description">Description</label>
+                    <textarea placeholder="Type your message here...." name="description" tabindex="2" required></textarea>
+                </fieldset>
+                
+                <fieldset>
+                    <label for="expire">Expire</label>
+                    <input placeholder="Expire" type="date" name="expire" tabindex="3" required>
+                </fieldset>
 
-    <form id="notes-form"action="">
-        <input class="note-datas" type="text" placeholder="Add a note..." data-title="" id="addNoteInput">
-        <input class="note-datas" type="text" placeholder="Zu erledigen bis:" data-due_date="due date" data-due_date="Today">
-        <input class="note-datas" type="hidden" placeholder="Heute" data-index="created_at" data-created_at="">
-        <input class="note-datas" type="text" placeholder="Wichtig" data-importance="5">
-        <input class="note-datas" type="text" placeholder="Wichtig" data-done="false">
-        <button id="addnote">
-            <i class="fas fa-plus"></i>
-        </button>
-        <!-- <button id="bycreateddate">By created date</button>
-        <button id="byimportance">By importance</button> -->
-        <!-- <button id="sortByFinishedDate">By finished date</button> -->
-        <!-- <button id="showfinished">Show finished</button> -->
-    </form>
-    <section>
-        <ul id="notes-list"></ul>
-    </section>
+                <fieldset>
+                    <select name="importance" id="importance" tabindex="4">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </fieldset>
 
-    </section>
+                <fieldset>
+                  <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                </fieldset>
 
-    <script type="module" async src="./assets/js/app.js"></script>
+                <p class="copyright">CAS-FEE-2020 - Project 1</p>
+              </form>
+              <!-- FORM START -->
+        </section>
+        <section class="col-2">
+            <div class="note__list">
+                <h2>Your notes list</h2>
+                
+                <div class="ui-buttons">
+                    <button class="" type="submit"><i class="fas fa-plus"></i>Add note</button>
+                    <button type="submit"><i class="fas fa-sort-amount-down"></i>Created at</button>
+                    <button type="submit"><i class="fas fa-star"></i>Importance</button>
+                    <button class="active" type="submit"><i class="far fa-check-circle"></i>Finished</button>
+                    <button type="submit"><i class="fas fa-calendar-times"></i>Finished date</button>
+                </div>
+                <ul class="noteslist noteslist--today">
+                    <!-- start list item -->
+                    <li class="note note--light note--completed">
+                        <div class="note__dropdown">
+                            
+                            <div class="note__complete">
+                                <button class="btn btn--completed">
+                                    <i class="fas fa-check-circle"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="note__content">
+                                <span class="note__created">28.06.2020</span>
+                                
+                                <h3 class="note__title">Lorem ipsum dolor sit amet lorem und noch ein bisschen längers
+                                    sadfasdfsdf</h3>
+                                <p class="note__description note__dropdown note__dropdown--open">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
+                                    esse! Cum est neque earum ea? Iure tempora repudiandae magni, reiciendis
+                                    beatae reprehenderit necessitatibus nobis voluptates illum dignissimos
+                                    nostrum similique quod.</p>
+                                    </div>
+                                    
+                                    <div class="note__infos">
+                                        <span class="note__completed">04.07.2020</span>
+                                        <span class="note__importance">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </span>
+                            </div>
+
+                            <div class="note__edit">
+                                <button class="edit">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </li>
+                    <!-- end list item -->
+
+                    <!-- start list item -->
+                    <li class="note note--dark">
+                        <div class="note__dropdown">
+                            
+                            <div class="note__complete">
+                                <button class="btn">
+                                    <i class="fas fa-check-circle"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="note__content">
+                                <span class="note__created">28.06.2020</span>
+                                
+                                <h3 class="note__title">Lorem ipsum dolor sit amet lorem und noch ein bisschen längers
+                                    sadfasdfsdf</h3>
+                                <p class="note__description note__dropdown note__dropdown--open">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
+                                    esse! Cum est neque earum ea? Iure tempora repudiandae magni, reiciendis
+                                    beatae reprehenderit necessitatibus nobis voluptates illum dignissimos
+                                    nostrum similique quod.</p>
+                            </div>
+                                    
+                            <div class="note__infos">
+                                <span class="note__completed">Today</span>
+                                <span class="note__importance">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+
+                            <div class="note__edit">
+                                <button class="edit">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </li>
+                    <!-- end list item -->
+
+                    <!-- start list item -->
+                    <li class="note note--light">
+                        <div class="note__dropdown">
+                            
+                            <div class="note__complete">
+                                <button class="btn">
+                                    <i class="fas fa-check-circle"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="note__content">
+                                <span class="note__created">28.06.2020</span>
+                                
+                                <h3 class="note__title">Lorem ipsum dolor sit amet lorem und noch ein bisschen längers
+                                    sadfasdfsdf</h3>
+                                <p class="note__description note__dropdown note__dropdown--open">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
+                                    esse! Cum est neque earum ea? Iure tempora repudiandae magni, reiciendis
+                                    beatae reprehenderit necessitatibus nobis voluptates illum dignissimos
+                                    nostrum similique quod.</p>
+                            </div>
+                                    
+                            <div class="note__infos">
+                                <span class="note__completed">Today</span>
+                                <span class="note__importance">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+
+                            <div class="note__edit">
+                                <button class="edit">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </li>
+                    <!-- end list item -->
+
+                     <!-- start list item -->
+                     <li class="note note--light">
+                        <div class="note__dropdown">
+                            
+                            <div class="note__complete">
+                                <button class="btn">
+                                    <i class="fas fa-check-circle"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="note__content">
+                                <span class="note__created">28.06.2020</span>
+                                
+                                <h3 class="note__title">Lorem ipsum dolor sit amet lorem und noch ein bisschen längers
+                                    sadfasdfsdf</h3>
+                                <p class="note__description note__dropdown note__dropdown--open">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
+                                    esse! Cum est neque earum ea? Iure tempora repudiandae magni, reiciendis
+                                    beatae reprehenderit necessitatibus nobis voluptates illum dignissimos
+                                    nostrum similique quod.</p>
+                            </div>
+                                    
+                            <div class="note__infos">
+                                <span class="note__completed">Today</span>
+                                <span class="note__importance">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+
+                            <div class="note__edit">
+                                <button class="edit">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </li>
+                    <!-- end list item -->
+
+                    <!-- start list item -->
+                    <li class="note note--light">
+                        <div class="note__dropdown">
+                            
+                            <div class="note__complete">
+                                <button class="btn">
+                                    <i class="fas fa-check-circle"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="note__content">
+                                <span class="note__created">28.06.2020</span>
+                                
+                                <h3 class="note__title">Lorem ipsum dolor sit amet lorem und noch ein bisschen längers
+                                    sadfasdfsdf</h3>
+                                <p class="note__description note__dropdown note__dropdown--open">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
+                                    esse! Cum est neque earum ea? Iure tempora repudiandae magni, reiciendis
+                                    beatae reprehenderit necessitatibus nobis voluptates illum dignissimos
+                                    nostrum similique quod.</p>
+                            </div>
+                                    
+                            <div class="note__infos">
+                                <span class="note__completed">Today</span>
+                                <span class="note__importance">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+
+                            <div class="note__edit">
+                                <button class="edit">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </li>
+                    <!-- end list item -->
+
+                </ul>
+            </div>
+        </section>
+        <footer>
+           <p>HSR - Fachhochschule Rapperswil - CAS-FEE-2020</p>
+        </footer>
+    </div>
+    <script src="./assets/js/app.js"></script>
 </body>
 </html>
