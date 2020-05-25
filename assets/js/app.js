@@ -1,11 +1,7 @@
-'use strict';
+document.addEventListener("DOMContentLoaded", function (event) {
+    var _selector = document.querySelector('#theme__toggler');
 
-console.log('app.js loaded');
-/**
- * 
- * 
- */
-
-import { dashboard } from '../../views/dashboard.js';
-
-dashboard.init();
+    _selector.addEventListener('click', () => {
+        document.body.classList.toggle('theme__dark');
+    });
+});

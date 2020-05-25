@@ -1,0 +1,145 @@
+/* LIST ITEM */
+.note {
+    display: flex;
+    flex-direction: column;
+
+    border-left: 5px solid var(--background-color);
+    background-color: var(--chromatic-light-color-2);
+
+    padding: 1.5rem 0;
+    margin-bottom: .5rem;
+    
+    transition: border-left .3s ease;
+}
+
+.note:hover {
+    
+    border-left: 15px solid var(--contrast-color);
+}
+
+
+
+/* NOTE DROPDOWN */
+.note__dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    cursor: grabbing;
+}
+
+.note__dropdown:hover .note__dropdown--open {
+    display: block;;
+
+    cursor: grab;
+}
+
+.note__dropdown--open {
+    display: none;
+}
+
+
+
+/* NOTE CONTENTS */
+.note__complete {
+    flex: 2;
+}
+
+.note__content {
+    flex: 10;
+    flex-direction: column;
+}
+
+.note__infos {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.note__edit {
+    flex: 2;
+}
+
+
+
+/* LIST ITEM COLORS */
+.note__importance {
+    flex-wrap: nowrap;
+
+    color: var(--contrast-color);
+}
+
+
+
+/* LIST ITEM LIGHT */
+.note--light {
+    color: var(--font-color);
+    background-color: var(--chromatic-light-color);
+}
+
+
+
+/* LIST ITEM DARK */
+.note.note--dark {
+    border-left: 5px solid var(--background-color);
+    transition: border-left .3s ease;
+}
+
+.note.note--dark:hover {
+    border-left: 15px solid var(--chromatic-light-color-2);
+}
+
+.note--dark {
+    background-color: var(--background-color);
+}
+
+.note--dark.note--completed {
+    border-left: 5px solid var(--success-color);
+    background-color: var(--background-dark-completed-color);
+}
+
+
+
+/* TOGGLE COMPLETED ITEMS - LIGHT */
+.note--light.note--completed {
+    border-left: 5px solid var(--success-color);
+    background-color: var(--chromatic-light-color-2);
+}
+
+.note.note--completed:hover {
+    border-left: 15px solid var(--success-color);
+}
+
+.note--completed .note__complete .btn--completed {
+    color: var(--success-color);
+    background-color: transparent;
+}
+
+
+
+/* FONT COLOR DARK */
+.note--dark .note__content {
+    color: var(--chromatic-light-color);
+}
+
+
+/*  FONT SIZES */
+.note__title {
+    color: var(--font-color);
+    line-height: 1.5rem;
+}
+
+.note__created,
+.note__completed,
+.note__importance {
+    /* font-size: 75%; */
+
+    margin-bottom: 1rem;
+    color: var(--success-color);
+}
+
+.note__importance {
+    color: var(--contrast-color);
+}
