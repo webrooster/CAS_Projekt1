@@ -25,12 +25,12 @@
 
                 <fieldset>
                     <label for="title">Title</label>
-                    <input placeholder="Add a note" type="text" name="title" tabindex="1" required autofocus>
+                    <input placeholder="Add a note" type="text" name="title" tabindex="1" maxlength="100" required autofocus>
                 </fieldset>
                 
                 <fieldset>
                     <label for="description">Description</label>
-                    <textarea placeholder="Type your message here...." name="description" tabindex="2" required></textarea>
+                    <textarea placeholder="Type your message here...." name="description" tabindex="2" maxlength="500" required></textarea>
                 </fieldset>
                 
                 <fieldset>
@@ -72,7 +72,7 @@
                 </div>
                 <ul class="noteslist noteslist--today">
                     <!-- start list item -->
-                    <li class="note note--light note--completed">
+                    <li class="note note--light note--completed" data-index="654654654654">
                         <div class="note__dropdown">
                             
                             <div class="note__complete">
