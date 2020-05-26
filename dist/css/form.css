@@ -1,0 +1,147 @@
+#note__form input[type="text"],
+#note__form input[type="date"],
+#note__form select,
+#note__form textarea,
+#note__form button[type="submit"] {
+    font: 400 12px / 16px "Raleway", Helvetica, Arial, sans-serif;
+}
+
+#note__form {
+    background: var(--chromatic-light-color);
+    padding: 25px;
+    margin: 0;
+    width: 100%;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#note__form h3 {
+    display: block;
+    font-size: 1.875rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+#note__form h4 {
+    margin: 5px 0 15px;
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#note__form label {
+    font-weight: 300;
+    font-weight: 300;;
+}
+
+fieldset {
+    border: medium none;
+    margin: 0 0 10px;
+    min-width: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+#note__form input[type="text"],
+#note__form input[type="date"],
+#note__form select,
+#note__form textarea {
+    width: 100%;
+    border: 1px solid var(--background-color);
+    background: var(--light-grey);
+    margin: 0 0 5px;
+    padding: 10px 15px;
+
+    -webkit-appearance: none;
+}
+
+#note__form input[type="text"]:hover,
+#note__form select:hover,
+#note__form textarea:hover {
+    -webkit-transition: border-color 0.3s ease-in-out;
+    -moz-transition: border-color 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
+    border: 1px solid var(--contrast-color);
+}
+
+#note__form textarea {
+    height: 100px;
+    max-width: 100%;
+    resize: none;
+}
+
+.copyright {
+    text-align: center;
+}
+
+#note__form input:focus,
+#note__form textarea:focus {
+    outline: 0;
+    border: 1px solid var(--contrast-color);
+}
+
+::-webkit-input-placeholder {
+    color: #888;
+}
+
+:-moz-placeholder {
+    color: #888;
+}
+
+::-moz-placeholder {
+    color: #888;
+}
+
+:-ms-input-placeholder {
+    color: #888;
+}
+
+input[type="date"] {
+    display:block;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    min-height: 1.2em; 
+}
+
+select {
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 0px;
+    background: url(http://dropdown/arrow/url/) no-repeat;
+}
+
+.form__buttons  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form__buttons button {
+    width: 30%;
+}
+
+.form__buttons button[name='reset'] {
+    background-color: var(--light-grey);
+}
+
+.form__buttons button[name='reset']:hover {
+    color: var(--font-color);
+    background-color: var(--chromatic-light-color-2);
+}
+
+
+input[type="date"] {
+    display:block;
+  
+    /* Solution 1 */
+     -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    min-height: 1.2em; 
+  
+    /* Solution 2 */
+    /* min-width: 96%; */
+}

@@ -1,0 +1,39 @@
+h1 {
+    font-size: 3rem;
+    font-weight: 100;
+    text-transform: uppercase;
+
+    color: var(--chromatic-light-color-2);
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: 300;
+    /* text-transform: uppercase; */
+
+    margin-bottom: 1rem;
+
+    color: var(--font-color);
+}
+
+h3 {
+    font-size: 1.125rem;
+    font-weight: 300;
+}
+
+p {
+    padding-top: 1rem;
+    line-height: 1.2rem;
+
+    color: var(--font-color);
+}
+
+/* CUSTOMS */
+h1 span {
+    color: var(--font-color);
+    font-size: 1.5rem;
+}
+
+.note__more {
+    margin-top: 3rem;
+}
