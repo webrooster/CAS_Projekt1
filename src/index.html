@@ -24,7 +24,7 @@
         </header>
         <section class="col-1">
             <!-- FORM START -->
-            <form id="note__form" action="" method="post">
+            <form id="note__form" action="" method="POST">
                 <h3>Add your note</h3>
                 <h4>Add your description to your note. Fill in a description and a expire date.</h4>
 
@@ -46,7 +46,9 @@
                 </fieldset>
 
                 <fieldset>
+                    <label for="importance">Importance</label>
                     <select id="importance" name="importance" tabindex="4">
+                        <option selected="selected">Choose importance</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -57,7 +59,7 @@
 
                 <fieldset>
                     <div class="form__buttons">
-                        <button name="reset" type="reset" id="reset">Cancel</button>
+                        <button name="clear" type="reset" id="clear">Cancel</button>
                         <button name="submit" type="submit" id="submit" data-submit="Sending...">Submit</button>
                     </div>
                 </fieldset>

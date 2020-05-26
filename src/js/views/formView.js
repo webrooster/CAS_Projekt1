@@ -24,5 +24,5 @@ export const getExpireDate = () => DOM.expire.value
  */
 export const getImportance = () => {
     const selectValue = DOM.importance.value
-    return selectValue;
+    return parseInt(selectValue, 10);
 }
