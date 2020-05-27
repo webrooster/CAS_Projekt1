@@ -20,9 +20,43 @@ const controlForm = () => {
     
     state.form = new Form(title, description, expireAt, importance)
 
-    console.log('state.form validation', state.form.formValidation())
+    state.form.formValidation();
+
+    console.log('state.form validation', state.form)
 
 };
+
+/**
+ * SORT LIST BY CREATED AT
+ */
+DOM.sort_createdAt.addEventListener('click', e => {
+    console.log('SORT CREATED AT CLICKED')
+    DOM.sort_createdAt.classList.toggle('active')
+});
+
+/**
+ * SORT LIST BY IMPORTANCE
+ */
+DOM.sort_importance.addEventListener('click', e => {
+    console.log('SORT IMPORTANCE CLICKED')
+    DOM.sort_importance.classList.toggle('active')
+});
+
+/**
+ * SORT LIST BY FINISHED DATE
+ */
+DOM.sort_finished_date.addEventListener('click', e => {
+    console.log('SORT IMPORTANCE CLICKED')
+    DOM.sort_finished_date.classList.toggle('active')
+});
+
+/**
+ * SORT LIST BY FINISHED
+ */
+DOM.sort_finished.addEventListener('click', e => {
+    console.log('SORT FINISHED CLICKED')
+    DOM.sort_finished.classList.toggle('active')
+}); 
 
 /**
  * CHECK FORM 
@@ -41,7 +75,7 @@ DOM.reset.addEventListener('click', e => {
 })
 
 /**
- * Theme toggler
+ * THEME TOGGLER
  */
 document.addEventListener("DOMContentLoaded", function (event) {
     var _selector = DOM.theme__toggler
@@ -51,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });
 
 /**
- * Notes list: edit note event listener
+ * NOTE LIST ITEM EDIT
  */
 DOM.standard__list.addEventListener('click', e => {
     if (event.target.classList[0] == 'edit') {
