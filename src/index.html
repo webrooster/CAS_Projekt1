@@ -70,16 +70,6 @@
         </section>
         <section class="col-2">
             <div class="note__list">
-                <h2>Manage your notes list</h2>
-
-                <!-- UI SORTING ELEMENTS -->
-                <div class="ui-buttons">
-                    <button type="submit"><i class="fas fa-sort-amount-down"></i>Created at</button>
-                    <button type="submit"><i class="fas fa-star"></i>Importance</button>
-                    <button class="active" type="submit"><i class="far fa-check-circle"></i>Finished</button>
-                    <button type="submit"><i class="fas fa-calendar-times"></i>Finished date</button>
-                </div>
-
                 <h2>Today's to dos</h2>
 
                 <!-- TODAYS LIST -->
@@ -257,7 +247,17 @@
 
                 </ul>
 
-                <h2 class="note__more">Further to do's</h2>
+                <h2 class="note__more">Sort your notes by:</h2>
+
+                <!-- UI SORTING ELEMENTS -->
+                <div class="ui-buttons">
+                    <button class="" id="sort_createdAt" type="submit"><i class="fas fa-sort-amount-down"></i>Created at</button>
+                    <button id="sort_importance" type="submit"><i class="fas fa-star"></i>Importance</button>
+                    <button id="sort_finished" type="submit"><i class="far fa-check-circle"></i>Finished</button>
+                    <button id="sort_finished_date" type="submit"><i class="fas fa-calendar-times"></i>Finished date</button>
+                </div>
+
+                <!-- NOTES LIST ALL -->
                 <ul id="standard__list" class="noteslist noteslist--standard">
                     <!-- start list item -->
                     <li class="note note--dark">
