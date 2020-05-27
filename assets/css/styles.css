@@ -34,7 +34,7 @@ body {
   
 /* Track */
 ::-webkit-scrollbar-track {
-    background: var(--chromatic-light-color-2); 
+    background: var(--background-color); 
 }
 
 /* Handle */
@@ -46,5 +46,5 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--chromatic-light-color); 
+    background: var(--chromatic-light-color-2); 
 }

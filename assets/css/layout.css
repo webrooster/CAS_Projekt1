@@ -3,6 +3,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-left: 2rem;
+}
+
+.head__title p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+
+    color: var(--success-color);
+    transform: rotate(-7deg);
+    text-shadow: 2px 1px 1px #000;
 }
 
 .note__list {

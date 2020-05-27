@@ -4,6 +4,7 @@
 #note__form textarea,
 #note__form button[type="submit"] {
     font: 400 12px / 16px "Raleway", Helvetica, Arial, sans-serif;
+    color: var(--font-color);
 }
 
 #note__form {
@@ -47,7 +48,7 @@ fieldset {
 #note__form textarea {
     width: 100%;
     border: 1px solid var(--background-color);
-    background: var(--light-grey);
+    background: var(--chromatic-light-color-2);
     margin: 0 0 5px;
     padding: 10px 15px;
 
@@ -144,4 +145,8 @@ input[type="date"] {
   
     /* Solution 2 */
     /* min-width: 96%; */
+}
+
+#note__form input[type="text"].error {
+    background-color: red;
 }
