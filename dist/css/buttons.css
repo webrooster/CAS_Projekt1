@@ -27,7 +27,7 @@ button:active {
 }
 
 button.active {
-    color: var(--font-color);
+    color: var(--white-color);
     background-color: var(--chromatic-light-color-2);
 }
 

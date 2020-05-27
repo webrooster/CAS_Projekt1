@@ -1,3 +1,5 @@
+import { DOM } from "../views/base"
+
 export default class Form {
     constructor(title, description, expireAt, importance) {
         this.title = title
@@ -7,6 +9,8 @@ export default class Form {
     }
 
     formValidation() {
+
+      // if (this.title == '') DOM.title.classList.add('error') ?  DOM.title.classList.add('error') : DOM.title.classList.add('error')
 
       if (this.title == '' || this.expireAt == '' || this.importance === typeof num) {
         return false
