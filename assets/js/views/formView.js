@@ -1,4 +1,4 @@
-import { DOM } from '../views/base';
+import { DOM } from '../views/base.js';
 
 /**
  * Form field title

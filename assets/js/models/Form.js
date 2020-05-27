@@ -1,4 +1,4 @@
-import { DOM } from "../views/base"
+import { DOM } from "../views/base.js"
 
 export default class Form {
     constructor(title, description, expireAt, importance) {

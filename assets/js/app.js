@@ -1,7 +1,8 @@
-import { DOM } from './views/base';
-import Form from './models/Form';
-import * as formView from './views/formView';
-import { log } from 'util';
+"use strict";
+
+import { DOM } from './views/base.js';
+import Form from './models/Form.js';
+import * as formView from './views/formView.js';
 
 /**
  * Global state of the app
@@ -77,7 +78,7 @@ DOM.reset.addEventListener('click', e => {
 /**
  * THEME TOGGLER
  */
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", function (e) {
     var _selector = DOM.theme__toggler
     _selector.addEventListener('click', () => {
         document.body.classList.toggle('theme__dark');
@@ -88,12 +89,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
  * NOTE LIST ITEM EDIT
  */
 DOM.standard__list.addEventListener('click', e => {
-    if (event.target.classList[0] == 'edit') {
-        const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
+    if (e.target.classList[0] == 'edit') {
+        const dataIndex = e.target.parentElement.parentElement.parentElement.getAttribute('data-index');
         console.log('dataIndex edit', e.target, dataIndex);
 
-    } else if (event.target.classList[1] == 'fa-edit') {
-        const dataIndex = event.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-index');
+    } else if (e.target.classList[1] == 'fa-edit') {
+        const dataIndex = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-index');
         console.log('dataIndex fa-edit', e.target, dataIndex);
 
     }
