@@ -16,7 +16,7 @@ export const getDescription = () => DOM.description.value
  * Form field date
  * @type date
  */
-export const getExpireDate = () => DOM.expire.value
+export const getExpireDate = () => DOM.expire.valueAsDate = new Date()
 
 /**
  * Form field importance: select
