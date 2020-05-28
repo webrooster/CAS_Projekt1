@@ -1,0 +1,33 @@
+<li class="note ${ renderComplete(note) }" data-index="${ note.id }">
+            <div class="note__dropdown">
+
+                <div class="note__complete">
+                    <button class="btn btn--completed">
+                        <i class="fas fa-check-circle"></i>
+                    </button>
+                </div>
+
+                <div class="note__content">
+                    <span class="note__created">${ note.created }</span>
+
+                    <h2 class="note__title">${ note.title }</h2>
+                    <p class="note__description note__dropdown note__dropdown--open">
+                        ${ note.description }
+                    </p>
+                </div>
+
+                <div class="note__infos">
+                    <span class="note__completed">04.07.2020</span>
+                    <span class="note__importance">
+                        ${ renderImportance(note) }
+                    </span>
+                </div>
+
+                <div class="note__edit">
+                    <button class="edit">
+                        <i class="far fa-edit"></i>
+                    </button>
+                </div>
+
+            </div>
+        </li>

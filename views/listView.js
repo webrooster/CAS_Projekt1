@@ -4,12 +4,12 @@ export const renderList = (notes) => {
 
     const notes_list = DOM.standard__list
 
-    console.log(notes)
+    console.table(notes)
 
     notes.forEach(note => {
         
         const listtemplate = `
-        <li class="note" data-index="${ note.id }">
+        <li class="note ${ renderComplete(note) }" data-index="${ note.id }">
             <div class="note__dropdown">
 
                 <div class="note__complete">
@@ -19,7 +19,7 @@ export const renderList = (notes) => {
                 </div>
 
                 <div class="note__content">
-                    <span class="note__created">${ note.expire }</span>
+                    <span class="note__created">${ note.created }</span>
 
                     <h2 class="note__title">${ note.title }</h2>
                     <p class="note__description note__dropdown note__dropdown--open">
@@ -49,17 +49,21 @@ export const renderList = (notes) => {
     });
 }
 
-export const renderImportance = (note) => {
-        
-    const stars = note.importance;
-    const starMap = [];
+export const renderComplete = (note) => {
+    if (note.complete === true) {
+        return 'note--completed'
+    }
+}
+
+export const renderImportance = (note) => {        
+    const stars = note.importance
+    const starMap = []
 
     for (let index = 0; index < stars; index++) {
-        const star = `<i class="fas fa-star"></i>`;
-        starMap.push(star);
+        const star = `<i class="fas fa-star"></i>`
+        starMap.push(star)
     }
     
-    return starMap.join('');
-    
+    return starMap.join('')    
 }
 
