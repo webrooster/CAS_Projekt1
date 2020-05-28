@@ -47,29 +47,38 @@ const mockdatas = [
 export class NoteService {
     constructor(noteStorage) {
         this.storage = noteStorage;
-        console.log('this.storage', this.storage);
-        this.note = [];
+        this.notes = [];
     }
 
     // LOAD DATA
     loadData() {
-        this.note = this.storage.getNotes();
-
-        console.log('this fucking note', this.note);
-
-        if (this.note.length === 0) {
-            console.log('localstorage is empty');
-
-            mockdatas.forEach(mock => {
-                this.note.push(new Note(mock));
-            });
-            this.saveNote();
-        }
+        this.notes = this.storage.getNotes();
+        console.log('this.notes', this.notes);
+        
+        // If localStorage is empty, fill in mockdatas
+        // if (this.notes.length === 0) {
+        //     mockdatas.forEach(mock => {
+        //         this.notes.push(new Note(mock));
+        //     });
+        //     this.saveNotes();
+        // }
 
     }
 
+    // UPDATE NOTES
+    updateNote(note) {
+        console.log('update note', note);
+    }
+
+    // ADD NEW NOTE
+    addNote(note) {
+        const newnote = new Note(note);
+        console.log('addnote', newnote.toJSON());
+        this.storage.createNote(newnote);
+    }
+
     // SAVE NOTE
-    saveNote() {
-        this.storage.update(this.note.map(n => n.toJSON()));
+    saveNotes() {
+        this.storage.update(this.notes.map(note => note.toJSON()));
     }
 }

@@ -1,21 +1,27 @@
 export class NoteStorage {
     constructor() {
-        const note = JSON.parse(localStorage.getItem('notes') || '[]');
-        this.note = note;
-        localStorage.setItem('notes', JSON.stringify(note));
+        const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+        this.notes = notes;
+        localStorage.setItem('notes', JSON.stringify(notes));
 
-        console.log('this.note', this.note)
+        console.log('this.notes storage', this.notes)
     }
 
     // GET ALL NOTES
     getNotes() {
-        return this.note;
+        return this.notes;
     }
 
     // UPDATE NOTE
-    update(note) {
-        localStorage.setItem('notes', JSON.stringify(note));
-        return note;
+    update(notes) {
+        localStorage.setItem('notes', JSON.stringify(notes));
+        return notes;
+    }
+
+    // ADD NOTE
+    createNote(note) {
+        this.notes.push(note);
+        localStorage.setItem('notes', JSON.stringify(this.notes));
     }
 
 }

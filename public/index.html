@@ -267,7 +267,7 @@
 
                 <!-- START LIST ITEM -->
                 <script id="notes-list-template" type="text/x-handlebars-template">
-                    {{#each note}}
+                    {{#each notes}}
                     <li class="note" data-index="{{ id }}">
                         <div class="note__dropdown">
             
@@ -289,7 +289,7 @@
                             <div class="note__infos">
                                 <span class="note__completed">{{ expire }}</span>
                                 <span class="note__importance">
-                                    {{ importance}}  
+                                    {{ importance}}
                                 </span>
                             </div>
             

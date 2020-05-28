@@ -5,19 +5,16 @@
 */
 
 export class Note {
-    constructor({ id, title, description, created, importance, expire, complete, completed_at }) {
+    constructor({ title, description, created, importance, expire, complete, completed_at }) {
 
-      this.id = id;
+      this.id = this.randomId();
       this.title = title;
       this.description = description;
-      this.created = created;
+      this.created = this.currentDate();
       this.importance = importance;
       this.expire = expire;        
       this.complete = complete;
-      this.completed_at = completed_at;
-
-        console.log('CLASS Note loaded');
-        
+      this.completed_at = completed_at;        
     }
 
     toJSON() {
