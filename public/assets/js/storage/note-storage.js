@@ -1,3 +1,5 @@
+
+
 export class NoteStorage {
     constructor() {
         const notes = JSON.parse(localStorage.getItem('notes') || '[]');
@@ -10,9 +12,14 @@ export class NoteStorage {
         return this.notes;
     }
 
+    // COMPLETE NOTE
+    completeNote() {        
+        localStorage.setItem('notes', JSON.stringify(this.notes));  
+    }
+
     // UPDATE NOTE
     async update(notes) {
-        await localStorage.setItem('notes', JSON.stringify(notes));
+        await localStorage.setItem('notes', JSON.stringify(this.notes));
         return notes;
     }
 

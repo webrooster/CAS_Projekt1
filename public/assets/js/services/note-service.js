@@ -9,7 +9,7 @@ const mockdatas = [
         "description": "Bla bla bla hier, und blabla dort.",
         "importance" : 3,
         "expire": "date expire",
-        "complete": true,
+        "complete": 0,
         "completed_at": ""
     },
     {
@@ -19,7 +19,7 @@ const mockdatas = [
         "description": "Auch hier darf eine Beschreibung rein, aber die Zeichenlänge muss begrenzt werden.",
         "importance" : 2,
         "expire": "date expire",
-        "complete": false,
+        "complete": 1,
         "completed_at": ""
     },
     {
@@ -29,7 +29,7 @@ const mockdatas = [
         "description": "Lorem ipsum dolor sit amet",
         "importance" : 5,
         "expire": "date expire",
-        "complete": true,
+        "complete": 1,
         "completed_at": ""
     },
     {
@@ -39,7 +39,7 @@ const mockdatas = [
         "description": "Lorem ipsum dolor sit amet",
         "importance" : 4,
         "expire": "date expire",
-        "complete": false,
+        "complete": 0,
         "completed_at": ""
     },    
   ];
@@ -64,9 +64,9 @@ export class NoteService {
         // }
     }
 
-    // UPDATE NOTES
-    updateNote(note) {
-        console.log('update note', note);
+    // NOTE COMPLETE
+    completeNote(dataId, dataIndex) {
+        if (this.notes[dataId].id === dataIndex) this.notes[dataId].complete ^= true, this.storage.completeNote();
     }
 
     // ADD NEW NOTE

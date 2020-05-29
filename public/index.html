@@ -268,8 +268,9 @@
 
                 <!-- HANDLEBAR TEMPLATE - LIST ITEM -->
                 <script id="notes-list-template" type="text/x-handlebars-template">
+                    {{#if notes}}
                     {{#each notes}}
-                    <li class="note {{#if complete}}note--completed{{/if}}" data-index="{{ id }}">
+                    <li class="note {{#if complete}}note--completed{{/if}}" data-index="{{ @index }}" data-id="{{ id }}">
                         <div class="note__dropdown">
             
                             <div class="note__complete">
@@ -303,6 +304,16 @@
                         </div>
                     </li>
                     {{/each}}
+                    {{else}}
+                        <li class="note note--empty">
+                            <div class="note__content note--empty">
+                                    <h2 class="note__title">List is empty!</h2>
+                                    <p class="note__description">
+                                        Use the form and add your note.
+                                    </p>
+                            </div>
+                        </li>
+                    {{/if}}
                 </script>
                 <!-- END HANDLEBAR LIST TEMPLATE -->
 

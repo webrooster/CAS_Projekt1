@@ -34,12 +34,12 @@ export class NoteController {
          */
         this.notesListContainter.addEventListener('click', e => {
             if (e.target.classList[0] == 'edit') {
-                const dataIndex = e.target.parentElement.parentElement.parentElement.getAttribute('data-index');
-                console.log('dataIndex edit', e.target, dataIndex)
+                const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+                console.log('dataId edit', e.target, dataId)
 
             } else if (e.target.classList[1] == 'fa-edit') {
-                const dataIndex = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-index');
-                console.log('dataIndex fa-edit', e.target, dataIndex)
+                const dataId = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-id');
+                console.log('dataId fa-edit', e.target, dataId)
 
             }
         });
@@ -50,13 +50,21 @@ export class NoteController {
         this.notesListContainter.addEventListener('click', e => {
             if (e.target.classList[1] == 'btn--completed') {
                 const dataIndex = e.target.parentElement.parentElement.parentElement.getAttribute('data-index');
-                console.log('dataIndex edit', e.target, dataIndex)
+                const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+                console.log('dataId edit', e.target, dataId, dataIndex);
 
+                this.noteService.completeNote(dataIndex, dataId);
+                
             } else if (e.target.classList[1] == 'fa-check-circle') {
                 const dataIndex = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-index');
-                console.log('dataIndex fa-edit', e.target, dataIndex)
-
+                const dataId = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-id');
+                console.log('dataId fa-edit', e.target, dataId, dataIndex);
+                
+                this.noteService.completeNote(dataIndex, dataId);
             }
+
+            this.renderNotes();
+
         });
 
 
@@ -84,7 +92,7 @@ export class NoteController {
                     description: description, 
                     expire: expire, 
                     importance: importance, 
-                    complete: false, 
+                    complete: 0, 
                     completed_at: ''
                 }
 
@@ -98,6 +106,7 @@ export class NoteController {
 
         });
 
+        // FORM CLEAR
         this.clear.addEventListener('click', event => {
             this.resetForm();   
         });
@@ -120,6 +129,8 @@ export class NoteController {
             console.log('sort_finished_date', event.target);            
         });
 
+
+        // THEME TOGGLER
         this.theme__toggler.addEventListener('click', event => {
             document.body.classList.toggle('theme__dark');            
         });
@@ -135,6 +146,7 @@ export class NoteController {
 
     // RENDER NOTES LIST
     renderNotes() {
+        this.notesListContainter.innerHTML = '';
         this.notesListContainter.innerHTML = this.noteListTemplate({ notes: this.noteService.notes });
     }
 
