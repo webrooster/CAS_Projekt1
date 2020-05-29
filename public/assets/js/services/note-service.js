@@ -66,7 +66,17 @@ export class NoteService {
 
     // NOTE COMPLETE
     completeNote(dataId, dataIndex) {
-        if (this.notes[dataId].id === dataIndex) this.notes[dataId].complete ^= true, this.storage.completeNote();
+        
+        if (this.notes[dataId].id === dataIndex && this.notes[dataId].completed_at == '') {
+            this.notes[dataId].completed_at = new Date() || '',
+            this.notes[dataId].complete ^= true,
+            this.storage.completeNote();
+
+        } else {
+            this.notes[dataId].completed_at = '',
+            this.notes[dataId].complete ^= true,
+            this.storage.completeNote();
+        }    
     }
 
     // ADD NEW NOTE
