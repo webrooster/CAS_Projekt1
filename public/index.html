@@ -32,10 +32,11 @@
             <!-- FORM START -->
             <form id="note__form" action="" method="POST">
                 <h3>Add your note</h3>
-                <h4>Add your description to your note. Fill in a description and a expire date.</h4>
-
+                <h4>Add your description to your note. Fill in a description and a expire date.
+                    Fields with * are required.
+                </h4>
                 <fieldset>
-                    <label for="title">Title</label>
+                    <label for="title">Title <span>*</span></label>
                     <input id="title" placeholder="Add a note" type="text" name="title" tabindex="1" maxlength="100"
                         required autofocus>
                 </fieldset>
@@ -47,12 +48,12 @@
                 </fieldset>
 
                 <fieldset>
-                    <label for="expire">Expire</label>
+                    <label for="expire">Expire <span>*</span></label>
                     <input id="expire" placeholder="dd-mm-yyyy" type="date" name="expire" tabindex="3" required>
                 </fieldset>
 
                 <fieldset>
-                    <label for="importance">Importance</label>
+                    <label for="importance">Importance <span>*</span></label>
                     <select id="importance" name="importance" tabindex="4">
                         <option selected="selected">Choose importance</option>
                         <option value="1">1</option>
@@ -265,10 +266,10 @@
                         date</button>
                 </div>
 
-                <!-- START LIST ITEM -->
+                <!-- HANDLEBAR TEMPLATE - LIST ITEM -->
                 <script id="notes-list-template" type="text/x-handlebars-template">
                     {{#each notes}}
-                    <li class="note" data-index="{{ id }}">
+                    <li class="note {{#if complete}}note--completed{{/if}}" data-index="{{ id }}">
                         <div class="note__dropdown">
             
                             <div class="note__complete">
@@ -303,6 +304,7 @@
                     </li>
                     {{/each}}
                 </script>
+                <!-- END HANDLEBAR LIST TEMPLATE -->
 
                   <!-- NOTES LIST ALL -->
                   <ul id="standard__list"></ul>

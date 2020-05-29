@@ -3,8 +3,6 @@ export class NoteStorage {
         const notes = JSON.parse(localStorage.getItem('notes') || '[]');
         this.notes = notes;
         localStorage.setItem('notes', JSON.stringify(notes));
-
-        console.log('this.notes storage', this.notes)
     }
 
     // GET ALL NOTES
@@ -13,15 +11,15 @@ export class NoteStorage {
     }
 
     // UPDATE NOTE
-    update(notes) {
-        localStorage.setItem('notes', JSON.stringify(notes));
+    async update(notes) {
+        await localStorage.setItem('notes', JSON.stringify(notes));
         return notes;
     }
 
     // ADD NOTE
-    createNote(note) {
+    async createNote(note) {
         this.notes.push(note);
-        localStorage.setItem('notes', JSON.stringify(this.notes));
+        await localStorage.setItem('notes', JSON.stringify(this.notes));
     }
 
 }

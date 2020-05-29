@@ -53,16 +53,15 @@ export class NoteService {
     // LOAD DATA
     loadData() {
         this.notes = this.storage.getNotes();
-        console.log('this.notes', this.notes);
-        
-        // If localStorage is empty, fill in mockdatas
+        /**
+         * MOCKDATAS
+         */ 
         // if (this.notes.length === 0) {
         //     mockdatas.forEach(mock => {
         //         this.notes.push(new Note(mock));
         //     });
         //     this.saveNotes();
         // }
-
     }
 
     // UPDATE NOTES
@@ -72,9 +71,7 @@ export class NoteService {
 
     // ADD NEW NOTE
     addNote(note) {
-        const newnote = new Note(note);
-        console.log('addnote', newnote.toJSON());
-        this.storage.createNote(newnote);
+        this.storage.createNote(new Note(note));
     }
 
     // SAVE NOTE

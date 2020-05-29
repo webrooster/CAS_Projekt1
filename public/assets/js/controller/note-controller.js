@@ -16,6 +16,7 @@ export class NoteController {
         this.expire = document.querySelector('#expire');
         this.importance = document.querySelector('#importance');
         this.submitForm = document.querySelector('#submit');
+        this.clear = document.querySelector('#clear');
 
         // FILTER BUTTONS
         this.sort_createdAt = document.querySelector('#sort_createdAt');
@@ -66,21 +67,41 @@ export class NoteController {
             const title = this.title.value;
             const description = this.description.value;
             const expire = this.expire.value;
-            const importance = this.importance.value;
+            const importance = parseInt(this.importance.value);
+
             console.log('SUBMIT CLICKED', event.type, 'FORM DATAS', title, description, expire, importance);
 
-            const datas = {
-                id: null, 
-                title: title, 
-                description: description, 
-                expire: expire, 
-                importance: importance, 
-                complete: false, 
-                completed_at: '' }
+            let formStatus = false;
 
-            this.noteService.addNote(datas);
-            this.renderNotes();
+            // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
+            if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');
+            console.log('formStatus', formStatus);            
+
+            if (formStatus === true) {
+                const datas = {
+                    id: null, 
+                    title: title, 
+                    description: description, 
+                    expire: expire, 
+                    importance: importance, 
+                    complete: false, 
+                    completed_at: ''
+                }
+
+                this.noteService.addNote(datas);
+                this.renderNotes();
+                this.resetForm();
+
+            } else {
+                this.noteForm.classList.add('error');
+            }
+
         });
+
+        this.clear.addEventListener('click', event => {
+            this.resetForm();   
+        });
+
 
         // FILTER BUTTONS
         this.sort_createdAt.addEventListener('click', event => {
@@ -103,6 +124,13 @@ export class NoteController {
             document.body.classList.toggle('theme__dark');            
         });
 
+    }
+
+    // RESET FORM
+    resetForm() {
+        this.clear.click();
+        this.importance.selectedIndex = null;
+        this.noteForm.classList.remove('error');
     }
 
     // RENDER NOTES LIST
