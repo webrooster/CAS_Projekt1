@@ -11,6 +11,7 @@
     --chromatic-light-color-2: #3e584b;
 
     --success-color: #949e05;
+    --alert-color: #5f4a31;
 
     --button-hover-color: #73614C;    
     --background-dark-completed-color: #73614C;
@@ -29,6 +30,7 @@ body.theme__dark {
     --chromatic-light-color-2: #ffebbb;
 
     --success-color: #949e05;
+    --alert-color: #5f4a31;
 
     --button-hover-color: #5CC0C7;    
     --background-dark-completed-color: #46699e;

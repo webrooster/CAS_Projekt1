@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAS-FEE-2020 - Project 1</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <title>CAS-FEE-2020 - Project 1</title>
+
+    <script defer src="assets/js/util.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js" defer></script>
+    <script type="module" defer src="assets/js/index.js"></script>
 </head>
 
 <body class="">
@@ -27,10 +32,11 @@
             <!-- FORM START -->
             <form id="note__form" action="" method="POST">
                 <h3>Add your note</h3>
-                <h4>Add your description to your note. Fill in a description and a expire date.</h4>
-
+                <h4>Add your description to your note. Fill in a description and a expire date.
+                    Fields with * are required.
+                </h4>
                 <fieldset>
-                    <label for="title">Title</label>
+                    <label for="title">Title <span>*</span></label>
                     <input id="title" placeholder="Add a note" type="text" name="title" tabindex="1" maxlength="100"
                         required autofocus>
                 </fieldset>
@@ -42,12 +48,12 @@
                 </fieldset>
 
                 <fieldset>
-                    <label for="expire">Expire</label>
+                    <label for="expire">Expire <span>*</span></label>
                     <input id="expire" placeholder="dd-mm-yyyy" type="date" name="expire" tabindex="3" required>
                 </fieldset>
 
                 <fieldset>
-                    <label for="importance">Importance</label>
+                    <label for="importance">Importance <span>*</span></label>
                     <select id="importance" name="importance" tabindex="4">
                         <option selected="selected">Choose importance</option>
                         <option value="1">1</option>
@@ -260,15 +266,66 @@
                         date</button>
                 </div>
 
-                <!-- NOTES LIST ALL -->
-                <ul id="standard__list"></ul>
+                <!-- HANDLEBAR TEMPLATE - LIST ITEM -->
+                <script id="notes-list-template" type="text/x-handlebars-template">
+                    {{#if notes}}
+                    {{#each notes}}
+                    <li class="note {{#if complete}}note--completed{{/if}}" data-index="{{ @index }}" data-id="{{ id }}">
+                        <div class="note__dropdown">
+            
+                            <div class="note__complete">
+                                <button class="btn btn--completed">
+                                    <i class="fas fa-check-circle"></i>
+                                </button>
+                            </div>
+            
+                            <div class="note__content">
+                                <span class="note__created">{{ created }}</span>
+            
+                                <h2 class="note__title">{{ title }}</h2>
+                                <p class="note__description note__dropdown note__dropdown--open">
+                                    {{ description }}
+                                </p>
+                            </div>
+            
+                            <div class="note__infos">
+                                <span class="note__completed">{{ expire }}</span>
+                                <span class="note__completed">{{ completed_at }}</span>
+                                <span class="note__importance">
+                                    {{ importance}}
+                                </span>
+                            </div>
+            
+                            <div class="note__edit">
+                                <button class="edit">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                            </div>
+            
+                        </div>
+                    </li>
+                    {{/each}}
+                    {{else}}
+                        <li class="note note--empty">
+                            <div class="note__content note--empty">
+                                    <h2 class="note__title">List is empty!</h2>
+                                    <p class="note__description">
+                                        Use the form and add your note.
+                                    </p>
+                            </div>
+                        </li>
+                    {{/if}}
+                </script>
+                <!-- END HANDLEBAR LIST TEMPLATE -->
+
+                  <!-- NOTES LIST ALL -->
+                  <ul id="standard__list"></ul>
             </div>
         </section>
         <footer>
             <p>Copyright &copy; HSR - Fachhochschule Rapperswil - CAS-FEE-2020</p>
         </footer>
     </div>
-    <script type="module" src="./assets/js/app.js"></script>
 </body>
 
 </html>

@@ -34,6 +34,16 @@
     font-weight: 300;;
 }
 
+#note__form label span {
+    color: var(--font-color);
+    font-size: 1.5rem;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 5px;
+}
+
 fieldset {
     border: medium none;
     margin: 0 0 10px;
@@ -147,6 +157,7 @@ input[type="date"] {
     /* min-width: 96%; */
 }
 
-#note__form input[type="text"].error {
-    background-color: red;
+#note__form.error {
+    background-color: var(--alert-color);
+    transition: background-color .3s ease-in-out;
 }

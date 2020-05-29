@@ -62,8 +62,6 @@
     flex: 2;
 }
 
-
-
 /* LIST ITEM COLORS */
 .note__importance {
     flex-wrap: nowrap;
@@ -140,4 +138,9 @@
 
 .note__importance {
     color: var(--contrast-color);
+}
+
+.note.note--empty {
+    background-color: transparent;
+    text-align: center;
 }
