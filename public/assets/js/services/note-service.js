@@ -50,16 +50,32 @@ export class NoteService {
         this.notes = [];
     }
 
-    // FILTER
+    // SORT CREATED DATE
+    sortCreatedAt(sortState) {
+        const sortingList = this.notes;
+        sortingList.sort((a, b) => {
+            console.table(b.created - a.created);
+            if (sortState === false) return  b.created - a.created;
+            if (sortState === true) return  a.created - b.created;
+        })
+    }
+
+    // SORT COMPLETED
     sortCompleted(sortState) {
-        const completedOrder = this.notes;
-        completedOrder.sort((a, b) => {
-            console.log('completed', a.complete, b.complete);
+        const sortingList = this.notes;
+        sortingList.sort((a, b) => {
             if (sortState === false) return  b.complete - a.complete;
             if (sortState === true) return  a.complete - b.complete;
         })
+    }
 
-        // console.table(completedOrder);
+    // SORT IMPORTANCE
+    sortImportance(sortState) {
+        const sortingList = this.notes;
+        sortingList.sort((a, b) => {
+            if (sortState === false) return  b.importance - a.importance;
+            if (sortState === true) return  a.importance - b.importance;
+        })
     }
 
     // LOAD DATA

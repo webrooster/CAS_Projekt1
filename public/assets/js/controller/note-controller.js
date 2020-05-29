@@ -114,12 +114,15 @@ export class NoteController {
         // FILTER BUTTONS
         this.sort_createdAt.addEventListener('click', event => {
             console.log('sort_createdAt', event.target);
-            this.sort_createdAt.classList.toggle('active');          
+            this.sort_createdAt.classList.toggle('active');
+            this.noteService.sortCreatedAt(this.getFilterState(this.sort_createdAt));        
         });
 
         this.sort_importance.addEventListener('click', event => {
             console.log('sort_importance', event.target);
-            this.sort_importance.classList.toggle('active');            
+            this.sort_importance.classList.toggle('active'); 
+            this.noteService.sortImportance(this.getFilterState(this.sort_importance));
+            this.renderNotes();           
         });
 
         this.sort_completed.addEventListener('click', event => {
@@ -137,7 +140,6 @@ export class NoteController {
         this.theme__toggler.addEventListener('click', event => {
             document.body.classList.toggle('theme__dark');            
         });
-
     }
 
     // FILTER BUTTON STATE
