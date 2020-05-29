@@ -21,7 +21,7 @@ export class NoteController {
         // FILTER BUTTONS
         this.sort_createdAt = document.querySelector('#sort_createdAt');
         this.sort_importance = document.querySelector('#sort_importance');
-        this.sort_finished = document.querySelector('#sort_finished');
+        this.sort_completed = document.querySelector('#sort_completed');
         this.sort_finished_date = document.querySelector('#sort_finished_date');
 
     }
@@ -77,13 +77,12 @@ export class NoteController {
             const expire = this.expire.value;
             const importance = parseInt(this.importance.value);
 
-            console.log('SUBMIT CLICKED', event.type, 'FORM DATAS', title, description, expire, importance);
+            // console.log('SUBMIT CLICKED', event.type, 'FORM DATAS', title, description, expire, importance);
 
             let formStatus = false;
 
             // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
-            if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');
-            console.log('formStatus', formStatus);            
+            if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');          
 
             if (formStatus === true) {
                 const datas = {
@@ -114,27 +113,36 @@ export class NoteController {
 
         // FILTER BUTTONS
         this.sort_createdAt.addEventListener('click', event => {
-            console.log('sort_createdAt', event.target);            
+            console.log('sort_createdAt', event.target);
+            this.sort_createdAt.classList.toggle('active');          
         });
 
         this.sort_importance.addEventListener('click', event => {
-            console.log('sort_importance', event.target);            
+            console.log('sort_importance', event.target);
+            this.sort_importance.classList.toggle('active');            
         });
 
-        this.sort_finished.addEventListener('click', event => {
-            console.log('sort_finished', event.target);            
+        this.sort_completed.addEventListener('click', event => {
+            this.sort_completed.classList.toggle('active');
+            this.noteService.sortCompleted(this.getFilterState(this.sort_completed));
+            this.renderNotes();          
         });
 
         this.sort_finished_date.addEventListener('click', event => {
             console.log('sort_finished_date', event.target);            
+            this.sort_finished_date.classList.toggle('active');
         });
-
 
         // THEME TOGGLER
         this.theme__toggler.addEventListener('click', event => {
             document.body.classList.toggle('theme__dark');            
         });
 
+    }
+
+    // FILTER BUTTON STATE
+    getFilterState(button) {
+        return button.classList.contains('active');
     }
 
     // RESET FORM

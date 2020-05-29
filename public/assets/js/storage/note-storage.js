@@ -13,8 +13,8 @@ export class NoteStorage {
     }
 
     // COMPLETE NOTE
-    completeNote() {        
-        localStorage.setItem('notes', JSON.stringify(this.notes));  
+    async completeNote() {        
+        await localStorage.setItem('notes', JSON.stringify(this.notes));  
     }
 
     // UPDATE NOTE

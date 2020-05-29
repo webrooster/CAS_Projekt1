@@ -50,6 +50,18 @@ export class NoteService {
         this.notes = [];
     }
 
+    // FILTER
+    sortCompleted(sortState) {
+        const completedOrder = this.notes;
+        completedOrder.sort((a, b) => {
+            console.log('completed', a.complete, b.complete);
+            if (sortState === false) return  b.complete - a.complete;
+            if (sortState === true) return  a.complete - b.complete;
+        })
+
+        // console.table(completedOrder);
+    }
+
     // LOAD DATA
     loadData() {
         this.notes = this.storage.getNotes();
