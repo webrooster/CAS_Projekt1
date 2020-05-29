@@ -5,7 +5,7 @@ const mockdatas = [
     {   
         "id": "654654",
         "title": "First note",
-        "created": "",
+        "created": "01.01.2020",
         "description": "Bla bla bla hier, und blabla dort.",
         "importance" : 3,
         "expire": "date expire",
@@ -15,7 +15,7 @@ const mockdatas = [
     {
         "id": "645654",
         "title": "Second note",
-        "created": "",
+        "created": "02.02.2020",
         "description": "Auch hier darf eine Beschreibung rein, aber die Zeichenlänge muss begrenzt werden.",
         "importance" : 2,
         "expire": "date expire",
@@ -25,7 +25,7 @@ const mockdatas = [
     {
         "id": "78998",
         "title": "Third note",
-        "created": "",
+        "created": "03.03.2020",
         "description": "Lorem ipsum dolor sit amet",
         "importance" : 5,
         "expire": "date expire",
@@ -35,7 +35,7 @@ const mockdatas = [
     {
         "id": "789987",
         "title": "Fourth note",
-        "created": "",
+        "created": "04.04.2020",
         "description": "Lorem ipsum dolor sit amet",
         "importance" : 4,
         "expire": "date expire",
@@ -51,13 +51,23 @@ export class NoteService {
     }
 
     // SORT CREATED DATE
+    sortFinishedAt(sortState) {
+        const sortingList = this.notes;
+        sortingList.sort((a, b) => {
+            console.log('finished_at', a.completed_at, b.completed_at);
+            if (sortState === false) return new Date(b.completed_at) - new Date(a.completed_at);
+            if (sortState === true) return new Date(a.completed_at) - new Date(b.completed_at);
+        });
+    }
+
+    // SORT CREATED DATE
     sortCreatedAt(sortState) {
         const sortingList = this.notes;
         sortingList.sort((a, b) => {
-            console.table(b.created - a.created);
-            if (sortState === false) return  b.created - a.created;
-            if (sortState === true) return  a.created - b.created;
-        })
+            console.log('created', a.created, b.created);
+            if (sortState === false) return new Date(b.created) - new Date(a.created);
+            if (sortState === true) return new Date(a.created) - new Date(b.created);
+        });
     }
 
     // SORT COMPLETED
@@ -84,12 +94,12 @@ export class NoteService {
         /**
          * MOCKDATAS
          */ 
-        // if (this.notes.length === 0) {
-        //     mockdatas.forEach(mock => {
-        //         this.notes.push(new Note(mock));
-        //     });
-        //     this.saveNotes();
-        // }
+        if (this.notes.length === 0) {
+            mockdatas.forEach(mock => {
+                this.notes.push(new Note(mock));
+            });
+            this.saveNotes();
+        }
     }
 
     // NOTE COMPLETE

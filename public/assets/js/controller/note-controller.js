@@ -3,7 +3,7 @@ export class NoteController {
         this.noteService = noteService;
 
         // HANDLEBAR TEMPATES
-        this.noteListTemplate = Handlebars.compile(document.getElementById('notes-list-template').innerHTML);
+        this.noteListTemplate = Handlebars.compile(document.querySelector('#notes-list-template').innerHTML);
 
         // DOM-ELEMENTS
         this.notesListContainter = document.getElementById('standard__list');
@@ -115,7 +115,8 @@ export class NoteController {
         this.sort_createdAt.addEventListener('click', event => {
             console.log('sort_createdAt', event.target);
             this.sort_createdAt.classList.toggle('active');
-            this.noteService.sortCreatedAt(this.getFilterState(this.sort_createdAt));        
+            this.noteService.sortCreatedAt(this.getFilterState(this.sort_createdAt));
+            this.renderNotes();      
         });
 
         this.sort_importance.addEventListener('click', event => {
@@ -130,12 +131,14 @@ export class NoteController {
             this.noteService.sortCompleted(this.getFilterState(this.sort_completed));
             this.renderNotes();          
         });
-
+        
         this.sort_finished_date.addEventListener('click', event => {
             console.log('sort_finished_date', event.target);            
             this.sort_finished_date.classList.toggle('active');
+            this.noteService.sortFinishedAt(this.getFilterState(this.sort_finished_date));
+            this.renderNotes();
         });
-
+        
         // THEME TOGGLER
         this.theme__toggler.addEventListener('click', event => {
             document.body.classList.toggle('theme__dark');            
