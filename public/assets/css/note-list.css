@@ -1,146 +1,116 @@
-/* LIST ITEM */
+.noteslist {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
 .note {
     display: flex;
     flex-direction: column;
-
-    border-left: 5px solid var(--background-color);
-    background-color: var(--chromatic-light-color-2);
-
-    padding: 1.5rem 0;
-    margin-bottom: .5rem;
+    justify-content: center;
+    align-items: stretch;
     
-    transition: border-left .3s ease;
+    min-width: 100%;
+    margin: 0 0 1px 0;
+    padding: 0;
 }
 
-.note:hover {
-    
-    border-left: 15px solid var(--contrast-color);
-}
-
-
-
-/* NOTE DROPDOWN */
-.note__dropdown {
+.note__container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    
-    cursor: grabbing;
+
+    height: 5vh;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    background-color: var(--chromatic-light-color-2);
 }
 
-.note__dropdown:hover .note__dropdown--open {
-    display: block;;
+.note__number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 
-    cursor: grab;
+    color: var(--light-grey);
 }
 
-.note__dropdown--open {
-    display: none;
+.note--completed {
+    background-color: var(--success-color);
+}
+
+.note__importance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+    color: white;
+}
+
+.note__title {
+    display: flex;
+    align-items: center;
+    flex: 10;
+
+    padding: 0 1rem;
+
+    font-size: .875rem;
+    font-weight: 700;
+}
+
+.note__expire {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 3;
+
+    background: var(--note-expire);
 }
 
 
-
-/* NOTE CONTENTS */
-.note__complete {
-    flex: 2;
+.note__dropdown {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: stretch;
 }
 
 .note__content {
-    flex: 10;
+    display: none;
     flex-direction: column;
-}
+    align-items: stretch;
 
-.note__infos {
-    display: flex;
-    flex: 2;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-}
-
-.note__edit {
-    flex: 2;
-}
-
-/* LIST ITEM COLORS */
-.note__importance {
-    flex-wrap: nowrap;
-
-    color: var(--contrast-color);
-}
-
-
-
-/* LIST ITEM LIGHT */
-.note--light {
-    color: var(--font-color);
-    background-color: var(--chromatic-light-color);
-}
-
-
-
-/* LIST ITEM DARK */
-.note.note--dark {
-    border-left: 5px solid var(--background-dark-completed-color);
-    transition: border-left .3s ease;
-}
-
-.note.note--dark:hover {
-    border-left: 15px solid var(--chromatic-light-color-2);
-}
-
-.note--dark {
-    background-color: var(--background-color);
-}
-
-.note--dark.note--completed {
-    border-left: 5px solid var(--success-color);
-    background-color: var(--chromatic-light-color);
-}
-
-
-
-/* TOGGLE COMPLETED ITEMS - LIGHT */
-.note--light.note--completed {
-    border-left: 5px solid var(--success-color);
+    padding: 2rem;
     background-color: var(--chromatic-light-color-2);
+    opacity: 0;
+    transition: opacity .3 ease-in-out 1s;
 }
 
-.note.note--completed:hover {
-    border-left: 15px solid var(--success-color);
+.note--open {
+    display: flex;
+    opacity: 1;
 }
 
-.note--completed .note__complete .btn--completed {
-    color: var(--success-color);
-    background-color: transparent;
+.note__dates {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 3vh;
+    margin-bottom: 2rem;
 }
 
+.note__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
 
-
-/* FONT COLOR DARK */
-.note--dark .note__content {
-    color: var(--chromatic-light-color);
-}
-
-
-/*  FONT SIZES */
-.note__title {
-    color: var(--font-color);
-    line-height: 1.5rem;
-}
-
-.note__created,
-.note__completed,
-.note__importance {
-    margin-bottom: 1rem;
-    color: var(--success-color);
-}
-
-.note__importance {
-    color: var(--contrast-color);
-}
-
-.note.note--empty {
-    background-color: transparent;
-    text-align: center;
+    margin-top: 2rem;
 }

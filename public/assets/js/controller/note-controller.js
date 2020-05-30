@@ -23,7 +23,6 @@ export class NoteController {
         this.sort_importance = document.querySelector('#sort_importance');
         this.sort_completed = document.querySelector('#sort_completed');
         this.sort_finished_date = document.querySelector('#sort_finished_date');
-
     }
 
     // INIT EVENTHANDLERS
@@ -47,24 +46,34 @@ export class NoteController {
         /**
          * NOTE LIST COMPLETE NOTE
          */
-        this.notesListContainter.addEventListener('click', e => {
-            if (e.target.classList[1] == 'btn--completed') {
-                const dataIndex = e.target.parentElement.parentElement.parentElement.getAttribute('data-index');
-                const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-                console.log('dataId edit', e.target, dataId, dataIndex);
+        this.notesListContainter.addEventListener('click', event => {
+            if (event.target.matches('.btn--complete')) {
+                event.preventDefault();
+                const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
+                const dataId = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+                console.log('dataId edit', event.target, dataId, dataIndex);
+                
+                this.noteService.completeNote(dataIndex, dataId);
+                
+                setTimeout(() => {
+                    this.renderNotes();
+                }, 3000);
 
-                this.noteService.completeNote(dataIndex, dataId);
-                
-            } else if (e.target.classList[1] == 'fa-check-circle') {
-                const dataIndex = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-index');
-                const dataId = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-id');
-                console.log('dataId fa-edit', e.target, dataId, dataIndex);
-                
-                this.noteService.completeNote(dataIndex, dataId);
             }
-
-            this.renderNotes();
-
+        });
+        
+        // OPEN LIST ITEM
+        this.notesListContainter.addEventListener('click', event => {
+            event.preventDefault();
+            if (event.target.matches('.btn')) {
+                const dropDownId = event.target.parentElement.parentElement.nextElementSibling.getAttribute('id');
+                const openDropdownId = document.getElementById(dropDownId);
+                openDropdownId.classList.toggle('note--open');
+                const currentButtonId = event.target.id;
+                const activeButton = document.getElementById(currentButtonId);
+                activeButton.classList.toggle('active');
+                console.log(dropDownId, activeButton);    
+            }    
         });
 
 

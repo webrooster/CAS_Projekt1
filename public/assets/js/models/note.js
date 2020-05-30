@@ -10,7 +10,7 @@ export class Note {
       this.id = this.randomId();
       this.title = title;
       this.description = description;
-      this.created = created; //this.currentDate();
+      this.created = this.currentDate();
       this.importance = importance;
       this.expire = expire;        
       this.complete = complete;

@@ -4,7 +4,6 @@ button {
     background: var(--background-color);
     color: var(--font-color);
 
-    margin: 0 0 5px;
     padding: 10px;
     width: 100%;
     border-radius: none;
@@ -22,32 +21,33 @@ button:hover {
 }
 
 button:active {
-    color: var(--font-color);
-    background-color: var(--white-color);
+    /* box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5); */
+    background-color: none;
 }
 
 button.active {
-    color: var(--white-color);
+    color: var(--font-color);
     background-color: var(--chromatic-light-color-2);
 }
 
 /* CUSTOM BUTTONS */
-.note__complete .btn,
-.note__edit .edit {
-    font-size: 1.5rem;
-    color: var(--ligth-grey);
-    background-color: transparent;
+.note__buttons button {
+    margin-right: .5rem;
 }
 
-.note__complete .btn:hover,
-.note__edit .edit:hover {
+.note__dropdown .btn {
+    margin: 10px;
+
+    transform: rotate(90deg);
+    transition: transform .3s ease;
+}
+
+.note__dropdown .btn.active {
     color: var(--white-color);
-    background-color: transparent;
+    
+    transform: rotate(0deg);
+    transition: transform .5s ease;
 }
-
-/* .note__edit .edit:hover {
-    color: var(--font-color);
-} */
 
 /* THEME TOGGLER */
 .switch {

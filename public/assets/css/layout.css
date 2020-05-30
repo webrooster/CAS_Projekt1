@@ -30,13 +30,13 @@
     padding: 0;
     margin: 0;
 
-    overflow-y: scroll;
-    max-height: 20vh;
+    /* overflow-y: scroll; */
+    /* max-height: 20vh; */
 }
 
-.noteslist.noteslist--standard {
+/* .noteslist.noteslist--standard {
     max-height: 100vh;
-}
+} */
 
 /* UI-BUTTONS */
 .ui-buttons {
@@ -52,8 +52,4 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.noteslist {
-    
 }

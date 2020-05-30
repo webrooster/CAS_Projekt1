@@ -94,12 +94,12 @@ export class NoteService {
         /**
          * MOCKDATAS
          */ 
-        if (this.notes.length === 0) {
-            mockdatas.forEach(mock => {
-                this.notes.push(new Note(mock));
-            });
-            this.saveNotes();
-        }
+        // if (this.notes.length === 0) {
+        //     mockdatas.forEach(mock => {
+        //         this.notes.push(new Note(mock));
+        //     });
+        //     this.saveNotes();
+        // }
     }
 
     // NOTE COMPLETE

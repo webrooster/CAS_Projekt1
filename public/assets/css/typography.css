@@ -7,12 +7,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1rem;
-    font-weight: 300;
-    /* text-transform: uppercase; */
-
-    margin-bottom: 1rem;
-
+    font-size: inherit;
     color: var(--font-color);
 }
 
@@ -22,18 +17,29 @@ h3 {
 }
 
 p {
-    padding-top: 1rem;
-    line-height: 1.2rem;
-
+    font-size: .875rem;
+    line-height: 1.3rem;
     color: var(--font-color);
 }
 
-/* CUSTOMS */
-h1 span {
-    color: var(--font-color);
-    font-size: 1.5rem;
+span {
+    font-size: .75rem;
+
 }
 
-.note__more {
-    margin-top: 3rem;
+.note p {
+    color: var(--font-lighter);
+}
+
+.note__expire span {
+    font-size: .6rem;
+    text-transform: uppercase;
+}
+
+.note__title h2 {
+    color: var(--font-lighter);
+}
+
+.note__description p {
+    color: var(--font-lighter);
 }
