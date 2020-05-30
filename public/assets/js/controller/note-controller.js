@@ -32,14 +32,9 @@ export class NoteController {
          * NOTE LIST ITEM EDIT
          */
         this.notesListContainter.addEventListener('click', e => {
-            if (e.target.classList[0] == 'edit') {
+            if (e.target.matches('.edit')) {
                 const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-                console.log('dataId edit', e.target, dataId)
-
-            } else if (e.target.classList[1] == 'fa-edit') {
-                const dataId = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-id');
-                console.log('dataId fa-edit', e.target, dataId)
-
+                console.log('dataId edit', e.target, dataId);
             }
         });
 
@@ -50,11 +45,10 @@ export class NoteController {
             if (event.target.matches('.btn--complete')) {
                 event.preventDefault();
                 const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
-                const dataId = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-                console.log('dataId edit', event.target, dataId, dataIndex);
-                
+                const dataId = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');                
                 this.noteService.completeNote(dataIndex, dataId);
-                
+
+                // LOADING SPINNER
                 setTimeout(() => {
                     this.renderNotes();
                 }, 3000);
@@ -72,7 +66,6 @@ export class NoteController {
                 const currentButtonId = event.target.id;
                 const activeButton = document.getElementById(currentButtonId);
                 activeButton.classList.toggle('active');
-                console.log(dropDownId, activeButton);    
             }    
         });
 
