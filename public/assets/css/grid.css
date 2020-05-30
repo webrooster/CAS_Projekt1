@@ -27,6 +27,7 @@ section.col-1 {
     grid-column: 1 / span 1;
 
     display: flex;
+    justify-content: flex-start;
     align-self: flex-start;
     padding: .5rem;
 }

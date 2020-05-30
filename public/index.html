@@ -76,11 +76,29 @@
             <!-- FORM START -->
         </section>
         <section class="col-2">
+            <!-- NOTES STATUS PANEL TEMPLATE -->
+            <script id="status-panel-template" type="text/x-handlebars-template">
+                <span>total notes</span><h3>{{ status }}</h3>
+                <span>notes completed</span><h3>{{ completed }}</h3>
+            </script>
+            <!-- END NOTES STATUS PANEL TEMPLATE -->
+            
+            <div id="status__panel">
+                {{#if status }}
+                  {{ status }}
+                {{/if}}
+            </div>
+
             <div class="note__list">
                 <h2>Today's to do's</h2>
 
+
                 <!-- TODAYS LIST -->
                 <h2 class="note__more">Sort your notes by:</h2>
+                <!-- END TODAYS LIST -->
+                
+
+
 
                 <!-- UI SORTING ELEMENTS -->
                 <div class="ui-buttons">
@@ -88,12 +106,23 @@
                         at</button>
                     <button id="sort_importance" type="submit"><i class="fas fa-star"></i>Importance</button>
                     <button id="sort_completed" type="submit"><i class="far fa-check-circle"></i>Finished</button>
-                    <button id="sort_finished_date" type="submit"><i class="fas fa-calendar-times"></i>Finished
-                        date</button>
+                    <button id="sort_finished_date" type="submit"><i class="fas fa-calendar-times"></i>Finished date</button>
                 </div>
+                <!-- END UI SORTING ELEMENTS -->
+
+
 
                 <!-- HANDLEBAR TEMPLATE - LIST ITEM -->
-                <script id="notes-list-template" type="text/x-handlebars-template">
+                <script id="notes-list-template" type="text/x-handlebars-template">               
+                    
+                    <!-- LOADING SPNNER -->
+                    {{#if loading}}
+                        <div class="loader"></div>
+                    <!-- END LOADING SPNNER -->
+                    {{/if}}
+
+
+
                     <!-- start list item -->
                     {{#if notes}}
                     {{#each notes}}
@@ -136,12 +165,17 @@
                             </div>
                         </li>
                     {{/if}}
-                    <!-- end list item -->                    
+                    <!-- end list item -->
                 </script>
                 <!-- END HANDLEBAR LIST TEMPLATE -->
 
+
+
                 <!-- NOTES LIST ALL -->
-                <ul class="noteslist" id="standard__list"></ul>
+                <ul id="standard__list"></ul>
+                <!-- END NOTES LIST ALL -->
+
+
             </div>
         </section>
         <footer>

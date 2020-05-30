@@ -1,12 +1,16 @@
 export class NoteController {
     constructor(noteService) {
         this.noteService = noteService;
+        this.loading = false;
 
         // HANDLEBAR TEMPATES
         this.noteListTemplate = Handlebars.compile(document.querySelector('#notes-list-template').innerHTML);
+        this.statusPanelTemplate = Handlebars.compile(document.querySelector('#status-panel-template').innerHTML);
 
         // DOM-ELEMENTS
         this.notesListContainter = document.getElementById('standard__list');
+        this.statusPanel = document.getElementById('status__panel');
+
         this.theme__toggler = document.querySelector('#theme__toggler');
         
         // FORM ELEMENTS
@@ -47,28 +51,9 @@ export class NoteController {
                 const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
                 const dataId = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');                
                 this.noteService.completeNote(dataIndex, dataId);
-
-                // LOADING SPINNER
-                setTimeout(() => {
-                    this.renderNotes();
-                }, 3000);
-
+                this.renderNotes();
             }
         });
-        
-        // OPEN LIST ITEM
-        this.notesListContainter.addEventListener('click', event => {
-            event.preventDefault();
-            if (event.target.matches('.btn')) {
-                const dropDownId = event.target.parentElement.parentElement.nextElementSibling.getAttribute('id');
-                const openDropdownId = document.getElementById(dropDownId);
-                openDropdownId.classList.toggle('note--open');
-                const currentButtonId = event.target.id;
-                const activeButton = document.getElementById(currentButtonId);
-                activeButton.classList.toggle('active');
-            }    
-        });
-
 
         // NOTE FORM
         this.submitForm.addEventListener('click', event => {
@@ -140,6 +125,21 @@ export class NoteController {
             this.noteService.sortFinishedAt(this.getFilterState(this.sort_finished_date));
             this.renderNotes();
         });
+
+        // UI ELEMENTS 
+
+        // OPEN LIST ITEM
+        this.notesListContainter.addEventListener('click', event => {
+            event.preventDefault();
+            if (event.target.matches('.btn')) {
+                const dropDownId = event.target.parentElement.parentElement.nextElementSibling.getAttribute('id');
+                const openDropdownId = document.getElementById(dropDownId);
+                openDropdownId.classList.toggle('note--open');
+                const currentButtonId = event.target.id;
+                const activeButton = document.getElementById(currentButtonId);
+                activeButton.classList.toggle('active');
+            }    
+        });
         
         // THEME TOGGLER
         this.theme__toggler.addEventListener('click', event => {
@@ -160,10 +160,14 @@ export class NoteController {
     }
 
     // RENDER NOTES LIST
-    renderNotes() {
-        this.notesListContainter.innerHTML = '';
-        this.notesListContainter.innerHTML = this.noteListTemplate({ notes: this.noteService.notes });
+    renderNotes = async () => {
+        this.notesListContainter.innerHTML = '';        
+        this.loadData = true;
+        
+        this.statusPanel.innerHTML = this.statusPanelTemplate({ status: this.noteService.notes.length, completed: this.noteService.notes.complete });
+        this.notesListContainter.innerHTML = await this.noteListTemplate({ notes: this.noteService.notes, loading: this.loading });
     }
+
 
     // INIT APP
     noteAction() {

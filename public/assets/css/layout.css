@@ -53,3 +53,22 @@
     justify-content: center;
     align-items: center;
 }
+
+/* STATUS PANEL */
+#status__panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 2vh;
+    margin-top: .5rem;
+}
+
+#status__panel span {
+    text-transform: uppercase;
+    margin-left: 3rem;
+}
+
+#status__panel h3 {
+    font-size: 4rem;
+    margin-left: 1rem;
+}

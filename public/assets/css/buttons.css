@@ -51,6 +51,7 @@ button > * {
 
 .note__dropdown .btn.active {
     color: var(--white-color);
+    background-color: var(--button-hover-color);
     
     transform: rotate(0deg);
     transition: transform .5s ease;

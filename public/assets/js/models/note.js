@@ -14,7 +14,7 @@ export class Note {
       this.importance = importance;
       this.expire = expire;        
       this.complete = complete;
-      this.completed_at = completed_at;        
+      this.completed_at = this.currentDate(); // Set current date; prevents sorting bug without dates.     
     }
 
     toJSON() {

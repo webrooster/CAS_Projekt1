@@ -5,6 +5,7 @@
 @import './form.css';
 @import './note-list.css';
 @import './buttons.css';
+@import './loading-spinner.css';
 
 * {
     margin: 0;

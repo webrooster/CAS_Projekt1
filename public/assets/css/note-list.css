@@ -1,9 +1,8 @@
-.noteslist {
+#standard__list {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-
+    flex-direction: column;
 }
 
 .note {
@@ -80,19 +79,22 @@
     align-items: stretch;
 }
 
+/* DROPDOWN CONTENT */
 .note__content {
     display: none;
     flex-direction: column;
     align-items: stretch;
-
+    height: 0;
+    opacity: 0;
+    
     padding: 2rem;
     background-color: var(--chromatic-light-color-2);
-    opacity: 0;
-    transition: opacity .3 ease-in-out 1s;
+    transition: visibility 0s, opacity 0.5s linear;
 }
 
 .note--open {
     display: flex;
+    height: auto;
     opacity: 1;
 }
 
