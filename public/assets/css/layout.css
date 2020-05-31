@@ -9,8 +9,9 @@
 .head__title p {
     font-family: 'Dancing Script', cursive;
     font-size: 1.5rem;
-
     color: var(--success-color);
+    
+    padding-top: 1rem;
     transform: rotate(-7deg);
     text-shadow: 2px 1px 1px #000;
 }
@@ -61,11 +62,12 @@
     justify-content: flex-start;
     height: 2vh;
     margin-top: .5rem;
+    padding-top: .75rem;
 }
 
 #status__panel span {
     text-transform: uppercase;
-    margin-left: 3rem;
+    margin-left: 2rem;
 }
 
 #status__panel h3 {
