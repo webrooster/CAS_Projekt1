@@ -10,11 +10,11 @@ export class Note {
       this.id = this.randomId();
       this.title = title;
       this.description = description;
-      this.created = this.currentDate();
+      this.created = new Date();
       this.importance = importance;
       this.expire = expire;        
       this.complete = complete;
-      this.completed_at = this.currentDate(); // Set current date; prevents sorting bug without dates.     
+      this.completed_at = new Date(); // Set current date; prevents sorting bug without dates.     
     }
 
     toJSON() {

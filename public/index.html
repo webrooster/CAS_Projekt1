@@ -156,12 +156,13 @@
                     </li>
                     {{/each}}
                     {{else}}
-                        <li class="note note--empty">
-                            <div class="note__content note--empty">
-                                    <h2 class="note__title">List is empty!</h2>
-                                    <p class="note__description">
-                                        Use the form and add your note.
-                                    </p>
+                        <li id="{{@index}}" class="note" data-index="{{ @index }}">
+                            <div class="note__container">
+                                <div class="note__number"><i class="fas fa-info"></i></div>
+                                <div class="note__importance note--importance-1"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="note__title">
+                                    <h2 class="note__title">List is empty! Be the first and add a note!</h2>                                    
+                                </div>
                             </div>
                         </li>
                     {{/if}}

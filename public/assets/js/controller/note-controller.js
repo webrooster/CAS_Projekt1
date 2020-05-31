@@ -79,7 +79,7 @@ export class NoteController {
                     expire: expire, 
                     importance: importance, 
                     complete: 0, 
-                    completed_at: ''
+                    completed_at: null
                 }
 
                 this.noteService.addNote(datas);
@@ -160,12 +160,13 @@ export class NoteController {
     }
 
     // RENDER NOTES LIST
-    renderNotes = async () => {
+    renderNotes() {
         this.notesListContainter.innerHTML = '';        
-        this.loadData = true;
+        
+        // this.loading = true; LOADING SPINNER TBD
         
         this.statusPanel.innerHTML = this.statusPanelTemplate({ status: this.noteService.notes.length, completed: this.noteService.notes.complete });
-        this.notesListContainter.innerHTML = await this.noteListTemplate({ notes: this.noteService.notes, loading: this.loading });
+        this.notesListContainter.innerHTML = this.noteListTemplate({ notes: this.noteService.notes, loading: this.loading });
     }
 
 
