@@ -3,15 +3,18 @@ export class NoteController {
         this.noteService = noteService;
         this.loading = false;
 
-        // HANDLEBAR TEMPATES
+        // HANDLEBAR NOTES LISTING
         this.noteListTemplate = Handlebars.compile(document.querySelector('#notes-list-template').innerHTML);
-        this.statusPanelTemplate = Handlebars.compile(document.querySelector('#status-panel-template').innerHTML);
-
-        // DOM-ELEMENTS
         this.notesListContainer = document.getElementById('standard__list');
-        this.statusPanel = document.getElementById('status__panel');
 
-        this.theme__toggler = document.querySelector('#theme__toggler');
+        // HANDLEBAR STATUS PANEL
+        this.statusPanelTemplate = Handlebars.compile(document.querySelector('#status-panel-template').innerHTML);
+        this.statusPanelContainer = document.getElementById('status__panel');
+        
+        // HANDLEBARS FORM
+        this.noteFormUpdateContainer = document.getElementById('note__form--update');
+        this.noteFormUpdateTemplate = Handlebars.compile(document.querySelector('#note__form--update-template').innerHTML);
+
         
         // FORM ELEMENTS
         this.noteForm = document.querySelector('#note__form');
@@ -20,14 +23,24 @@ export class NoteController {
         this.expire = document.querySelector('#expire');
         this.importance = document.querySelector('#importance');
         this.submitForm = document.querySelector('#submit');
-        this.clear = document.querySelector('#clear');
-
+        this.clear = document.querySelector('.clear');
+        
         // FILTER BUTTONS
         this.sort_createdAt = document.querySelector('#sort_createdAt');
         this.sort_importance = document.querySelector('#sort_importance');
         this.sort_completed = document.querySelector('#sort_completed');
         this.sort_finished_date = document.querySelector('#sort_finished_date');
         this.sort_clear = document.querySelector('#sort_clear');
+        
+        // THEME TOGGLER
+        this.theme__toggler = document.querySelector('#theme__toggler');
+
+        // FLIP FORM
+        this.flip = document.querySelector('.flip-card');
+
+        Handlebars.registerHelper('selected', function(importance, number) {
+            return importance == number  ? ' selected' : '';
+        });
     }
 
     // INIT EVENTHANDLERS
@@ -45,17 +58,24 @@ export class NoteController {
                 this.renderNotes();
             }
         });
-
+        
         /**
          * NOTE LIST ITEM EDIT
          */
         this.notesListContainer.addEventListener('click', e => {
+            e.preventDefault();
+            
             if (e.target.matches('.edit')) {
+                const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
                 const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-                console.log('dataId edit', e.target, dataId);
+                const note = this.noteService.updateNote(dataIndex, dataId);
+                console.log('dataId edit', e.target, dataId, 'updateThisNote', note);
+                this.flip.classList.add('active');
+                this.renderNotes(note);
             }
-        });
 
+        });
+        
         /**
          * NOTE LIST COMPLETE NOTE
          */
@@ -108,6 +128,8 @@ export class NoteController {
 
         // FORM CLEAR
         this.clear.addEventListener('click', event => {
+            console.log('form clear');
+            this.flip.classList.toggle('active');
             this.resetForm();   
         });
 
@@ -180,21 +202,37 @@ export class NoteController {
     }
 
     // RENDER NOTES LIST
-    renderNotes() {
+    renderNotes(note) {
+
+        // CLEAR LIST
         this.notesListContainer.innerHTML = '';        
         
         // this.loading = true; LOADING SPINNER TBD
         
+        // RENDER FORM UPDATE        
+        if (note) {
+            console.log('RENDER NOTES', note.noteDatas.title);
+            this.noteFormUpdateContainer.innerHTML = this.noteFormUpdateTemplate({ 
+                title: note.noteDatas.title,
+                description: note.noteDatas.description,
+                expire: note.noteDatas.expire,
+                importance: note.noteDatas.importance
+            });
+        }
+        
+        // RENDER NOTES LIST
         this.notesListContainer.innerHTML = this.noteListTemplate({ 
             notes: this.noteService.notes, 
             loading: this.loading 
         });
 
-        this.statusPanel.innerHTML = this.statusPanelTemplate({ 
+        // RENDER STATUS PANEL
+        this.statusPanelContainer.innerHTML = this.statusPanelTemplate({ 
             status: this.noteService.statusPanel().notesTotal, 
             completed: this.noteService.statusPanel().notesCompleted
         });
 
+        // RELOADING DATAS
         this.noteService.loadData();
     }
 

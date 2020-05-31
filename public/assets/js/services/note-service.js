@@ -96,6 +96,7 @@ export class NoteService {
         })
     }
 
+    // UPDATE STATUS PANEL
     statusPanel() {
         return this.storage.getStatus();
     }
@@ -114,6 +115,16 @@ export class NoteService {
         // }
 
         return this.notes;
+    }
+
+    // UPDATE NOTE
+    updateNote(dataId, dataIndex) {
+        console.log('SERVICE UPDATE NOTE', dataId, dataIndex, this.notes[dataId])
+        const noteDatas = this.notes[dataId];
+
+        return {
+            noteDatas    
+        }
     }
 
     // NOTE DELETE
