@@ -8,7 +8,7 @@ export class NoteController {
         this.statusPanelTemplate = Handlebars.compile(document.querySelector('#status-panel-template').innerHTML);
 
         // DOM-ELEMENTS
-        this.notesListContainter = document.getElementById('standard__list');
+        this.notesListContainer = document.getElementById('standard__list');
         this.statusPanel = document.getElementById('status__panel');
 
         this.theme__toggler = document.querySelector('#theme__toggler');
@@ -36,7 +36,7 @@ export class NoteController {
         /**
          * DELETE ITEM
          */
-        this.notesListContainter.addEventListener('click', e => {
+        this.notesListContainer.addEventListener('click', e => {
             if (e.target.matches('.btn--delete')) {
                 const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
                 const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
@@ -49,7 +49,7 @@ export class NoteController {
         /**
          * NOTE LIST ITEM EDIT
          */
-        this.notesListContainter.addEventListener('click', e => {
+        this.notesListContainer.addEventListener('click', e => {
             if (e.target.matches('.edit')) {
                 const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
                 console.log('dataId edit', e.target, dataId);
@@ -59,7 +59,7 @@ export class NoteController {
         /**
          * NOTE LIST COMPLETE NOTE
          */
-        this.notesListContainter.addEventListener('click', event => {
+        this.notesListContainer.addEventListener('click', event => {
             if (event.target.matches('.btn--complete')) {
                 event.preventDefault();
                 const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
@@ -143,7 +143,7 @@ export class NoteController {
         // UI ELEMENTS 
 
         // OPEN LIST ITEM
-        this.notesListContainter.addEventListener('click', event => {
+        this.notesListContainer.addEventListener('click', event => {
             event.preventDefault();
             if (event.target.matches('.btn')) {
                 const dropDownId = event.target.parentElement.parentElement.nextElementSibling.getAttribute('id');
@@ -181,11 +181,11 @@ export class NoteController {
 
     // RENDER NOTES LIST
     renderNotes() {
-        this.notesListContainter.innerHTML = '';        
+        this.notesListContainer.innerHTML = '';        
         
         // this.loading = true; LOADING SPINNER TBD
         
-        this.notesListContainter.innerHTML = this.noteListTemplate({ 
+        this.notesListContainer.innerHTML = this.noteListTemplate({ 
             notes: this.noteService.notes, 
             loading: this.loading 
         });
