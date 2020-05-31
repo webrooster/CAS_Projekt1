@@ -18,6 +18,8 @@
 
 <body class="">
     <div class="container">
+        
+        
         <header>
             <div class="head__title">
                 <h1>My awesome <span>notes</span></h1>
@@ -28,6 +30,8 @@
                 <span class="slider"></span>
             </label>
         </header>
+
+
         <section class="col-1">
             <!-- FORM START -->
             <form id="note__form" action="" method="POST">
@@ -75,6 +79,8 @@
             </form>
             <!-- FORM START -->
         </section>
+
+
         <section class="col-2">
             <!-- NOTES STATUS PANEL TEMPLATE -->
             <script id="status-panel-template" type="text/x-handlebars-template">
@@ -83,11 +89,13 @@
             </script>
             <!-- END NOTES STATUS PANEL TEMPLATE -->
             
+            <!-- STATUS PANEL -->
             <div id="status__panel">
                 {{#if status }}
                   {{ status }}
                 {{/if}}
             </div>
+            <!-- END STATUS PANEL -->
 
             <div class="note__list">
                 <h2>Today's to do's</h2>
@@ -96,8 +104,6 @@
                 <!-- TODAYS LIST -->
                 <h2 class="note__more">Sort your notes by:</h2>
                 <!-- END TODAYS LIST -->
-                
-
 
 
                 <!-- UI SORTING ELEMENTS -->
@@ -111,7 +117,6 @@
                 <!-- END UI SORTING ELEMENTS -->
 
 
-
                 <!-- HANDLEBAR TEMPLATE - LIST ITEM -->
                 <script id="notes-list-template" type="text/x-handlebars-template">               
                     
@@ -122,8 +127,7 @@
                     {{/if}}
 
 
-
-                    <!-- start list item -->
+                    <!-- START LIST ITEMS -->
                     {{#if notes}}
                     {{#each notes}}
                     <li id="{{@index}}" class="note" data-index="{{ @index }}" data-id="{{ id }}">
@@ -151,6 +155,7 @@
                             <div class="note__buttons">
                                 <button class="edit">Edit</button>
                                 <button class="btn--complete">Complete</button>
+                                <button class="btn--delete"><i class="far fa-trash-alt"></i> Delete</button>
                             </div>
                         </div>
                     </li>
@@ -166,10 +171,9 @@
                             </div>
                         </li>
                     {{/if}}
-                    <!-- end list item -->
+                    <!-- END LIST ITEMS -->
                 </script>
                 <!-- END HANDLEBAR LIST TEMPLATE -->
-
 
 
                 <!-- NOTES LIST ALL -->

@@ -1,3 +1,5 @@
+'use strict';
+
 import { Note } from '../models/note.js';
 
 /* MOCK DATAS */
@@ -100,6 +102,12 @@ export class NoteService {
         //     });
         //     this.saveNotes();
         // }
+    }
+
+    // NOTE DELETE
+    deleteNote(dataId, dataIndex) {
+        console.log('SERVICE DELETE', dataId, dataIndex, this.notes[dataId]);
+        if (this.notes[dataId]) this.notes.splice(dataId, 1), this.storage.update(this.notes);
     }
 
     // NOTE COMPLETE

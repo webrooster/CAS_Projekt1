@@ -33,6 +33,19 @@ export class NoteController {
     initEventHandlers() {
 
         /**
+         * DELETE ITEM
+         */
+        this.notesListContainter.addEventListener('click', e => {
+            if (e.target.matches('.btn--delete')) {
+                const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
+                const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+                console.log('dataId delete', e.target, dataId, dataIndex);
+                this.noteService.deleteNote(dataIndex, dataId);
+                this.renderNotes();
+            }
+        });
+
+        /**
          * NOTE LIST ITEM EDIT
          */
         this.notesListContainter.addEventListener('click', e => {

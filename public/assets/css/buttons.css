@@ -39,6 +39,16 @@ button > * {
 
 /* CUSTOM BUTTONS */
 .note__buttons button {
+    margin-right: .3rem;
+}
+
+.btn--delete {
+    color: white;
+    background-color: var(--importance-5);
+    width: 40%;
+}
+
+.btn--delete i {
     margin-right: .5rem;
 }
 
