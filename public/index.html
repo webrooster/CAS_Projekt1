@@ -90,7 +90,7 @@
     
                     <fieldset>
                         <div class="form__buttons">
-                            <button name="clear" type="reset" class="clear">Cancel</button>
+                            <button name="clear" type="reset" id="clear__update">Cancel</button>
                             <button name="submit" type="submit" id="submit" data-submit="Sending...">Submit</button>
                         </div>
                     </fieldset>
@@ -102,66 +102,67 @@
 
             <div class="flip-card">
                 <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <!-- DEFAULT FORM -->
-                    <!-- FORM CONTAINER -->
-                    <form class="note__form" id="note__form" action="" method="POST">
-                        <h3>Add your note</h3>
-                        <h4>Add your description to your note. Add a title and place a finish date.<br>
-                            Fields with * are required.
-                        </h4>
-                        <fieldset>
-                            <label for="title">Title <span>*</span></label>
-                            <input id="title" placeholder="Add a note" type="text" name="title" tabindex="1" maxlength="100"
-                                required autofocus>
-                        </fieldset>
+                    <div class="flip-card-front">
 
-                        <fieldset>
-                            <label for="description">Description</label>
-                            <textarea id="description" placeholder="Type your message here...." name="description" tabindex="2"
-                                maxlength="500" required></textarea>
-                        </fieldset>
+                        <!-- FORM CONTAINER -->
+                        <form class="note__form" id="note__form" action="" method="POST">
+                            <h3>Add your note</h3>
+                            <h4>Add your description to your note. Add a title and place a finish date.<br>
+                                Fields with * are required.
+                            </h4>
+                            <fieldset>
+                                <label for="title">Title <span>*</span></label>
+                                <input id="title" placeholder="Add a note" type="text" name="title" tabindex="1"
+                                    maxlength="100" required autofocus>
+                            </fieldset>
 
-                        <fieldset>
-                            <label for="expire">Expire <span>*</span></label>
-                            <input id="expire" placeholder="dd-mm-yyyy" type="date" name="expire" tabindex="3" required>
-                        </fieldset>
+                            <fieldset>
+                                <label for="description">Description</label>
+                                <textarea id="description" placeholder="Type your message here...." name="description"
+                                    tabindex="2" maxlength="500" required></textarea>
+                            </fieldset>
 
-                        <fieldset>
-                            <label for="importance">Importance <span>*</span></label>
-                            <select id="importance" name="importance" tabindex="4">
-                                <option selected="selected">Choose importance</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </fieldset>
+                            <fieldset>
+                                <label for="expire">Expire <span>*</span></label>
+                                <input id="expire" placeholder="dd-mm-yyyy" type="date" name="expire" tabindex="3"
+                                    required>
+                            </fieldset>
 
-                        <fieldset>
-                            <div class="form__buttons">
-                                <button name="clear" type="reset" class="clear">Cancel</button>
-                                <button name="submit" type="submit" id="submit" data-submit="Sending...">Submit</button>
-                            </div>
-                        </fieldset>
+                            <fieldset>
+                                <label for="importance">Importance <span>*</span></label>
+                                <select id="importance" name="importance" tabindex="4">
+                                    <option selected="selected">Choose importance</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </fieldset>
 
-                        <p class="copyright">CAS-FEE-2020 - Project 1</p>
-                    </form>
-                    <!-- END FORM CONTAINER -->
-                  </div>
-                  <div class="flip-card-back">
-                    <!-- UDPATE FORM -->
+                            <fieldset>
+                                <div class="form__buttons">
+                                    <button name="clear" type="reset" id="clear">Cancel</button>
+                                    <button name="submit" type="submit" id="submit"
+                                        data-submit="Sending...">Submit</button>
+                                </div>
+                            </fieldset>
 
-                    <!-- NOTE FORM UPDATE CONTAINER-->
-                    <form class="note__form" id="note__form--update" action="" method="POST">
-                        {{ note }}
-                    </form>
-                    <!-- END NOTE FORM UPDATE CONTAINER-->
+                            <p class="copyright">CAS-FEE-2020 - Project 1</p>
+                        </form>
+                        <!-- END FORM CONTAINER -->
+                    </div>
+                    <div class="flip-card-back">
 
-                  </div>
+                        <!-- NOTE FORM UPDATE CONTAINER-->
+                        <form class="note__form" id="note__form--update" action="" method="POST">
+                            {{ note }}
+                        </form>
+                        <!-- END NOTE FORM UPDATE CONTAINER-->
+
+                    </div>
                 </div>
-              </div>
+            </div>
 
         </section>
 
@@ -243,7 +244,7 @@
                             <p>{{#if description}}{{ description }}{{else}}This note has no description{{/if}}</p>
                         </div>
                         <div class="note__buttons">
-                            <button class="edit">Edit</button>
+                            <button class="btn--edit">Edit</button>
                             <button class="btn--complete">{{#if complete}}Note is
                                 completed{{else}}Complete{{/if}}</button>
                             <button class="btn--delete"><i class="far fa-trash-alt"></i> Delete</button>

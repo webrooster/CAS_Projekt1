@@ -29,7 +29,9 @@ section.col-1 {
     display: flex;
     justify-content: flex-start;
     align-self: flex-start;
+    
     padding: .5rem;
+    min-height: 50vh;
 }
 
 section.col-2 {

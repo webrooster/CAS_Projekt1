@@ -23,7 +23,8 @@ export class NoteController {
         this.expire = document.querySelector('#expire');
         this.importance = document.querySelector('#importance');
         this.submitForm = document.querySelector('#submit');
-        this.clear = document.querySelector('.clear');
+        this.clear = document.querySelector('#clear');
+        this.clear_update = document.querySelector('#clear__update');
         
         // FILTER BUTTONS
         this.sort_createdAt = document.querySelector('#sort_createdAt');
@@ -65,7 +66,7 @@ export class NoteController {
         this.notesListContainer.addEventListener('click', e => {
             e.preventDefault();
             
-            if (e.target.matches('.edit')) {
+            if (e.target.matches('.btn--edit')) {
                 const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
                 const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
                 const note = this.noteService.updateNote(dataIndex, dataId);
@@ -131,6 +132,13 @@ export class NoteController {
             console.log('form clear');
             this.flip.classList.toggle('active');
             this.resetForm();   
+        });
+
+        this.noteFormUpdateContainer.addEventListener('click', event => {
+            console.log('update cancel clicked');
+            if (event.target.matches('#clear__update')) {
+                this.flip.classList.toggle('active');
+            }
         });
 
 
