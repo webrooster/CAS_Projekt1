@@ -54,19 +54,23 @@ export class NoteService {
 
     // SORT CREATED DATE
     sortFinishedAt(sortState) {
-        const sortingList = this.notes;
+        const sortingList = this.notes.filter(a => a.complete );
+        
         sortingList.sort((a, b) => {
-            console.log('finished_at', a.completed_at, b.completed_at);
+            //console.log('finished_at', a.completed_at, b.completed_at, 'title', a.title);
             if (sortState === false) return new Date(b.completed_at) - new Date(a.completed_at);
             if (sortState === true) return new Date(a.completed_at) - new Date(b.completed_at);
         });
+        
+        // RENDER RESULT LIST
+        this.notes = sortingList;
     }
 
     // SORT CREATED DATE
     sortCreatedAt(sortState) {
         const sortingList = this.notes;
         sortingList.sort((a, b) => {
-            console.log('created', a.created, b.created);
+            //console.log('created', a.created, b.created);
             if (sortState === false) return new Date(b.created) - new Date(a.created);
             if (sortState === true) return new Date(a.created) - new Date(b.created);
         });
@@ -78,7 +82,9 @@ export class NoteService {
         sortingList.sort((a, b) => {
             if (sortState === false) return  b.complete - a.complete;
             if (sortState === true) return  a.complete - b.complete;
-        })
+        });
+
+        this.notes = sortingList;
     }
 
     // SORT IMPORTANCE
@@ -90,6 +96,10 @@ export class NoteService {
         })
     }
 
+    statusPanel() {
+        return this.storage.getStatus();
+    }
+
     // LOAD DATA
     loadData() {
         this.notes = this.storage.getNotes();
@@ -97,17 +107,18 @@ export class NoteService {
          * MOCKDATAS
          */ 
         // if (this.notes.length === 0) {
-        //     mockdatas.forEach(mock => {
-        //         this.notes.push(new Note(mock));
-        //     });
-        //     this.saveNotes();
+            //     mockdatas.forEach(mock => {
+            //         this.notes.push(new Note(mock));
+            //     });
+            //     this.saveNotes();
         // }
+
+        return this.notes;
     }
 
     // NOTE DELETE
     deleteNote(dataId, dataIndex) {
-        console.log('SERVICE DELETE', dataId, dataIndex, this.notes[dataId]);
-        if (this.notes[dataId]) this.notes.splice(dataId, 1), this.storage.update(this.notes);
+        if (this.notes[dataId].id === dataIndex) this.notes.splice(dataId, 1), this.storage.update(this.notes);
     }
 
     // NOTE COMPLETE
@@ -116,12 +127,12 @@ export class NoteService {
         if (this.notes[dataId].id === dataIndex && this.notes[dataId].completed_at == '') {
             this.notes[dataId].completed_at = new Date(),
             this.notes[dataId].complete ^= true,
-            this.storage.completeNote();
+            this.storage.update(this.notes);
 
         } else {
             this.notes[dataId].completed_at = new Date(),
             this.notes[dataId].complete ^= true,
-            this.storage.completeNote();
+            this.storage.update(this.notes);
         }    
     }
 

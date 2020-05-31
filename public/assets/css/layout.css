@@ -70,5 +70,7 @@
 
 #status__panel h3 {
     font-size: 4rem;
+    color: var(--success-color);
+    text-shadow: 2px 2px 3px var(--background-color);
     margin-left: 1rem;
 }

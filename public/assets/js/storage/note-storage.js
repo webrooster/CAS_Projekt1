@@ -2,9 +2,10 @@
 
 export class NoteStorage {
     constructor() {
-        const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-        this.notes = notes;
-        localStorage.setItem('notes', JSON.stringify(notes));
+        this.collection = 'notes';
+        const notes = JSON.parse(localStorage.getItem(this.collection) || '[]');
+        this.notes = notes;        
+        localStorage.setItem(this.collection, JSON.stringify(notes));
     }
 
     // GET ALL NOTES
@@ -12,21 +13,23 @@ export class NoteStorage {
         return this.notes;
     }
 
-    // COMPLETE NOTE
-    async completeNote() {        
-        await localStorage.setItem('notes', JSON.stringify(this.notes));  
+    getStatus() {
+        return {
+            notesTotal: this.notes.length,
+            notesCompleted: this.notes.filter(a => a.complete ).length
+        }
     }
 
     // UPDATE NOTE
     async update(notes) {
-        await localStorage.setItem('notes', JSON.stringify(this.notes));
+        await localStorage.setItem(this.collection, JSON.stringify(this.notes));
         return notes;
     }
 
     // ADD NOTE
     async createNote(note) {
         this.notes.push(note);
-        await localStorage.setItem('notes', JSON.stringify(this.notes));
+        await localStorage.setItem(this.collection, JSON.stringify(this.notes));
     }
 
 }

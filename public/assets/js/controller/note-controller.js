@@ -27,6 +27,7 @@ export class NoteController {
         this.sort_importance = document.querySelector('#sort_importance');
         this.sort_completed = document.querySelector('#sort_completed');
         this.sort_finished_date = document.querySelector('#sort_finished_date');
+        this.sort_clear = document.querySelector('#sort_clear');
     }
 
     // INIT EVENTHANDLERS
@@ -158,6 +159,12 @@ export class NoteController {
         this.theme__toggler.addEventListener('click', event => {
             document.body.classList.toggle('theme__dark');            
         });
+
+        // CLEAR FILTER
+        this.sort_clear.addEventListener('click', event => {
+            this.noteService.loadData();
+            this.renderNotes();
+        });
     }
 
     // FILTER BUTTON STATE
@@ -178,8 +185,17 @@ export class NoteController {
         
         // this.loading = true; LOADING SPINNER TBD
         
-        this.statusPanel.innerHTML = this.statusPanelTemplate({ status: this.noteService.notes.length, completed: this.noteService.notes.complete });
-        this.notesListContainter.innerHTML = this.noteListTemplate({ notes: this.noteService.notes, loading: this.loading });
+        this.notesListContainter.innerHTML = this.noteListTemplate({ 
+            notes: this.noteService.notes, 
+            loading: this.loading 
+        });
+
+        this.statusPanel.innerHTML = this.statusPanelTemplate({ 
+            status: this.noteService.statusPanel().notesTotal, 
+            completed: this.noteService.statusPanel().notesCompleted
+        });
+
+        this.noteService.loadData();
     }
 
 
@@ -187,6 +203,7 @@ export class NoteController {
     noteAction() {
         this.initEventHandlers();
         this.noteService.loadData();
+        this.noteService.statusPanel();
         this.renderNotes();
     }
 }

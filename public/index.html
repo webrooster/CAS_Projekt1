@@ -91,9 +91,9 @@
             
             <!-- STATUS PANEL -->
             <div id="status__panel">
-                {{#if status }}
-                  {{ status }}
-                {{/if}}
+                {{#if status }}{{ status }}{{/if}}
+
+                {{#if completed.lenght }}{{ completed }}{{ else }}0{{/if}}
             </div>
             <!-- END STATUS PANEL -->
 
@@ -108,11 +108,11 @@
 
                 <!-- UI SORTING ELEMENTS -->
                 <div class="ui-buttons">
-                    <button class="" id="sort_createdAt" type="submit"><i class="fas fa-sort-amount-down"></i>Created
-                        at</button>
+                    <button id="sort_createdAt" type="submit"><i class="fas fa-sort-amount-down"></i>Created at</button>
                     <button id="sort_importance" type="submit"><i class="fas fa-star"></i>Importance</button>
                     <button id="sort_completed" type="submit"><i class="far fa-check-circle"></i>Finished</button>
                     <button id="sort_finished_date" type="submit"><i class="fas fa-calendar-times"></i>Finished date</button>
+                    <button id="sort_clear" type="submit"><i class="fas fa-fast-backward"></i>Clear filter</button>
                 </div>
                 <!-- END UI SORTING ELEMENTS -->
 
@@ -147,14 +147,14 @@
                         </div>
                         <div id="open-{{@index }}" class="note__content">
                             <div class="note__dates">
-                                <div class="note__created"><span>Erstellt am: {{ created }}</span></div>
-                                <div class="note__completed"><span>Erledigt am: {{ completed_at }}</span></div>
+                                <div class="note__created"><span>Created on:</span><p>{{ created }}</p></div>
+                                <div class="note__completed"><span>Date Completed:</span><p>{{#if complete}}{{ completed_at }}{{ else }}Not completed{{/if}}</p></div>
                             </div>
-                            <div class="note__description"><p>{{ description }}</p>
+                            <div class="note__description"><p>{{#if description}}{{ description }}{{else}}This note has no description{{/if}}</p>
                             </div>
                             <div class="note__buttons">
                                 <button class="edit">Edit</button>
-                                <button class="btn--complete">Complete</button>
+                                <button class="btn--complete">{{#if complete}}Note is completed{{else}}Complete{{/if}}</button>
                                 <button class="btn--delete"><i class="far fa-trash-alt"></i> Delete</button>
                             </div>
                         </div>

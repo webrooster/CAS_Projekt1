@@ -116,3 +116,11 @@
 
     margin-top: 2rem;
 }
+
+.note__created {
+    flex: 1;
+}
+
+.note__completed {
+    flex: 1;
+}

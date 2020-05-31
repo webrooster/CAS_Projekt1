@@ -24,7 +24,6 @@ p {
 
 span {
     font-size: .75rem;
-
 }
 
 .note p {
@@ -34,6 +33,10 @@ span {
 .note__expire span {
     font-size: .6rem;
     text-transform: uppercase;
+}
+
+.note__completed p, .note__created p {
+    font-weight: 700;
 }
 
 .note__title h2 {
