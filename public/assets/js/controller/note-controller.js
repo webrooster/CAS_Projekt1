@@ -51,6 +51,11 @@ export class NoteController {
          * DELETE ITEM
          */
         this.notesListContainer.addEventListener('click', e => {
+            e.preventDefault();
+
+            /**
+             * DELETE NOTE
+             */
             if (e.target.matches('.btn--delete')) {
                 const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
                 const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
@@ -58,14 +63,10 @@ export class NoteController {
                 this.noteService.deleteNote(dataIndex, dataId);
                 this.renderNotes();
             }
-        });
-        
-        /**
-         * NOTE LIST ITEM EDIT
-         */
-        this.notesListContainer.addEventListener('click', e => {
-            e.preventDefault();
-            
+
+            /**
+             * EDIT NOTE
+             */
             if (e.target.matches('.btn--edit')) {
                 const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
                 const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
@@ -74,12 +75,10 @@ export class NoteController {
                 this.flip.classList.add('active');
                 this.renderNotes(note);
             }
-        });
-        
-        /**
-         * NOTE LIST COMPLETE NOTE
-         */
-        this.notesListContainer.addEventListener('click', event => {
+
+            /**
+             * COMPLETE NOTE
+             */
             if (event.target.matches('.btn--complete')) {
                 event.preventDefault();
                 const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
@@ -87,7 +86,20 @@ export class NoteController {
                 this.noteService.completeNote(dataIndex, dataId);
                 this.renderNotes();
             }
+            /**
+             * OPEN NOTE DETAILS
+             */
+            if (event.target.matches('.btn--open')) {
+                const dropDownId = event.target.parentElement.parentElement.nextElementSibling.getAttribute('id');
+                const openDropdownId = document.getElementById(dropDownId);
+                openDropdownId.classList.toggle('note--open');
+                const currentButtonId = event.target.id;
+                const activeButton = document.getElementById(currentButtonId);
+                activeButton.classList.toggle('active');
+            }  
         });
+        
+    
 
         // NOTE FORM
         this.submitForm.addEventListener('click', event => {
@@ -202,21 +214,6 @@ export class NoteController {
             this.sort_finished_date.classList.toggle('active');
             this.noteService.sortFinishedAt(this.getFilterState(this.sort_finished_date));
             this.renderNotes();
-        });
-
-        // UI ELEMENTS 
-
-        // OPEN LIST ITEM
-        this.notesListContainer.addEventListener('click', event => {
-            event.preventDefault();
-            if (event.target.matches('.btn')) {
-                const dropDownId = event.target.parentElement.parentElement.nextElementSibling.getAttribute('id');
-                const openDropdownId = document.getElementById(dropDownId);
-                openDropdownId.classList.toggle('note--open');
-                const currentButtonId = event.target.id;
-                const activeButton = document.getElementById(currentButtonId);
-                activeButton.classList.toggle('active');
-            }    
         });
         
         // THEME TOGGLER
