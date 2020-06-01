@@ -69,12 +69,11 @@ export class NoteController {
             if (e.target.matches('.btn--edit')) {
                 const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
                 const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-                const note = this.noteService.updateNote(dataIndex, dataId);
+                const note = this.noteService.getNoteDatas(dataIndex, dataId);
                 console.log('dataId edit', e.target, dataId, 'updateThisNote', note);
                 this.flip.classList.add('active');
                 this.renderNotes(note);
             }
-
         });
         
         /**
@@ -134,9 +133,45 @@ export class NoteController {
             this.resetForm();   
         });
 
+        // FORM UPDATE
         this.noteFormUpdateContainer.addEventListener('click', event => {
-            console.log('update cancel clicked');
+            
+            if (event.target.matches('#submit__update')) {
+                event.preventDefault();
+                
+                const title = document.querySelector('#title__update').value;
+                const description = document.querySelector('#description__update').value;
+                const expire = document.querySelector('#expire__update').value;
+                const importance = parseInt(document.querySelector('#importance__update').value);
+                const noteId = document.querySelector('#note__updateId').value;
+                const dataIndex = document.querySelector('#note__updateIndex').value;
+                
+                let formStatus = false;
+                
+                if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteFormUpdateContainer.classList.remove('error');
+                
+                if (formStatus === true) {
+                    console.log('SUBMIT UPDATE CLICKED', event.target, 'FORM DATAS', dataIndex, noteId, title, description, expire, importance);
+
+                    const datas = {
+                        title: title, 
+                        description: description, 
+                        expire: expire, 
+                        importance: importance,
+                        noteId: noteId,
+                        noteIndex: dataIndex 
+                    }
+                    
+                    this.noteService.updateNote(datas);
+                    this.renderNotes();
+
+                } else {
+                    this.noteFormUpdateContainer.classList.add('error');
+                }                
+            }
+            
             if (event.target.matches('#clear__update')) {
+                console.log('update cancel clicked');
                 this.flip.classList.toggle('active');
             }
         });
@@ -219,12 +254,14 @@ export class NoteController {
         
         // RENDER FORM UPDATE        
         if (note) {
-            console.log('RENDER NOTES', note.noteDatas.title);
+            console.log('RENDER NOTES', note.noteDatas, note.dataId);
             this.noteFormUpdateContainer.innerHTML = this.noteFormUpdateTemplate({ 
                 title: note.noteDatas.title,
                 description: note.noteDatas.description,
                 expire: note.noteDatas.expire,
-                importance: note.noteDatas.importance
+                importance: note.noteDatas.importance,
+                noteId: note.noteDatas.id,
+                dataIndex: note.dataId
             });
         }
         

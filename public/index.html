@@ -42,7 +42,7 @@
                     </h4>
                     <fieldset>
                         <label for="title">Title <span>*</span></label>
-                        <input id="title" 
+                        <input id="title__update" 
                             value="{{ title }}"
                             placeholder="Add a note"
                             type="text"
@@ -55,7 +55,7 @@
     
                     <fieldset>
                         <label for="description">Description</label>
-                        <textarea id="description" 
+                        <textarea id="description__update" 
                             placeholder="Type your message here...." 
                             name="description" 
                             tabindex="2" 
@@ -65,7 +65,7 @@
     
                     <fieldset>
                         <label for="expire">Expire <span>*</span></label>
-                        <input id="expire"
+                        <input id="expire__update"
                             value="{{ expire }}"
                             placeholder="dd-mm-yyyy"
                             type="date"
@@ -76,7 +76,7 @@
     
                     <fieldset>
                         <label for="importance">Importance <span>*</span></label>
-                        <select id="importance"
+                        <select id="importance__update"
                             name="importance"
                             tabindex="4">
                             <option selected="selected">Choose importance</option>
@@ -89,9 +89,17 @@
                     </fieldset>
     
                     <fieldset>
+                        <input id="note__updateId" 
+                            value="{{ noteId }}"                            
+                            type="hidden">
+
+                        <input id="note__updateIndex" 
+                            value="{{ dataIndex }}"                            
+                            type="hidden">
+
                         <div class="form__buttons">
                             <button name="clear" type="reset" id="clear__update">Cancel</button>
-                            <button name="submit" type="submit" id="submit" data-submit="Sending...">Submit</button>
+                            <button name="submit" type="submit" id="submit__update" data-submit="Sending...">Submit</button>
                         </div>
                     </fieldset>
     
