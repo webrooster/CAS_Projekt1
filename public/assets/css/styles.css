@@ -6,6 +6,7 @@
 @import './note-list.css';
 @import './buttons.css';
 @import './loading-spinner.css';
+@import './flip-card.css';
 
 * {
     margin: 0;

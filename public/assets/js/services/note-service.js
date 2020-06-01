@@ -93,9 +93,10 @@ export class NoteService {
         sortingList.sort((a, b) => {
             if (sortState === false) return  b.importance - a.importance;
             if (sortState === true) return  a.importance - b.importance;
-        })
+        });
     }
 
+    // UPDATE STATUS PANEL
     statusPanel() {
         return this.storage.getStatus();
     }
@@ -114,6 +115,30 @@ export class NoteService {
         // }
 
         return this.notes;
+    }
+
+    // NOTE UPDATE
+    updateNote(datas) {
+        console.log('SERVICE UPDATE NOTE', datas, datas.noteIndex);
+        const findNote = this.notes.find(x => x.id === datas.noteId);
+        this.notes[datas.noteIndex].title = datas.title;
+        this.notes[datas.noteIndex].description = datas.description;
+        this.notes[datas.noteIndex].expire = datas.expire;
+        this.notes[datas.noteIndex].importance = datas.importance;
+
+        this.storage.update(this.notes);
+    }
+
+    // GET NOTE DATAS
+    getNoteDatas(dataId, dataIndex) {
+        console.log('SERVICE GET NOTE DATAS', dataId, dataIndex, this.notes[dataId])
+        const noteDatas = this.notes[dataId];
+        console.log('this fucking index', dataId);
+        
+        return {
+            noteDatas,    
+            dataId
+        }
     }
 
     // NOTE DELETE

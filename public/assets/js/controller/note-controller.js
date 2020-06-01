@@ -3,15 +3,18 @@ export class NoteController {
         this.noteService = noteService;
         this.loading = false;
 
-        // HANDLEBAR TEMPATES
+        // HANDLEBAR NOTES LISTING
         this.noteListTemplate = Handlebars.compile(document.querySelector('#notes-list-template').innerHTML);
+        this.notesListContainer = document.getElementById('standard__list');
+
+        // HANDLEBAR STATUS PANEL
         this.statusPanelTemplate = Handlebars.compile(document.querySelector('#status-panel-template').innerHTML);
+        this.statusPanelContainer = document.getElementById('status__panel');
+        
+        // HANDLEBARS FORM
+        this.noteFormUpdateTemplate = Handlebars.compile(document.querySelector('#note__form--update-template').innerHTML);
+        this.noteFormUpdateContainer = document.getElementById('note__form--update');
 
-        // DOM-ELEMENTS
-        this.notesListContainter = document.getElementById('standard__list');
-        this.statusPanel = document.getElementById('status__panel');
-
-        this.theme__toggler = document.querySelector('#theme__toggler');
         
         // FORM ELEMENTS
         this.noteForm = document.querySelector('#note__form');
@@ -19,96 +22,159 @@ export class NoteController {
         this.description = document.querySelector('#description');
         this.expire = document.querySelector('#expire');
         this.importance = document.querySelector('#importance');
-        this.submitForm = document.querySelector('#submit');
-        this.clear = document.querySelector('#clear');
 
+        this.clear = document.querySelector('#form__clear');
+        this.clear_update = document.querySelector('#clear__update');
+        
         // FILTER BUTTONS
         this.sort_createdAt = document.querySelector('#sort_createdAt');
         this.sort_importance = document.querySelector('#sort_importance');
         this.sort_completed = document.querySelector('#sort_completed');
         this.sort_finished_date = document.querySelector('#sort_finished_date');
         this.sort_clear = document.querySelector('#sort_clear');
+        
+        // THEME TOGGLER
+        this.theme__toggler = document.querySelector('#theme__toggler');
+
+        // FLIP FORM
+        this.flip = document.querySelector('.flip-card');
+
+        Handlebars.registerHelper('selected', function(importance, number) {
+            return importance == number  ? ' selected' : '';
+        });
     }
 
     // INIT EVENTHANDLERS
     initEventHandlers() {
 
         /**
-         * DELETE ITEM
+         * NOTES LIST ACTIONS
          */
-        this.notesListContainter.addEventListener('click', e => {
+        this.notesListContainer.addEventListener('click', e => {
+            e.preventDefault();
+
+            /**
+             * DELETE NOTE
+             */
             if (e.target.matches('.btn--delete')) {
-                const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
-                const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-                console.log('dataId delete', e.target, dataId, dataIndex);
-                this.noteService.deleteNote(dataIndex, dataId);
+                this.noteService.deleteNote(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.renderNotes();
             }
-        });
 
-        /**
-         * NOTE LIST ITEM EDIT
-         */
-        this.notesListContainter.addEventListener('click', e => {
-            if (e.target.matches('.edit')) {
-                const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-                console.log('dataId edit', e.target, dataId);
+            /**
+             * EDIT NOTE
+             */
+            if (e.target.matches('.btn--edit')) {
+                const note = this.noteService.getNoteDatas(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
+                this.flip.classList.add('active');
+                this.renderNotes(note);
             }
-        });
 
-        /**
-         * NOTE LIST COMPLETE NOTE
-         */
-        this.notesListContainter.addEventListener('click', event => {
-            if (event.target.matches('.btn--complete')) {
-                event.preventDefault();
-                const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
-                const dataId = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');                
-                this.noteService.completeNote(dataIndex, dataId);
+            /**
+             * COMPLETE NOTE
+             */
+            if (event.target.matches('.btn--complete')) {            
+                this.noteService.completeNote(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.renderNotes();
             }
+            /**
+             * OPEN NOTE DETAILS
+             */
+            if (event.target.matches('.btn--open')) {
+                const dropDownId = event.target.parentElement.parentElement.nextElementSibling.getAttribute('id');
+                const openDropdownId = document.getElementById(dropDownId);
+                openDropdownId.classList.toggle('note--open');
+                const currentButtonId = event.target.id;
+                const activeButton = document.getElementById(currentButtonId);
+                activeButton.classList.toggle('active');
+            }  
         });
+        
+    
 
         // NOTE FORM
-        this.submitForm.addEventListener('click', event => {
-            event.preventDefault();
+        this.noteForm.addEventListener('click', event => {
 
-            const title = this.title.value;
-            const description = this.description.value;
-            const expire = this.expire.value;
-            const importance = parseInt(this.importance.value);
+            if (event.target.matches('#form__submit')) {
+                event.preventDefault();
 
-            // console.log('SUBMIT CLICKED', event.type, 'FORM DATAS', title, description, expire, importance);
+                const title = this.title.value;
+                const description = this.description.value;
+                const expire = this.expire.value;
+                const importance = parseInt(this.importance.value);
 
-            let formStatus = false;
+                let formStatus = false;
 
-            // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
-            if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');          
+                // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
+                if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');          
 
-            if (formStatus === true) {
-                const datas = {
-                    id: null, 
-                    title: title, 
-                    description: description, 
-                    expire: expire, 
-                    importance: importance, 
-                    complete: 0, 
-                    completed_at: null
+                if (formStatus === true) {
+                    const datas = {
+                        id: null, 
+                        title: title, 
+                        description: description, 
+                        expire: expire, 
+                        importance: importance, 
+                        complete: 0, 
+                        completed_at: null
+                    }
+
+                    this.noteService.addNote(datas);
+                    this.renderNotes();
+                    this.resetForm();
+
+                } else {
+                    this.noteForm.classList.add('error');
                 }
+            }
 
-                this.noteService.addNote(datas);
-                this.renderNotes();
+            if (event.target.matches('#form__clear')) {
                 this.resetForm();
-
-            } else {
-                this.noteForm.classList.add('error');
             }
 
         });
 
-        // FORM CLEAR
-        this.clear.addEventListener('click', event => {
-            this.resetForm();   
+        // FORM UPDATE
+        this.noteFormUpdateContainer.addEventListener('click', event => {
+            
+            if (event.target.matches('#submit__update')) {
+                event.preventDefault();
+                
+                const title = document.querySelector('#title__update').value;
+                const description = document.querySelector('#description__update').value;
+                const expire = document.querySelector('#expire__update').value;
+                const importance = parseInt(document.querySelector('#importance__update').value);
+                const noteId = document.querySelector('#note__updateId').value;
+                const dataIndex = document.querySelector('#note__updateIndex').value;
+                
+                let formStatus = false;
+                
+                if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteFormUpdateContainer.classList.remove('error');
+                
+                if (formStatus === true) {
+                    console.log('SUBMIT UPDATE CLICKED', event.target, 'FORM DATAS', dataIndex, noteId, title, description, expire, importance);
+
+                    const datas = {
+                        title: title, 
+                        description: description, 
+                        expire: expire, 
+                        importance: importance,
+                        noteId: noteId,
+                        noteIndex: dataIndex 
+                    }
+                    
+                    this.noteService.updateNote(datas);
+                    this.renderNotes();
+
+                } else {
+                    this.noteFormUpdateContainer.classList.add('error');
+                }                
+            }
+            
+            if (event.target.matches('#clear__update')) {
+                console.log('update cancel clicked');
+                this.flip.classList.toggle('active');
+            }
         });
 
 
@@ -139,21 +205,6 @@ export class NoteController {
             this.noteService.sortFinishedAt(this.getFilterState(this.sort_finished_date));
             this.renderNotes();
         });
-
-        // UI ELEMENTS 
-
-        // OPEN LIST ITEM
-        this.notesListContainter.addEventListener('click', event => {
-            event.preventDefault();
-            if (event.target.matches('.btn')) {
-                const dropDownId = event.target.parentElement.parentElement.nextElementSibling.getAttribute('id');
-                const openDropdownId = document.getElementById(dropDownId);
-                openDropdownId.classList.toggle('note--open');
-                const currentButtonId = event.target.id;
-                const activeButton = document.getElementById(currentButtonId);
-                activeButton.classList.toggle('active');
-            }    
-        });
         
         // THEME TOGGLER
         this.theme__toggler.addEventListener('click', event => {
@@ -165,6 +216,16 @@ export class NoteController {
             this.noteService.loadData();
             this.renderNotes();
         });
+    }
+
+    getNoteIndex() {
+        const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
+        const dataId = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+
+        return {
+            dataIndex,
+            dataId
+        }
     }
 
     // FILTER BUTTON STATE
@@ -180,21 +241,39 @@ export class NoteController {
     }
 
     // RENDER NOTES LIST
-    renderNotes() {
-        this.notesListContainter.innerHTML = '';        
+    renderNotes(note) {
+
+        // CLEAR LIST
+        this.notesListContainer.innerHTML = '';        
         
         // this.loading = true; LOADING SPINNER TBD
         
-        this.notesListContainter.innerHTML = this.noteListTemplate({ 
+        // RENDER FORM UPDATE        
+        if (note) {
+            console.log('RENDER NOTES', note.noteDatas, note.dataId);
+            this.noteFormUpdateContainer.innerHTML = this.noteFormUpdateTemplate({ 
+                title: note.noteDatas.title,
+                description: note.noteDatas.description,
+                expire: note.noteDatas.expire,
+                importance: note.noteDatas.importance,
+                noteId: note.noteDatas.id,
+                dataIndex: note.dataId
+            });
+        }
+        
+        // RENDER NOTES LIST
+        this.notesListContainer.innerHTML = this.noteListTemplate({ 
             notes: this.noteService.notes, 
             loading: this.loading 
         });
 
-        this.statusPanel.innerHTML = this.statusPanelTemplate({ 
+        // RENDER STATUS PANEL
+        this.statusPanelContainer.innerHTML = this.statusPanelTemplate({ 
             status: this.noteService.statusPanel().notesTotal, 
             completed: this.noteService.statusPanel().notesCompleted
         });
 
+        // RELOADING DATAS
         this.noteService.loadData();
     }
 
