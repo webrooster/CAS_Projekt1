@@ -2,6 +2,7 @@ export class NoteController {
     constructor(noteService) {
         this.noteService = noteService;
         this.loading = false;
+        this.results = 'List is empty! Be the first and add a note!';
 
         // HANDLEBAR NOTES LISTING
         this.noteListTemplate = Handlebars.compile(document.querySelector('#notes-list-template').innerHTML);
@@ -200,9 +201,12 @@ export class NoteController {
         });
         
         this.sort_finished_date.addEventListener('click', event => {
-            console.log('sort_finished_date', event.target);            
+            // console.log('sort_finished_date', event.target);            
             this.sort_finished_date.classList.toggle('active');
             this.noteService.sortFinishedAt(this.getFilterState(this.sort_finished_date));
+            console.log('SORT FINISHED DATE', this.noteService.notes.length);
+
+            if (this.noteService.notes.length === 0) this.results = 'No results! Just one note must be completed';
             this.renderNotes();
         });
         
@@ -250,7 +254,6 @@ export class NoteController {
         
         // RENDER FORM UPDATE        
         if (note) {
-            console.log('RENDER NOTES', note.noteDatas, note.dataId);
             this.noteFormUpdateContainer.innerHTML = this.noteFormUpdateTemplate({ 
                 title: note.noteDatas.title,
                 description: note.noteDatas.description,
@@ -262,9 +265,14 @@ export class NoteController {
         }
         
         // RENDER NOTES LIST
+        console.log('results', this.noteService.notes.length);
+
+        if (this.noteService.notes.length < 1) this.results;
+
         this.notesListContainer.innerHTML = this.noteListTemplate({ 
             notes: this.noteService.notes, 
-            loading: this.loading 
+            loading: this.loading,
+            results: this.results
         });
 
         // RENDER STATUS PANEL

@@ -61,6 +61,8 @@ export class NoteService {
             if (sortState === false) return new Date(b.completed_at) - new Date(a.completed_at);
             if (sortState === true) return new Date(a.completed_at) - new Date(b.completed_at);
         });
+
+        // console.log('sortingList', sortingList);
         
         // RENDER RESULT LIST
         this.notes = sortingList;
