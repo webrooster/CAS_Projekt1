@@ -120,25 +120,41 @@
                             </h4>
                             <fieldset>
                                 <label for="title">Title <span>*</span></label>
-                                <input id="title" placeholder="Add a note" type="text" name="title" tabindex="1"
-                                    maxlength="100" required autofocus>
+                                <input id="title" 
+                                    placeholder="Add a note"
+                                    type="text"
+                                    name="title"
+                                    tabindex="1"
+                                    maxlength="100"
+                                    required
+                                    autofocus>
                             </fieldset>
 
                             <fieldset>
                                 <label for="description">Description</label>
-                                <textarea id="description" placeholder="Type your message here...." name="description"
-                                    tabindex="2" maxlength="500" required></textarea>
+                                <textarea id="description"
+                                    placeholder="Type your message here...."
+                                    name="description"
+                                    tabindex="2"
+                                    maxlength="500"
+                                    required></textarea>
                             </fieldset>
 
                             <fieldset>
                                 <label for="expire">Expire <span>*</span></label>
-                                <input id="expire" placeholder="dd-mm-yyyy" type="date" name="expire" tabindex="3"
+                                <input id="expire"
+                                    placeholder="dd-mm-yyyy"
+                                    type="date"
+                                    name="expire"
+                                    tabindex="3"
                                     required>
                             </fieldset>
 
                             <fieldset>
                                 <label for="importance">Importance <span>*</span></label>
-                                <select id="importance" name="importance" tabindex="4">
+                                <select id="importance"
+                                    name="importance"
+                                    tabindex="4">
                                     <option selected="selected">Choose importance</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -150,9 +166,17 @@
 
                             <fieldset>
                                 <div class="form__buttons">
-                                    <button name="clear" type="reset" id="clear">Cancel</button>
-                                    <button name="submit" type="submit" id="submit"
-                                        data-submit="Sending...">Submit</button>
+                                    <button id="clear"
+                                        name="clear"
+                                        type="reset">
+                                            Cancel
+                                    </button>
+                                    <button id="submit"
+                                        name="submit"
+                                        type="submit"
+                                        data-submit="Sending...">
+                                            Submit
+                                    </button>
                                 </div>
                             </fieldset>
 
