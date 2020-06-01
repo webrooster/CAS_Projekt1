@@ -57,10 +57,7 @@ export class NoteController {
              * DELETE NOTE
              */
             if (e.target.matches('.btn--delete')) {
-                const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
-                const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-                console.log('dataId delete', e.target, dataId, dataIndex);
-                this.noteService.deleteNote(dataIndex, dataId);
+                this.noteService.deleteNote(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.renderNotes();
             }
 
@@ -68,10 +65,8 @@ export class NoteController {
              * EDIT NOTE
              */
             if (e.target.matches('.btn--edit')) {
-                const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
-                const dataId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-                const note = this.noteService.getNoteDatas(dataIndex, dataId);
-                console.log('dataId edit', e.target, dataId, 'updateThisNote', note);
+                const note = this.noteService.getNoteDatas(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
+                // console.log('dataId edit', 'getNoteIndex', this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.flip.classList.add('active');
                 this.renderNotes(note);
             }
@@ -79,11 +74,8 @@ export class NoteController {
             /**
              * COMPLETE NOTE
              */
-            if (event.target.matches('.btn--complete')) {
-                event.preventDefault();
-                const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
-                const dataId = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');                
-                this.noteService.completeNote(dataIndex, dataId);
+            if (event.target.matches('.btn--complete')) {            
+                this.noteService.completeNote(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.renderNotes();
             }
             /**
@@ -226,6 +218,16 @@ export class NoteController {
             this.noteService.loadData();
             this.renderNotes();
         });
+    }
+
+    getNoteIndex() {
+        const dataIndex = event.target.parentElement.parentElement.parentElement.getAttribute('data-index');
+        const dataId = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+
+        return {
+            dataIndex,
+            dataId
+        }
     }
 
     // FILTER BUTTON STATE
