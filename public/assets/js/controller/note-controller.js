@@ -12,8 +12,8 @@ export class NoteController {
         this.statusPanelContainer = document.getElementById('status__panel');
         
         // HANDLEBARS FORM
-        this.noteFormUpdateContainer = document.getElementById('note__form--update');
         this.noteFormUpdateTemplate = Handlebars.compile(document.querySelector('#note__form--update-template').innerHTML);
+        this.noteFormUpdateContainer = document.getElementById('note__form--update');
 
         
         // FORM ELEMENTS
@@ -22,8 +22,8 @@ export class NoteController {
         this.description = document.querySelector('#description');
         this.expire = document.querySelector('#expire');
         this.importance = document.querySelector('#importance');
-        this.submitForm = document.querySelector('#submit');
-        this.clear = document.querySelector('#clear');
+
+        this.clear = document.querySelector('#form__clear');
         this.clear_update = document.querySelector('#clear__update');
         
         // FILTER BUTTONS
@@ -48,7 +48,7 @@ export class NoteController {
     initEventHandlers() {
 
         /**
-         * DELETE ITEM
+         * NOTES LIST ACTIONS
          */
         this.notesListContainer.addEventListener('click', e => {
             e.preventDefault();
@@ -66,7 +66,6 @@ export class NoteController {
              */
             if (e.target.matches('.btn--edit')) {
                 const note = this.noteService.getNoteDatas(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
-                // console.log('dataId edit', 'getNoteIndex', this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.flip.classList.add('active');
                 this.renderNotes(note);
             }
@@ -94,46 +93,45 @@ export class NoteController {
     
 
         // NOTE FORM
-        this.submitForm.addEventListener('click', event => {
-            event.preventDefault();
+        this.noteForm.addEventListener('click', event => {
 
-            const title = this.title.value;
-            const description = this.description.value;
-            const expire = this.expire.value;
-            const importance = parseInt(this.importance.value);
+            if (event.target.matches('#form__submit')) {
+                event.preventDefault();
 
-            // console.log('SUBMIT CLICKED', event.type, 'FORM DATAS', title, description, expire, importance);
+                const title = this.title.value;
+                const description = this.description.value;
+                const expire = this.expire.value;
+                const importance = parseInt(this.importance.value);
 
-            let formStatus = false;
+                let formStatus = false;
 
-            // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
-            if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');          
+                // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
+                if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');          
 
-            if (formStatus === true) {
-                const datas = {
-                    id: null, 
-                    title: title, 
-                    description: description, 
-                    expire: expire, 
-                    importance: importance, 
-                    complete: 0, 
-                    completed_at: null
+                if (formStatus === true) {
+                    const datas = {
+                        id: null, 
+                        title: title, 
+                        description: description, 
+                        expire: expire, 
+                        importance: importance, 
+                        complete: 0, 
+                        completed_at: null
+                    }
+
+                    this.noteService.addNote(datas);
+                    this.renderNotes();
+                    this.resetForm();
+
+                } else {
+                    this.noteForm.classList.add('error');
                 }
-
-                this.noteService.addNote(datas);
-                this.renderNotes();
-                this.resetForm();
-
-            } else {
-                this.noteForm.classList.add('error');
             }
 
-        });
+            if (event.target.matches('#form__clear')) {
+                this.resetForm();
+            }
 
-        // FORM CLEAR
-        this.clear.addEventListener('click', event => {
-            console.log('form clear');
-            this.resetForm();   
         });
 
         // FORM UPDATE
