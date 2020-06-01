@@ -129,7 +129,6 @@ export class NoteController {
         // FORM CLEAR
         this.clear.addEventListener('click', event => {
             console.log('form clear');
-            this.flip.classList.toggle('active');
             this.resetForm();   
         });
 
