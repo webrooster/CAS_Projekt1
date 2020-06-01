@@ -57,13 +57,10 @@ export class NoteService {
         const sortingList = this.notes.filter(a => a.complete );
         
         sortingList.sort((a, b) => {
-            //console.log('finished_at', a.completed_at, b.completed_at, 'title', a.title);
             if (sortState === false) return new Date(b.completed_at) - new Date(a.completed_at);
             if (sortState === true) return new Date(a.completed_at) - new Date(b.completed_at);
         });
 
-        // console.log('sortingList', sortingList);
-        
         // RENDER RESULT LIST
         this.notes = sortingList;
     }
@@ -72,7 +69,6 @@ export class NoteService {
     sortCreatedAt(sortState) {
         const sortingList = this.notes;
         sortingList.sort((a, b) => {
-            //console.log('created', a.created, b.created);
             if (sortState === false) return new Date(b.created) - new Date(a.created);
             if (sortState === true) return new Date(a.created) - new Date(b.created);
         });
@@ -121,8 +117,6 @@ export class NoteService {
 
     // NOTE UPDATE
     updateNote(datas) {
-        console.log('SERVICE UPDATE NOTE', datas, datas.noteIndex);
-        const findNote = this.notes.find(x => x.id === datas.noteId);
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].expire = datas.expire;
@@ -133,9 +127,7 @@ export class NoteService {
 
     // GET NOTE DATAS
     getNoteDatas(dataId, dataIndex) {
-        console.log('SERVICE GET NOTE DATAS', dataId, dataIndex, this.notes[dataId])
         const noteDatas = this.notes[dataId];
-        console.log('this fucking index', dataId);
         
         return {
             noteDatas,    

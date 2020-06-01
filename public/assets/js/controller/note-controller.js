@@ -157,8 +157,6 @@ export class NoteController {
                 if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteFormUpdateContainer.classList.remove('error');
                 
                 if (formStatus === true) {
-                    console.log('SUBMIT UPDATE CLICKED', event.target, 'FORM DATAS', dataIndex, noteId, title, description, expire, importance);
-
                     const datas = {
                         title: title, 
                         description: description, 
@@ -177,7 +175,6 @@ export class NoteController {
             }
             
             if (event.target.matches('#clear__update')) {
-                console.log('update cancel clicked');
                 this.flip.classList.toggle('active');
             }
         });
@@ -185,14 +182,12 @@ export class NoteController {
 
         // FILTER BUTTONS
         this.sort_createdAt.addEventListener('click', event => {
-            console.log('sort_createdAt', event.target);
             this.sort_createdAt.classList.toggle('active');
             this.noteService.sortCreatedAt(this.getFilterState(this.sort_createdAt));
             this.renderNotes();      
         });
 
         this.sort_importance.addEventListener('click', event => {
-            console.log('sort_importance', event.target);
             this.sort_importance.classList.toggle('active'); 
             this.noteService.sortImportance(this.getFilterState(this.sort_importance));
             this.renderNotes();           
@@ -204,11 +199,9 @@ export class NoteController {
             this.renderNotes();          
         });
         
-        this.sort_finished_date.addEventListener('click', event => {
-            // console.log('sort_finished_date', event.target);            
+        this.sort_finished_date.addEventListener('click', event => {   
             this.sort_finished_date.classList.toggle('active');
             this.noteService.sortFinishedAt(this.getFilterState(this.sort_finished_date));
-            console.log('SORT FINISHED DATE', this.noteService.notes.length);
 
             if (this.noteService.notes.length === 0) this.message = 'List must have at least 2 notes! Just one note must be completed';
             this.renderNotes();
@@ -269,7 +262,7 @@ export class NoteController {
         }
         
         // RENDER NOTES LIST
-        console.log('message', this.noteService.notes.length, this.message);
+        // console.log('message', this.noteService.notes.length, this.message);
 
         if (this.noteService.notes.length === 0) this.message;
 
