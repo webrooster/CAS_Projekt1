@@ -12,6 +12,7 @@
     padding: 25px;
     margin: 0;
     width: 100%;
+    opacity: 1;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -19,29 +20,36 @@
     display: block;
     font-size: 1.875rem;
     font-weight: 300;
+    color: var(--font-lighter);
+
     margin-bottom: 10px;
 }
 
 .note__form h4 {
-    margin: 5px 0 15px;
+    margin: 2rem 0 2rem;
     display: block;
     font-size: 13px;
     font-weight: 400;
 }
 
 .note__form label {
-    font-weight: 300;
-    font-weight: 300;;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-weight: 700;
+    font-size: .6rem;
+    text-transform: uppercase;
+
+    color: var(--font-lighter);
+    padding: .2rem .3rem;
 }
 
 .note__form label span {
     color: var(--font-color);
-    font-size: 1.5rem;
-    line-height: 0;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    top: 5px;
+    font-weight: 700;
+    font-size: .6rem;
+    text-transform: uppercase;
 }
 
 fieldset {

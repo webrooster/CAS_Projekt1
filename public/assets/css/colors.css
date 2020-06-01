@@ -8,7 +8,7 @@
     --white-color: #fff;
     --light-grey: #f2f2f2;
 
-    --chromatic-light-color: #49735F;
+    --chromatic-light-color: #49735f;
     --chromatic-light-color-2: #3e584b;
     --chromatic-light-color-3: #3e584b;
 
@@ -25,7 +25,7 @@
 
 body.theme__dark {
     --background-color: #FFC432;
-    --font-color: rgb(97, 76, 24);
+    --font-color: #614c18;
     --font-lighter: #806a33;
 
     --contrast-color: #079BAB;

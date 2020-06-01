@@ -37,11 +37,9 @@
             <!-- FORM UPDATE TEMPLATE -->
             <script id="note__form--update-template" type="text/x-handlebars-template">
                     <h3>Update your note</h3>
-                    <h4>Add your description to your note. Add a title and place a finish date.<br>
-                        Fields with * are required.
-                    </h4>
+                    <h4>Add your description to your note. Add a title and place a finish date.</h4>
                     <fieldset>
-                        <label for="title__update">Title <span>*</span></label>
+                        <label for="title__update">Title <span>Required</span></label>
                         <input id="title__update" 
                             value="{{ title }}"
                             placeholder="Add a note"
@@ -64,7 +62,7 @@
                     </fieldset>
     
                     <fieldset>
-                        <label for="expire__update">Expire <span>*</span></label>
+                        <label for="expire__update">Expire <span>Required</span></label>
                         <input id="expire__update"
                             value="{{ expire }}"
                             placeholder="dd-mm-yyyy"
@@ -75,7 +73,7 @@
                     </fieldset>
     
                     <fieldset>
-                        <label for="importance__update">Importance <span>*</span></label>
+                        <label for="importance__update">Importance <span>Required</span></label>
                         <select id="importance__update"
                             name="importance__update"
                             tabindex="8">
@@ -119,7 +117,7 @@
                                 Fields with * are required.
                             </h4>
                             <fieldset>
-                                <label for="title">Title <span>*</span></label>
+                                <label for="title">Title <span>Required</span></label>
                                 <input id="title" 
                                     placeholder="Add a note"
                                     type="text"
@@ -141,7 +139,7 @@
                             </fieldset>
 
                             <fieldset>
-                                <label for="expire">Expire <span>*</span></label>
+                                <label for="expire">Expire <span>Required</span></label>
                                 <input id="expire"
                                     placeholder="dd-mm-yyyy"
                                     type="date"
@@ -151,7 +149,7 @@
                             </fieldset>
 
                             <fieldset>
-                                <label for="importance">Importance <span>*</span></label>
+                                <label for="importance">Importance <span>Required</span></label>
                                 <select id="importance"
                                     name="importance"
                                     tabindex="4">
