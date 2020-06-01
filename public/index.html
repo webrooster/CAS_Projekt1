@@ -41,44 +41,44 @@
                         Fields with * are required.
                     </h4>
                     <fieldset>
-                        <label for="title">Title <span>*</span></label>
+                        <label for="title__update">Title <span>*</span></label>
                         <input id="title__update" 
                             value="{{ title }}"
                             placeholder="Add a note"
                             type="text"
-                            name="title"
-                            tabindex="1"
+                            name="title__update"
+                            tabindex="5"
                             maxlength="100"
                             required
                             autofocus>
                     </fieldset>
     
                     <fieldset>
-                        <label for="description">Description</label>
+                        <label for="description__update">Description</label>
                         <textarea id="description__update" 
                             placeholder="Type your message here...." 
-                            name="description" 
-                            tabindex="2" 
+                            name="description__update" 
+                            tabindex="6" 
                             maxlength="500" 
                             required>{{ description }}</textarea>
                     </fieldset>
     
                     <fieldset>
-                        <label for="expire">Expire <span>*</span></label>
+                        <label for="expire__update">Expire <span>*</span></label>
                         <input id="expire__update"
                             value="{{ expire }}"
                             placeholder="dd-mm-yyyy"
                             type="date"
-                            name="expire"
-                            tabindex="3"
+                            name="expire__update"
+                            tabindex="7"
                             required>
                     </fieldset>
     
                     <fieldset>
-                        <label for="importance">Importance <span>*</span></label>
+                        <label for="importance__update">Importance <span>*</span></label>
                         <select id="importance__update"
-                            name="importance"
-                            tabindex="4">
+                            name="importance__update"
+                            tabindex="8">
                             <option selected="selected">Choose importance</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
