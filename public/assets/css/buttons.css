@@ -52,14 +52,14 @@ button > * {
     margin-right: .5rem;
 }
 
-.note__dropdown .btn {
+.note__dropdown .btn--open {
     margin: 10px;
 
     transform: rotate(90deg);
     transition: transform .3s ease;
 }
 
-.note__dropdown .btn.active {
+.note__dropdown .btn--open.active {
     color: var(--white-color);
     background-color: var(--button-hover-color);
     
