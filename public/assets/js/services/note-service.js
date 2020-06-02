@@ -53,12 +53,11 @@ export class NoteService {
     }
 
     // SORT CREATED DATE
-    sortFinishedAt(sortState) {
-        const sortingList = this.notes.filter(a => a.complete );
-        
+    sortExpire(sortState) {
+        const sortingList = this.notes.filter(a => a.expire);    
         sortingList.sort((a, b) => {
-            if (sortState === false) return new Date(b.completed_at) - new Date(a.completed_at);
-            if (sortState === true) return new Date(a.completed_at) - new Date(b.completed_at);
+            if (sortState === false) return new Date(b.expire) - new Date(a.expire);
+            if (sortState === true) return new Date(a.expire) - new Date(b.expire);
         });
 
         // RENDER RESULT LIST
@@ -76,11 +75,15 @@ export class NoteService {
 
     // SORT COMPLETED
     sortCompleted(sortState) {
-        const sortingList = this.notes;
+        const sortingList = this.notes; //.filter(a => a.complete);
         sortingList.sort((a, b) => {
             if (sortState === false) return  b.complete - a.complete;
             if (sortState === true) return  a.complete - b.complete;
         });
+
+        console.table('sort completed');
+        console.table( sortingList);
+        
 
         this.notes = sortingList;
     }
@@ -144,12 +147,12 @@ export class NoteService {
     completeNote(dataId, dataIndex) {
         
         if (this.notes[dataId].id === dataIndex && this.notes[dataId].completed_at == '') {
-            this.notes[dataId].completed_at = new Date(),
+            this.notes[dataId].completed_at = new Date().toLocaleString('de-DE'),
             this.notes[dataId].complete ^= true,
             this.storage.update(this.notes);
 
         } else {
-            this.notes[dataId].completed_at = new Date(),
+            this.notes[dataId].completed_at = new Date().toLocaleString('de-DE'),
             this.notes[dataId].complete ^= true,
             this.storage.update(this.notes);
         }    

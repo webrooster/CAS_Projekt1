@@ -19,12 +19,11 @@
 .note__container {
     display: flex;
     flex-direction: row;
-
-    height: 5vh;
-
+    
     font-size: 1rem;
     font-weight: 700;
-
+    
+    min-height: 5vh;
     background-color: var(--chromatic-light-color-2);
 }
 

@@ -79,17 +79,15 @@ h1:before {
     80% {
         font-size: 125%;
         opacity: 1;
-        content: "NOTES";
     }
 
     90% {
         font-size: 95%;
-        opacity: 0;
+        opacity: .5;
     }
 
     100% {
         font-size: 100%;
-        opacity: 1;
-        content: "Original Text"
+        opacity: 0;
     }
 }

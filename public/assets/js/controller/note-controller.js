@@ -196,14 +196,15 @@ export class NoteController {
         this.sort_completed.addEventListener('click', event => {
             this.sort_completed.classList.toggle('active');
             this.noteService.sortCompleted(this.getFilterState(this.sort_completed));
+
+            if (this.noteService.notes.length === 0) this.message = 'List must have at least two finished notes!';
             this.renderNotes();          
         });
         
         this.sort_finished_date.addEventListener('click', event => {   
             this.sort_finished_date.classList.toggle('active');
-            this.noteService.sortFinishedAt(this.getFilterState(this.sort_finished_date));
-
-            if (this.noteService.notes.length === 0) this.message = 'List must have at least 2 notes! Just one note must be completed';
+            this.noteService.sortExpire(this.getFilterState(this.sort_finished_date));
+            
             this.renderNotes();
         });
         
@@ -266,20 +267,41 @@ export class NoteController {
 
         if (this.noteService.notes.length === 0) this.message;
 
+        /**
+         * NOTES LISTING
+         */    
         this.notesListContainer.innerHTML = this.noteListTemplate({ 
             notes: this.noteService.notes, 
             loading: this.loading,
             message: this.message
         });
 
-        // RENDER STATUS PANEL
+        /**
+         * STATUS PANEL
+         */
         this.statusPanelContainer.innerHTML = this.statusPanelTemplate({ 
             status: this.noteService.statusPanel().notesTotal, 
-            completed: this.noteService.statusPanel().notesCompleted
+            completed: this.noteService.statusPanel().notesCompleted,
+            dateToday: this.currentDate()
         });
 
         // RELOADING DATAS
         this.noteService.loadData();
+    }
+
+    /**
+     * STATUS PANEL CURRENT DATE
+     */
+    currentDate() {
+        let dateToday = new Date();
+        let today = dateToday.toLocaleString('de-DE', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        return `${ today }`;
     }
 
 

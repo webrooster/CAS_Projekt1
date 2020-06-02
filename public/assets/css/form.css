@@ -8,7 +8,7 @@
 }
 
 .note__form {
-    background: var(--chromatic-light-color);
+    background-color: var(--chromatic-light-color);    
     padding: 25px;
     margin: 0;
     width: 100%;
@@ -181,7 +181,7 @@ input[type="date"] {
     
     50% {
         background-color: var(--importance-4);
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
     
     100% {
