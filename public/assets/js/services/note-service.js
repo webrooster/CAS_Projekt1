@@ -77,13 +77,9 @@ export class NoteService {
     sortCompleted(sortState) {
         const sortingList = this.notes.filter(a => a.complete);
         sortingList.sort((a, b) => {
-            console.table( sortingList);
             if (sortState === false) return  (b.complete - a.complete) + (new Date(b.completed_at) - new Date(a.completed_at));
             if (sortState === true) return  (a.complete - b.complete) + (new Date(a.completed_at) - new Date(b.completed_at));
         });
-
-        console.table('sort completed');
-        
 
         this.notes = sortingList;
     }
