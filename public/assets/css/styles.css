@@ -26,7 +26,7 @@ body {
 
     color: var(--font-color);
     background-color: var(--background-color);
-    background: linear-gradient(to bottom, #09110d,#244033);
+    /* background: linear-gradient(to bottom, #09110d,#244033); */
     transition: background-color 1s ease-in;
 
     margin: 0;

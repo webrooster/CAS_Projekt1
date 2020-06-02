@@ -71,6 +71,18 @@ button > * {
     transition: transform .5s ease;
 }
 
+#form__submit, #submit__update {
+    font-weight: 700;
+    color: var(--background-color);
+    background-color: var(--importance-3);
+}
+
+#form__submit:hover,
+#submit__update:hover {
+    color: var(--font-color);
+    background-color: var(--background-color);
+}
+
 /* THEME TOGGLER */
 .switch {
     position: relative;

@@ -22,13 +22,17 @@
 
         <header>
             <div class="head__title">
-                <h1><span>notes</span></h1>
+                <h1>
+                    <span>notes</span>
+                </h1>
                 <p>The to do list to organize work & life.</p>
             </div>
-            <label class="switch">
-                <input id="theme__toggler" type="checkbox" name="checkbox">
-                <span class="slider"></span>
-            </label>
+            <div>
+                <label class="switch">
+                    <input id="theme__toggler" type="checkbox" name="checkbox">
+                    <span class="slider"></span>
+                </label>                
+            </div>
         </header>
 
 
@@ -97,7 +101,7 @@
 
                         <div class="form__buttons">
                             <button name="clear" type="reset" id="clear__update">Cancel</button>
-                            <button name="submit" type="submit" id="submit__update" data-submit="Sending...">Submit</button>
+                            <button name="submit" type="submit" id="submit__update">Update</button>
                         </div>
                     </fieldset>
     
@@ -169,9 +173,8 @@
                                     </button>
                                     <button id="form__submit"
                                         name="submit"
-                                        type="submit"
-                                        data-submit="Sending...">
-                                            Submit
+                                        type="submit">
+                                            Add new note
                                     </button>
                                 </div>
                             </fieldset>
@@ -201,6 +204,7 @@
             <script id="status-panel-template" type="text/x-handlebars-template">
                 <span>total notes</span><h3>{{ status }}</h3>
                 <span>completed</span><h3>{{ completed }}</h3>
+                <span>date</span><h4>{{ dateToday }}</h4> 
             </script>
             <!-- END NOTES STATUS PANEL TEMPLATE -->
 
@@ -208,8 +212,10 @@
             <div id="status__panel">
                 {{#if status }}{{ status }}{{/if}}
                 {{#if completed }}{{ completed }}{{ else }}0{{/if}}
+                {{ dateToday }}
             </div>
             <!-- END STATUS PANEL CONTAINER -->
+
 
             <div class="note__list">
 
