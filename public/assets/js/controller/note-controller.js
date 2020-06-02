@@ -242,6 +242,12 @@ export class NoteController {
         this.noteForm.classList.remove('error');
     }
 
+    // NOTE EXPIRE TODAY
+    noteExpireToday() {
+        console.log('EXPIRE TODAY', this.noteService.expireToday());
+        const notesExpireToday = this.noteService.expireToday();
+    }
+
     // RENDER NOTES LIST
     renderNotes(note) {
 
@@ -310,6 +316,7 @@ export class NoteController {
         this.initEventHandlers();
         this.noteService.loadData();
         this.noteService.statusPanel();
+        this.noteExpireToday();
         this.renderNotes();
     }
 }

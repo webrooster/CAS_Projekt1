@@ -98,6 +98,22 @@ export class NoteService {
         return this.storage.getStatus();
     }
 
+    // NOTE EXPIRE TODAY
+    expireToday() {
+        const sortingList = this.notes;
+        const today = new Date();
+        const notesExpireToday = [];
+        sortingList.forEach(note => {
+            // console.log('today', today);
+            // console.log('expir', new Date(note.expire), note.title );
+            let expireDate = new Date(note.expire);
+            if (today.getDate() == expireDate.getDate() && today.getMonth() == expireDate.getMonth() && today.getFullYear() == expireDate.getFullYear()) notesExpireToday.push(note);
+        });
+
+        // console.table(notesExpireToday)
+        return notesExpireToday;
+    }
+
     // LOAD DATA
     loadData() {
         this.notes = this.storage.getNotes();
