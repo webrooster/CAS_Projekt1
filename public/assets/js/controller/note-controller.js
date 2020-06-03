@@ -245,7 +245,6 @@ export class NoteController {
     // NOTE EXPIRE TODAY
     noteExpireToday() {
         const notesExpireToday = this.noteService.expireToday();
-        console.log(notesExpireToday);
 
         notesExpireToday.forEach(note => {
             const todaysNote = document.querySelector(`[data-id='${note.id}']`);
