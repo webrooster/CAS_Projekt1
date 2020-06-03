@@ -16,6 +16,10 @@
     padding: 0;
 }
 
+.note.today .note__container {
+    background-color: var(--background-color);
+}
+
 .note__container {
     display: flex;
     flex-direction: row;

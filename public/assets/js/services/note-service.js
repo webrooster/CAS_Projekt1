@@ -103,11 +103,15 @@ export class NoteService {
         const sortingList = this.notes;
         const today = new Date();
         const notesExpireToday = [];
+        0
         sortingList.forEach(note => {
             // console.log('today', today);
             // console.log('expir', new Date(note.expire), note.title );
             let expireDate = new Date(note.expire);
-            if (today.getDate() == expireDate.getDate() && today.getMonth() == expireDate.getMonth() && today.getFullYear() == expireDate.getFullYear()) notesExpireToday.push(note);
+            if (today.getDate() == expireDate.getDate() &&
+                today.getMonth() == expireDate.getMonth() &&
+                today.getFullYear() == expireDate.getFullYear() &&
+                note.complete == false) notesExpireToday.push(note);
         });
 
         // console.table(notesExpireToday)
