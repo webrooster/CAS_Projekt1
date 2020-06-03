@@ -242,6 +242,18 @@ export class NoteController {
         this.noteForm.classList.remove('error');
     }
 
+    // NOTE EXPIRE TODAY
+    noteExpireToday() {
+        const notesExpireToday = this.noteService.expireToday();
+        console.log(notesExpireToday);
+
+        notesExpireToday.forEach(note => {
+            const todaysNote = document.querySelector(`[data-id='${note.id}']`);
+            let todaysNoteId;
+            if (todaysNote) todaysNote.classList.toggle('today'), todaysNoteId = todaysNote.id;
+        });
+    }
+
     // RENDER NOTES LIST
     renderNotes(note) {
 
@@ -285,8 +297,11 @@ export class NoteController {
             dateToday: this.currentDate()
         });
 
-        // RELOADING DATAS
+        /**
+         * RELOADING DATAS AND PAGE
+         */
         this.noteService.loadData();
+        this.noteExpireToday();
     }
 
     /**
@@ -309,6 +324,7 @@ export class NoteController {
     noteAction() {
         this.initEventHandlers();
         this.noteService.loadData();
+        this.noteExpireToday();
         this.noteService.statusPanel();
         this.renderNotes();
     }
