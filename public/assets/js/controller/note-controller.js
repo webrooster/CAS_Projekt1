@@ -246,10 +246,11 @@ export class NoteController {
     noteExpireToday() {
         const notesExpireToday = this.noteService.expireToday();
         console.log(notesExpireToday);
-        
+
         notesExpireToday.forEach(note => {
             const todaysNote = document.querySelector(`[data-id='${note.id}']`);
-            if (todaysNote) todaysNote.classList.toggle('today');
+            let todaysNoteId;
+            if (todaysNote) todaysNote.classList.toggle('today'), todaysNoteId = todaysNote.id;
         });
     }
 

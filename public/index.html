@@ -241,9 +241,9 @@
 
                     <!-- LOADING SPNNER -->
                     {{#if loading}}
-                <div class="loader"></div>
-                <!-- END LOADING SPNNER -->
-                {{/if}}
+                    <div class="loader"></div>
+                    {{/if}}
+                    <!-- END LOADING SPNNER -->
 
 
                 <!-- START LIST ITEMS -->
@@ -251,11 +251,11 @@
                 {{#each notes}}
                 <li id="{{@index}}" class="note" data-index="{{ @index }}" data-id="{{ id }}">
                     <div class="note__container">
-                        <div class="note__number {{#if complete}}note--completed{{/if}}">{{#if complete}}<i
-                                class="fas fa-check"></i>{{else}}<i class="fas fa-cogs"></i>{{/if}}</div>
+                        <div class="note__number {{#if complete}}note--completed{{/if}}">{{#if complete}}
+                            <i class="fas fa-check"></i>{{else}}<i class="fas fa-cogs"></i>{{/if}}</div>
                         <div class="note__importance note--importance-{{ importance}}">{{ importance}}</div>
                         <div class="note__title">
-                            <h2>{{ title }}</h2>
+                            <h2>{{ title }} {{message}}</h2>
                         </div>
                         <div class="note__expire">
                             <p>{{ expire }}</p>
@@ -301,7 +301,6 @@
                 <!-- END LIST ITEMS -->
                 </script>
                 <!-- END HANDLEBAR LIST TEMPLATE -->
-
 
                 <!-- NOTES LIST ALL -->
                 <ul id="standard__list"></ul>

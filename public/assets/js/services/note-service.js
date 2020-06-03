@@ -103,7 +103,7 @@ export class NoteService {
         const sortingList = this.notes;
         const today = new Date();
         const notesExpireToday = [];
-        0
+        
         sortingList.forEach(note => {
             // console.log('today', today);
             // console.log('expir', new Date(note.expire), note.title );
