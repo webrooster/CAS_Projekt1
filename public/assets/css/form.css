@@ -52,7 +52,7 @@
     text-transform: uppercase;
 }
 
-fieldset {
+.note__form fieldset {
     border: medium none;
     margin: 0 0 10px;
     min-width: 100%;
@@ -129,7 +129,6 @@ select {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 0px;
-    /* background: url(http://dropdown/arrow/url/) no-repeat; */
 }
 
 .form__buttons  {
@@ -153,16 +152,11 @@ select {
 }
 
 
-input[type="date"] {
+.note__form input[type="date"] {
     display:block;
-  
-    /* Solution 1 */
      -webkit-appearance: textfield;
-    -moz-appearance: textfield;
-    min-height: 1.2em; 
-  
-    /* Solution 2 */
-    /* min-width: 96%; */
+     -moz-appearance: textfield;
+     min-height: 1.2em; 
 }
 
 .note__form.error {

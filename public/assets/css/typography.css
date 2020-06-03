@@ -64,6 +64,7 @@ h1:before {
     25% {
         font-size: 110%;
         opacity: 0;
+        content: 'Notes';
     }
 
     50% {

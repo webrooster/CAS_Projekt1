@@ -25,7 +25,6 @@ button:hover {
 }
 
 button:active {
-    /* box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5); */
     background-color: none;
 }
 
@@ -34,9 +33,7 @@ button.active {
     background-color: var(--chromatic-light-color-2);
 }
 
-/**
-    PREVENT EVENT BUBBLING
-*/
+/* PREVENT EVENT BUBBLING */
 button > * {
     pointer-events: none; 
 }

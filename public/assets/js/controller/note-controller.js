@@ -248,8 +248,10 @@ export class NoteController {
 
         notesExpireToday.forEach(note => {
             const todaysNote = document.querySelector(`[data-id='${note.id}']`);
-            let todaysNoteId;
-            if (todaysNote) todaysNote.classList.toggle('today'), todaysNoteId = todaysNote.id;
+            console.log(todaysNote);
+            if (todaysNote) {
+                todaysNote.classList.toggle('today');
+            };    
         });
     }
 
