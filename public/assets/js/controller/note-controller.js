@@ -248,7 +248,7 @@ export class NoteController {
         console.log(notesExpireToday);
         
         notesExpireToday.forEach(note => {
-            const todaysNote = document.querySelector(`[data-id=${note.id}]`);
+            const todaysNote = document.querySelector(`[data-id='${note.id}']`);
             if (todaysNote) todaysNote.classList.toggle('today');
         });
     }
