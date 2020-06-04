@@ -128,3 +128,32 @@ input:checked+.slider:before {
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
+
+input[type="checkbox"] {
+    opacity: 0;
+}
+
+input[type="checkbox"]:hover {
+    color: var(--white-color);
+}
+
+.button__sorting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    padding: .5rem 0 1rem;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    color: var(--font-color);
+    background-color: var(--background-color);
+
+    cursor: pointer;
+}
+
+.button__sorting:hover {
+    color: white;
+    background-color: var(--button-hover-color);
+}
