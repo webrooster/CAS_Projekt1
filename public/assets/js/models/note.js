@@ -1,5 +1,7 @@
+'use strict';
+
 /**
- * @class Model
+ * @type class
  * 
  * Represents a note
 */

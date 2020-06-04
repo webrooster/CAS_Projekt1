@@ -1,3 +1,5 @@
+'use strict';
+
 export class NoteController {
     constructor(noteService) {
         this.noteService = noteService;
@@ -40,9 +42,9 @@ export class NoteController {
         // FLIP FORM
         this.flip = document.querySelector('.flip-card');
 
-        Handlebars.registerHelper('selected', function(importance, number) {
-            return importance == number  ? ' selected' : '';
-        });
+        // Handlebars.registerHelper('selected', function(importance, number) {
+        //     return importance == number  ? ' selected' : '';
+        // });
     }
 
     // INIT EVENTHANDLERS
@@ -248,10 +250,7 @@ export class NoteController {
 
         notesExpireToday.forEach(note => {
             const todaysNote = document.querySelector(`[data-id='${note.id}']`);
-            console.log(todaysNote);
-            if (todaysNote) {
-                todaysNote.classList.toggle('today');
-            };    
+            if (todaysNote) todaysNote.classList.toggle('today');
         });
     }
 

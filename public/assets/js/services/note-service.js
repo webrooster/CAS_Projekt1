@@ -109,9 +109,9 @@ export class NoteService {
             if (today.getDate() == expireDate.getDate() &&
                 today.getMonth() == expireDate.getMonth() &&
                 today.getFullYear() == expireDate.getFullYear() &&
-                note.complete == false) notesExpireToday.push(note);
+                note.complete === 0) notesExpireToday.push(note);
         });
-        
+
         return notesExpireToday;
     }
 
