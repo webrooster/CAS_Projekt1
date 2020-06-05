@@ -33,7 +33,7 @@ export class Note {
     }
 
     currentDate() {
-      const today = new Date().toLocaleString('de-DE');
+      const today = new Date(); //.toLocaleString('de-DE');
       return today;
     }
 

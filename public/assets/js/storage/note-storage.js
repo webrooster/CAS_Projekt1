@@ -1,10 +1,10 @@
-
-
 export class NoteStorage {
     constructor() {
         this.collection = 'notes';
         const notes = JSON.parse(localStorage.getItem(this.collection) || '[]');
         this.notes = notes;
+
+        // console.log('STORAGE', database);
     }
 
     // GET ALL NOTES
