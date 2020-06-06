@@ -1,0 +1,24 @@
+<div class="note__list">
+
+    {{> sorting }}
+
+
+    <!-- HANDLEBAR TEMPLATE - LIST ITEM -->
+
+
+    <!-- LOADING SPNNER -->
+    {{#if loading}}
+    <div class="loader"></div>
+    {{/if}}
+    <!-- END LOADING SPNNER -->
+
+    {{> list }}
+
+    <!-- END HANDLEBAR LIST TEMPLATE -->
+
+    <!-- NOTES LIST ALL -->
+    <ul id="standard__list"></ul>
+    <!-- END NOTES LIST ALL -->
+
+
+</div>
