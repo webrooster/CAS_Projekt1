@@ -1,18 +1,15 @@
-const mongoose = require('mongoose');
+require('dotenv').config();
+const mongoose = require('mongoose'); 
 
-mongoose.connect(
-  "mongodb://localhost/casfee2020",
-    { 
-      useNewUrlParser: true,
+mongoose.connect(process.env.DATABASE_URL, { 
+  useNewUrlParser: true,
       useUnifiedTopology: true
-    }
-  );
+  });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  // we're connected!
-  console.log("Connected to MongoDB database")
+  console.log("Connected to MongoDB database", db.name);
 });
 
 module.exports = db;

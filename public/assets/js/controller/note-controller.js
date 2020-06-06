@@ -7,15 +7,8 @@ export class NoteController {
         this.message = 'List is empty! Be the first and add a note!';
 
         // HANDLEBAR NOTES LISTING
-        this.noteListTemplate = Handlebars.compile(document.querySelector('#notes-list-template').innerHTML);
         this.notesListContainer = document.getElementById('standard__list');
-
-        // HANDLEBAR STATUS PANEL
-        this.statusPanelTemplate = Handlebars.compile(document.querySelector('#status-panel-template').innerHTML);
         this.statusPanelContainer = document.getElementById('status__panel');
-        
-        // HANDLEBARS FORM
-        this.noteFormUpdateTemplate = Handlebars.compile(document.querySelector('#note__form--update-template').innerHTML);
         this.noteFormUpdateContainer = document.getElementById('note__form--update');
 
         
@@ -282,7 +275,7 @@ export class NoteController {
         /**
          * NOTES LISTING
          */    
-        this.notesListContainer.innerHTML = this.noteListTemplate({ 
+        this.notesListContainer.innerHTML = this.notesListContainer({ 
             notes: this.noteService.notes, 
             loading: this.loading,
             message: this.message

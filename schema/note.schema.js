@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-
-// NOTE SCHEMA
-const notesSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+const note = new Schema({
     title: { type: String, required: true },
     description: { type: String},
     created: { type: String, required: true },
@@ -11,4 +10,4 @@ const notesSchema = new mongoose.Schema({
     completed_at: { type: String, required: true }
 });
 
-module.exports = notesSchema;
+module.exports = mongoose.model('note', note);
