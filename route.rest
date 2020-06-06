@@ -1,0 +1,24 @@
+
+GET http://localhost:3000/notes
+
+###
+
+POST http://localhost:3000/notes
+
+{
+    "title": "My fist REST API note",
+    "description": "Lorem ipsum dolor sit amet",
+    "created": "",
+    "importance": "5",
+    "expire": "20-07-2020",
+    "complete": false,
+    "completed_at": ""
+}
+
+###
+
+POST http://localhost:3000/notes
+
+{
+    "title": "My first REST API note"
+}
