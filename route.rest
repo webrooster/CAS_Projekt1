@@ -3,22 +3,30 @@ GET http://localhost:3000/notes
 
 ###
 
-POST http://localhost:3000/notes
+POST http://localhost:3000/notes HTTP/1.1
+content-type: application/json
 
 {
-    "title": "My fist REST API note",
+    "title": "TEST",
     "description": "Lorem ipsum dolor sit amet",
-    "created": "",
-    "importance": "5",
-    "expire": "20-07-2020",
+    "importance": 1,
     "complete": false,
-    "completed_at": ""
+    "expire": "20-07-2020"
 }
 
 ###
 
-POST http://localhost:3000/notes
+GET http://localhost:3000/notes/5edcadd41b40a176d024e2b2
+
+###
+
+DELETE http://localhost:3000/notes/5edcbb71ad1669334460e3d6
+
+###
+
+PATCH http://localhost:3000/notes/5edcc5ff00c4ba63234d914d HTTP/1.1
+content-type: application/json
 
 {
-    "title": "My first REST API note"
+    "complete": true
 }

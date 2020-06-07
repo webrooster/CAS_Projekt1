@@ -1,15 +1,18 @@
 'use strict'; 
 
 const express = require('express');
-const bodyparser = require('body-parser');
 const cors = require('cors');
-const db = require('./config/database');
 const path = require('path');
 const hbs = require('express-handlebars');
-const notesRouter = require('./routes/notes');
-
+const bodyParser = require('body-parser');
 const index = require('./routes/index');
+const db = require('./config/database');
+const notesRouter = require('./routes/notes');
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 
 // HANDLEBARS TEMPLATES
 app.set('view engine', 'hbs');
@@ -20,30 +23,19 @@ app.engine('.hbs', hbs({
 }));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
-  
+
 // STATIC FILES
 app.use(express.static('public'));
 app.use(express.static('files'));
 
-// SET JSON
-app.use(express.json());
-
-// ROUTE INDEX
+// ROUTES
+app.use('/notes', notesRouter);
 app.use(index);
 
-// TBD
-app.use(cors());
-
-// ROUTE NOTES
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use('/notes', notesRouter);
-
-
 // STATUS 500
-app.use((err, request, response, next) => {
+app.use((err, req, res, next) => {
   console.log(err)
-  response.status(500).send('Something broke!')
+  res.status(500).send('Something broke!')
 });
 
 module.exports = app;
