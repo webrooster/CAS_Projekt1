@@ -7,24 +7,24 @@ POST http://localhost:3000/notes HTTP/1.1
 content-type: application/json
 
 {
-    "title": "TEST",
+    "title": "Bald geschafft",
     "description": "Lorem ipsum dolor sit amet",
-    "importance": 1,
+    "importance": 5,
     "complete": false,
-    "expire": "20-07-2020"
+    "expire": "2020-08-04"
 }
 
 ###
 
-GET http://localhost:3000/notes/5edcadd41b40a176d024e2b2
+GET http://localhost:3000/notes/5edcbba202c4fd3461820536
 
 ###
 
-DELETE http://localhost:3000/notes/5edcbb71ad1669334460e3d6
+DELETE http://localhost:3000/notes/5edcbba202c4fd3461820536
 
 ###
 
-PATCH http://localhost:3000/notes/5edcc5ff00c4ba63234d914d HTTP/1.1
+PATCH http://localhost:3000/notes/5edcbbc302c4fd3461820539 HTTP/1.1
 content-type: application/json
 
 {

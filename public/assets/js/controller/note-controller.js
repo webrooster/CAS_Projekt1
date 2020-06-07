@@ -1,5 +1,3 @@
-'use strict';
-
 export class NoteController {
     constructor(noteService) {
         this.noteService = noteService;
@@ -7,8 +5,15 @@ export class NoteController {
         this.message = 'List is empty! Be the first and add a note!';
 
         // HANDLEBAR NOTES LISTING
+        this.noteListTemplate = Handlebars.compile(document.querySelector('#notes-list-template').innerHTML);
         this.notesListContainer = document.getElementById('standard__list');
+
+        // HANDLEBAR STATUS PANEL
+        this.statusPanelTemplate = Handlebars.compile(document.querySelector('#status-panel-template').innerHTML);
         this.statusPanelContainer = document.getElementById('status__panel');
+        
+        // HANDLEBARS FORM
+        this.noteFormUpdateTemplate = Handlebars.compile(document.querySelector('#note__form--update-template').innerHTML);
         this.noteFormUpdateContainer = document.getElementById('note__form--update');
 
         
@@ -35,9 +40,9 @@ export class NoteController {
         // FLIP FORM
         this.flip = document.querySelector('.flip-card');
 
-        // Handlebars.registerHelper('selected', function(importance, number) {
-        //     return importance == number  ? ' selected' : '';
-        // });
+        Handlebars.registerHelper('selected', function(importance, number) {
+            return importance == number  ? ' selected' : '';
+        });
     }
 
     // INIT EVENTHANDLERS
@@ -238,8 +243,8 @@ export class NoteController {
     }
 
     // NOTE EXPIRE TODAY
-    noteExpireToday() {
-        const notesExpireToday = this.noteService.expireToday();
+    async noteExpireToday() {
+        const notesExpireToday = await this.noteService.expireToday();
 
         notesExpireToday.forEach(note => {
             const todaysNote = document.querySelector(`[data-id='${note.id}']`);
@@ -275,7 +280,7 @@ export class NoteController {
         /**
          * NOTES LISTING
          */    
-        this.notesListContainer.innerHTML = this.notesListContainer({ 
+        this.notesListContainer.innerHTML = this.noteListTemplate({ 
             notes: this.noteService.notes, 
             loading: this.loading,
             message: this.message

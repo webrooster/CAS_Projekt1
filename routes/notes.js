@@ -82,7 +82,6 @@ router.delete('/:id', getNote, async (req, res) => {
 
 async function getNote(req, res, next) {
     let note;
-
     try {
         note = await Note.findById(req.params.id);
         if (note == null) {

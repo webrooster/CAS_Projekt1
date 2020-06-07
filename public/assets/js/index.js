@@ -5,9 +5,15 @@ import { NoteController } from './controller/note-controller.js';
 
 class NotesApp {
     static start() {
-        const noteDataStorage = new NoteStorage();
-        const noteService = new NoteService(noteDataStorage);
-        new NoteController(noteService).noteAction();
+        const noteDataStorage = NoteStorage
+        .create()
+        .then(
+            (data) => {
+                const noteService = new NoteService(noteDataStorage, data.notes);
+                console.log('THEN', noteService, noteDataStorage, data.notes);
+                new NoteController(noteService).noteAction(data.notes);
+            }
+        )    
     }
 }
 

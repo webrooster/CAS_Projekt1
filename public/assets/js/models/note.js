@@ -21,7 +21,7 @@ export class Note {
 
     toJSON() {
       return {
-        id: this.id,
+        _id: this.id,
         title: this.title,
         description: this.description,
         created: this.created,

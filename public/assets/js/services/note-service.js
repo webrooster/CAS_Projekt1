@@ -47,9 +47,9 @@ const mockdatas = [
   ];
 
 export class NoteService {
-    constructor(noteStorage) {
+    constructor(noteStorage, data) {
         this.storage = noteStorage;
-        this.notes = [];
+        this.notes = data || [];
     }
 
     // SORT CREATED DATE
@@ -95,15 +95,22 @@ export class NoteService {
 
     // UPDATE STATUS PANEL
     statusPanel() {
-        return this.storage.getStatus();
+        return {
+            notesTotal: this.notes.length,
+            notesCompleted: this.notes.filter(a => a.complete ).length
+        }
     }
 
     // NOTE EXPIRE TODAY
-    expireToday() {
+    async expireToday() {
         const sortingList = this.notes;
         const today = new Date();
         const notesExpireToday = [];
+
+        console.log('sortingList', this.notes);
         
+        if (sortingList == undefined) return;
+
         sortingList.forEach(note => {
             let expireDate = new Date(note.expire);
             if (today.getDate() == expireDate.getDate() &&
@@ -116,8 +123,8 @@ export class NoteService {
     }
 
     // LOAD DATA
-    loadData() {
-        this.notes = this.storage.getNotes();
+    loadData(data) {
+        // this.notes = this.storage.getNotes();
         /**
          * MOCKDATAS
          */ 
@@ -128,7 +135,8 @@ export class NoteService {
             //     this.saveNotes();
         // }
 
-        return this.notes;
+        console.log('loadData', this.notes);
+        return data;
     }
 
     // NOTE UPDATE
@@ -158,16 +166,17 @@ export class NoteService {
 
     // NOTE COMPLETE
     completeNote(dataId, dataIndex) {
+        console.log('completeNote', dataId, dataIndex, this.storage);
         
         if (this.notes[dataId].id === dataIndex && this.notes[dataId].completed_at == '') {
             this.notes[dataId].completed_at = new Date().toLocaleString('de-DE'),
             this.notes[dataId].complete ^= true,
-            this.storage.update(this.notes);
+            this.storage.update(dataIndex);
 
         } else {
             this.notes[dataId].completed_at = new Date().toLocaleString('de-DE'),
             this.notes[dataId].complete ^= true,
-            this.storage.update(this.notes);
+            this.storage.update(dataIndex);
         }    
     }
 

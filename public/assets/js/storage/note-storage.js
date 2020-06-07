@@ -1,28 +1,53 @@
 export class NoteStorage {
     constructor() {
         this.collection = 'notes';
-        const notes = JSON.parse(localStorage.getItem(this.collection) || '[]');
-        this.notes = notes;
+    }
 
-        // console.log('STORAGE', database);
+    async initData() {
+        this.notes = await this.getNotes();
+    }
+
+    static async create(dataService) {
+        const obj = new NoteStorage();
+        await obj.initData();
+        console.log('create', obj);
+
+        return obj;
     }
 
     // GET ALL NOTES
-    getNotes() {
-        return this.notes;
-    }
+    async getNotes() {
+        const options = {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          };
 
-    getStatus() {
-        return {
-            notesTotal: this.notes.length,
-            notesCompleted: this.notes.filter(a => a.complete ).length
-        }
+          try {
+              let url = 'http://localhost:3000/notes';
+              const awaitingNotesList = await fetch(url, options);
+              const notes = await awaitingNotesList.json() || [];
+              
+              this.notes = notes;
+              console.log('getNotes', notes, this.notes, this.notes.length);
+              return this.notes;
+
+            } catch (err) {
+                console.log('notes not found');
+            }
+
     }
 
     // UPDATE NOTE
-    async update(notes) {
-        await localStorage.setItem(this.collection, JSON.stringify(this.notes));
-        return notes;
+    async update(dataId) {
+        const Http = new XMLHttpRequest();
+        const url = `http://localhost:3000/notes/${dataId}`;
+        Http.open("GET", url);
+        await Http.send();
+
+        // await localStorage.setItem(this.collection, JSON.stringify(this.notes));
+        // return notes;
     }
 
     // ADD NOTE
