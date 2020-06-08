@@ -98,7 +98,7 @@ export class NoteController {
         });
 
         // NOTE FORM
-        this.noteForm.addEventListener('click', event => {
+        this.noteForm.addEventListener('click', async (event) => {
 
             if (event.target.matches('#form__submit')) {
                 event.preventDefault();
@@ -124,7 +124,10 @@ export class NoteController {
                         completed_at: null
                     }
 
-                    this.noteService.addNote(datas);
+                    this.noteService.addNote(datas).then((datas) => {
+                        console.log('THEN', datas);
+                    });
+
                     this.renderNotes();
                     this.resetForm();
 

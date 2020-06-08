@@ -48,12 +48,12 @@ const mockdatas = [
 
 export class NoteService {
     constructor(noteStorage, data) {
-        this.storage = noteStorage;
+        this.noteStorage = noteStorage;
         this.storedNotes = data;
         console.log('SERVICE DATA', data.length);
         this.notes = JSON.parse(JSON.stringify(this.storedNotes)) || [];
         this.totalNotes = data.length;
-        console.log('SERVICE THIS NOTES', this.totalNotes);
+
     }
 
     // SORT CREATED DATE
@@ -188,8 +188,9 @@ export class NoteService {
     }
 
     // ADD NEW NOTE
-    addNote(note) {
-        this.storage.createNote(new Note(note));
+    async addNote(note) {
+        console.log('ADDNOTE', note, this.noteStorage);
+        await this.noteStorage.createNote(note);
     }
 
     // SAVE NOTE

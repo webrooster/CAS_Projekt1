@@ -11,7 +11,7 @@ class NotesApp {
             (data) => {
                 const noteService = new NoteService(noteDataStorage, data.notes);
                 // console.log('THEN', noteService, noteDataStorage, data.notes);
-                new NoteController(noteService).noteAction(data.notes);
+                new NoteController(noteService).noteAction();
             }
         )    
     }

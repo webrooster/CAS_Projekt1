@@ -20,23 +20,21 @@ export class NoteStorage {
         const options = {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             }
-          };
+        }
 
-          try {
-              let url = 'http://localhost:3000/notes';
-              const awaitingNotesList = await fetch(url, options);
-              const notes = await awaitingNotesList.json() || [];
-              const notesClone = JSON.parse(JSON.stringify(notes));
-              this.notes = notesClone;
-              console.log('getNotes', this.notes);
-              return this.notes;
-
-            } catch (err) {
-                console.log('notes not found');
-            }
-
+        try {
+            let url = 'http://localhost:3000/notes';
+            const awaitingNotesList = await fetch(url, options);
+            const notes = await awaitingNotesList.json() || [];
+            const notesClone = JSON.parse(JSON.stringify(notes));
+            this.notes = notesClone;
+            console.log('getNotes', this.notes);
+            return this.notes;
+        } catch (err) {
+            console.log('notes not found');
+        }
     }
 
     // UPDATE NOTE
@@ -53,8 +51,22 @@ export class NoteStorage {
 
     // ADD NOTE
     async createNote(note) {
-        this.notes.push(note);
-        await localStorage.setItem(this.collection, JSON.stringify(this.notes));
-    }
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(note),
+        };
+        try {
+            const url = 'http://localhost:3000/notes';
+            const response = await fetch(url, options);
+            const note = await response.json();
+            return note;
+          
+        } catch (err) {
+          console.error('Error creating documents', err);
+        }
+      }
 
 }
