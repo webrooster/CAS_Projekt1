@@ -49,12 +49,17 @@ const mockdatas = [
 export class NoteService {
     constructor(noteStorage, data) {
         this.storage = noteStorage;
-        this.notes = data || [];
+        this.storedNotes = data;
+        console.log('SERVICE DATA', data.length);
+        this.notes = JSON.parse(JSON.stringify(this.storedNotes)) || [];
+        this.totalNotes = data.length;
+        console.log('SERVICE THIS NOTES', this.totalNotes);
     }
 
     // SORT CREATED DATE
     sortExpire(sortState) {
-        const sortingList = this.notes.filter(a => a.expire);    
+        const sortingList = this.notes.filter(a => a.expire);
+        console.log('sortExpire', this.notes);
         sortingList.sort((a, b) => {
             if (sortState === false) return new Date(b.expire) - new Date(a.expire);
             if (sortState === true) return new Date(a.expire) - new Date(b.expire);
@@ -76,11 +81,13 @@ export class NoteService {
     // SORT COMPLETED
     sortCompleted(sortState) {
         const sortingList = this.notes.filter(a => a.complete);
+        console.log('sortExpire', this.notes);
         sortingList.sort((a, b) => {
             if (sortState === false) return  (b.complete - a.complete) + (new Date(b.completed_at) - new Date(a.completed_at));
             if (sortState === true) return  (a.complete - b.complete) + (new Date(a.completed_at) - new Date(b.completed_at));
         });
 
+        console.log('COMPLETED STATE', sortingList);
         this.notes = sortingList;
     }
 
@@ -96,27 +103,27 @@ export class NoteService {
     // UPDATE STATUS PANEL
     statusPanel() {
         return {
-            notesTotal: this.notes.length,
+            notesTotal: this.totalNotes,
             notesCompleted: this.notes.filter(a => a.complete ).length
         }
     }
 
     // NOTE EXPIRE TODAY
-    async expireToday() {
+    expireToday() {
         const sortingList = this.notes;
         const today = new Date();
         const notesExpireToday = [];
 
-        console.log('sortingList', this.notes);
+        console.log('sortingList expire', this.notes);
         
-        if (sortingList == undefined) return;
+        // if (sortingList == undefined) return;
 
         sortingList.forEach(note => {
             let expireDate = new Date(note.expire);
             if (today.getDate() == expireDate.getDate() &&
                 today.getMonth() == expireDate.getMonth() &&
                 today.getFullYear() == expireDate.getFullYear() &&
-                note.complete === 0) notesExpireToday.push(note);
+                note.complete === false) notesExpireToday.push(note);
         });
 
         return notesExpireToday;
@@ -136,7 +143,7 @@ export class NoteService {
         // }
 
         console.log('loadData', this.notes);
-        return data;
+        return this.notes;
     }
 
     // NOTE UPDATE
@@ -166,7 +173,7 @@ export class NoteService {
 
     // NOTE COMPLETE
     completeNote(dataId, dataIndex) {
-        console.log('completeNote', dataId, dataIndex, this.storage);
+        console.log('completeNote', dataId, dataIndex);
         
         if (this.notes[dataId].id === dataIndex && this.notes[dataId].completed_at == '') {
             this.notes[dataId].completed_at = new Date().toLocaleString('de-DE'),

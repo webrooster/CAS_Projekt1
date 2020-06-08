@@ -40,9 +40,9 @@ export class NoteController {
         // FLIP FORM
         this.flip = document.querySelector('.flip-card');
 
-        Handlebars.registerHelper('selected', function(importance, number) {
-            return importance == number  ? ' selected' : '';
-        });
+        // Handlebars.registerHelper('selected', function(importance, number) {
+        //     return importance == number  ? ' selected' : '';
+        // });
     }
 
     // INIT EVENTHANDLERS
@@ -215,7 +215,7 @@ export class NoteController {
 
         // CLEAR FILTER
         this.sort_clear.addEventListener('click', event => {
-            this.noteService.loadData();
+            // this.noteService.loadData();
             this.renderNotes();
         });
     }
@@ -243,11 +243,11 @@ export class NoteController {
     }
 
     // NOTE EXPIRE TODAY
-    async noteExpireToday() {
-        const notesExpireToday = await this.noteService.expireToday();
+    noteExpireToday() {
+        const notesExpireToday = this.noteService.expireToday();
 
         notesExpireToday.forEach(note => {
-            const todaysNote = document.querySelector(`[data-id='${note.id}']`);
+            const todaysNote = document.querySelector(`[data-id='${note._id}']`);
             if (todaysNote) todaysNote.classList.toggle('today');
         });
     }
@@ -299,7 +299,7 @@ export class NoteController {
          * RELOADING DATAS AND PAGE
          */
         this.noteService.loadData();
-        this.noteExpireToday();
+        return this.noteExpireToday();
     }
 
     /**
@@ -321,9 +321,9 @@ export class NoteController {
     // INIT APP
     noteAction() {
         this.initEventHandlers();
-        this.noteService.loadData();
+        // this.noteService.loadData();
+        // this.noteService.statusPanel();
         this.noteExpireToday();
-        this.noteService.statusPanel();
         this.renderNotes();
     }
 }

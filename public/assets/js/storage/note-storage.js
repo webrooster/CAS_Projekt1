@@ -1,6 +1,6 @@
 export class NoteStorage {
     constructor() {
-        this.collection = 'notes';
+        this.notes = [];
     }
 
     async initData() {
@@ -28,9 +28,9 @@ export class NoteStorage {
               let url = 'http://localhost:3000/notes';
               const awaitingNotesList = await fetch(url, options);
               const notes = await awaitingNotesList.json() || [];
-              
-              this.notes = notes;
-              console.log('getNotes', notes, this.notes, this.notes.length);
+              const notesClone = JSON.parse(JSON.stringify(notes));
+              this.notes = notesClone;
+              console.log('getNotes', this.notes);
               return this.notes;
 
             } catch (err) {
@@ -40,11 +40,12 @@ export class NoteStorage {
     }
 
     // UPDATE NOTE
-    async update(dataId) {
+    update(dataIndex) {
+        console.log('UPDATE', dataIndex);
         const Http = new XMLHttpRequest();
-        const url = `http://localhost:3000/notes/${dataId}`;
+        const url = 'http://localhost:3000/notes/' + dataIndex;
         Http.open("GET", url);
-        await Http.send();
+        Http.send();
 
         // await localStorage.setItem(this.collection, JSON.stringify(this.notes));
         // return notes;

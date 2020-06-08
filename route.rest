@@ -7,11 +7,11 @@ POST http://localhost:3000/notes HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Bald geschafft",
+    "title": "Ticket heute",
     "description": "Lorem ipsum dolor sit amet",
-    "importance": 5,
+    "importance": 2,
     "complete": false,
-    "expire": "2020-08-04"
+    "expire": "2020-06-08"
 }
 
 ###
@@ -24,7 +24,7 @@ DELETE http://localhost:3000/notes/5edcbba202c4fd3461820536
 
 ###
 
-PATCH http://localhost:3000/notes/5edcbbc302c4fd3461820539 HTTP/1.1
+PATCH http://localhost:3000/notes/5edce97bcdf3d2081fe00c09 HTTP/1.1
 content-type: application/json
 
 {
