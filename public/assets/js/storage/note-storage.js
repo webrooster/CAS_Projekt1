@@ -10,6 +10,7 @@ export class NoteStorage {
         return this.notes;
     }
 
+    // GET ALL NOTES
     getJSONDatas() {
         var http_req = new XMLHttpRequest();
         http_req.open("GET", 'http://localhost:3000/notes', false);
@@ -17,6 +18,7 @@ export class NoteStorage {
         return http_req.responseText;
     }
 
+    // SET STATUS
     getStatus() {
         return {
             notesTotal: this.notes.length,
@@ -25,16 +27,28 @@ export class NoteStorage {
     }
 
     // UPDATE NOTE
-    update(dataIndex) {
-        console.log('UPDATE', dataIndex);
-        const Http = new XMLHttpRequest();
-        const url = 'http://localhost:3000/notes/' + dataIndex;
-        Http.open("GET", url);
-        Http.send();
+    async update(dataIndex) {
+        const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
 
-        // await localStorage.setItem(this.collection, JSON.stringify(this.notes));
-        // return notes;
-    }
+            body: JSON.stringify(note),
+
+          };
+
+          try {
+              const url = 'http://localhost:3000/notes';
+              const response = await fetch(url, options);
+              const note = await response.json();
+              return note;
+            
+          } catch (err) {
+            console.error('Error updating document', err);
+          }
+        }
+    
 
     // ADD NOTE
     async createNote(note) {

@@ -101,6 +101,7 @@ export class NoteService {
     // NOTE EXPIRE TODAY
     expireToday() {
         const sortingList = this.notes;
+        console.log('expire', this.notes);
         const today = new Date();
         const notesExpireToday = [];
         
@@ -111,6 +112,7 @@ export class NoteService {
                 today.getFullYear() == expireDate.getFullYear() &&
                 note.complete === 0) notesExpireToday.push(note);
         });
+        console.log(notesExpireToday);
 
         return notesExpireToday;
     }
