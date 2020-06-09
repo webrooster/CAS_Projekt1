@@ -3,11 +3,12 @@
 export class NoteStorage {
     constructor() {
         
-        // this.notes = JSON.parse(this.getNotes(this.dataUrl));
-        // console.log('this.notes', this.notes[0]);
+        this.notes = JSON.parse(this.getNotes(this.dataUrl));
+        console.log('this.notes', this.notes[0]);
+    }
 
-        const notes = JSON.parse(localStorage.getItem(this.collection) || '[]');
-        this.notes = notes;
+    getAllNotes() {
+        this.notes;
     }
 
     getNotes() {
