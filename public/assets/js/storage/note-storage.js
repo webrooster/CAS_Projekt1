@@ -2,20 +2,26 @@
 
 export class NoteStorage {
     constructor() {
-        
-        this.notes = JSON.parse(this.getNotes(this.dataUrl));
-        console.log('this.notes', this.notes[0]);
+        this.notes = JSON.parse(this.getJSONDatas(this.dataUrl));
     }
 
-    getAllNotes() {
-        this.notes;
-    }
-
+    // GET ALL NOTES
     getNotes() {
+        return this.notes;
+    }
+
+    getJSONDatas() {
         var http_req = new XMLHttpRequest();
         http_req.open("GET", 'http://localhost:3000/notes', false);
         http_req.send(null);
         return http_req.responseText;
+    }
+
+    getStatus() {
+        return {
+            notesTotal: this.notes.length,
+            notesCompleted: this.notes.filter(a => a.complete ).length
+        }
     }
 
     // UPDATE NOTE
