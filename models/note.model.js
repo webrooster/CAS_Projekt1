@@ -23,8 +23,8 @@ const noteSchema = new Schema({
         required: false
     },
     completed_at: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true
     }
 });
 

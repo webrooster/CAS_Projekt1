@@ -1,3 +1,5 @@
+'use strict';
+
 export class NoteController {
     constructor(noteService) {
         this.noteService = noteService;
@@ -98,7 +100,7 @@ export class NoteController {
         });
 
         // NOTE FORM
-        this.noteForm.addEventListener('click', async (event) => {
+        this.noteForm.addEventListener('click', event => {
 
             if (event.target.matches('#form__submit')) {
                 event.preventDefault();
@@ -124,10 +126,7 @@ export class NoteController {
                         completed_at: null
                     }
 
-                    this.noteService.addNote(datas).then((datas) => {
-                        console.log('THEN', datas);
-                    });
-
+                    this.noteService.addNote(datas);
                     this.renderNotes();
                     this.resetForm();
 
@@ -218,7 +217,7 @@ export class NoteController {
 
         // CLEAR FILTER
         this.sort_clear.addEventListener('click', event => {
-            // this.noteService.loadData();
+            this.noteService.loadData();
             this.renderNotes();
         });
     }
@@ -250,7 +249,7 @@ export class NoteController {
         const notesExpireToday = this.noteService.expireToday();
 
         notesExpireToday.forEach(note => {
-            const todaysNote = document.querySelector(`[data-id='${note._id}']`);
+            const todaysNote = document.querySelector(`[data-id='${note.id}']`);
             if (todaysNote) todaysNote.classList.toggle('today');
         });
     }
@@ -302,7 +301,7 @@ export class NoteController {
          * RELOADING DATAS AND PAGE
          */
         this.noteService.loadData();
-        return this.noteExpireToday();
+        this.noteExpireToday();
     }
 
     /**
@@ -324,9 +323,9 @@ export class NoteController {
     // INIT APP
     noteAction() {
         this.initEventHandlers();
-        // this.noteService.loadData();
-        // this.noteService.statusPanel();
+        this.noteService.loadData();
         this.noteExpireToday();
+        this.noteService.statusPanel();
         this.renderNotes();
     }
 }

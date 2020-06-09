@@ -1,40 +1,20 @@
+'use strict';
+
 export class NoteStorage {
     constructor() {
-        this.notes = [];
+        
+        // this.notes = JSON.parse(this.getNotes(this.dataUrl));
+        // console.log('this.notes', this.notes[0]);
+
+        const notes = JSON.parse(localStorage.getItem(this.collection) || '[]');
+        this.notes = notes;
     }
 
-    async initData() {
-        this.notes = await this.getNotes();
-    }
-
-    static async create(dataService) {
-        const obj = new NoteStorage();
-        await obj.initData();
-        console.log('create', obj);
-
-        return obj;
-    }
-
-    // GET ALL NOTES
-    async getNotes() {
-        const options = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-
-        try {
-            let url = 'http://localhost:3000/notes';
-            const awaitingNotesList = await fetch(url, options);
-            const notes = await awaitingNotesList.json() || [];
-            const notesClone = JSON.parse(JSON.stringify(notes));
-            this.notes = notesClone;
-            console.log('getNotes', this.notes);
-            return this.notes;
-        } catch (err) {
-            console.log('notes not found');
-        }
+    getNotes() {
+        var http_req = new XMLHttpRequest();
+        http_req.open("GET", 'http://localhost:3000/notes', false);
+        http_req.send(null);
+        return http_req.responseText;
     }
 
     // UPDATE NOTE

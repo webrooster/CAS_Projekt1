@@ -7,10 +7,10 @@ POST http://localhost:3000/notes HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Ticket heute",
+    "title": "Completed true",
     "description": "Lorem ipsum dolor sit amet",
     "importance": 2,
-    "complete": false,
+    "complete": true,
     "expire": "2020-06-08"
 }
 
