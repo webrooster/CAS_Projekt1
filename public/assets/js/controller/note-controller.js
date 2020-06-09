@@ -69,6 +69,7 @@ export class NoteController {
              */
             if (e.target.matches('.btn--edit')) {
                 const note = this.noteService.getNoteDatas(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
+                console.log('edit clicked', this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.flip.classList.add('active');
                 this.renderNotes(note);
             }
@@ -160,11 +161,11 @@ export class NoteController {
                 
                 if (formStatus === true) {
                     const datas = {
+                        dataId: id,
                         title: title, 
                         description: description, 
                         expire: expire, 
                         importance: importance,
-                        noteId: noteId,
                         noteIndex: dataIndex 
                     }
                     
