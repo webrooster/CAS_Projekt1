@@ -157,7 +157,9 @@ export class NoteService {
 
     // NOTE DELETE
     deleteNote(dataId, dataIndex) {
-        if (this.notes[dataId].id === dataIndex) this.notes.splice(dataId, 1), this.storage.update(this.notes);
+        console.log('SERVICE deleteNote', dataId, dataIndex);
+        this.notes.splice(dataId, 1);
+        this.storage.deleteNote(dataIndex);
     }
 
     // NOTE COMPLETE
@@ -178,6 +180,7 @@ export class NoteService {
 
     // ADD NEW NOTE
     addNote(note) {
+        this.notes.push(note);
         this.storage.createNote(new Note(note));
     }
 

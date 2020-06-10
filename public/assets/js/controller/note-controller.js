@@ -77,7 +77,7 @@ export class NoteController {
             /**
              * COMPLETE NOTE
              */
-            if (event.target.matches('.btn--complete')) {            
+            if (event.target.matches('.btn--complete')) {         
                 this.noteService.completeNote(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.renderNotes();
             }

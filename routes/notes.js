@@ -59,11 +59,16 @@ router.patch('/:id', getNote, async (req, res) => {
 
     if (req.body.complete !== null) {
         res.note.complete = req.body.complete;
-    }  
+    }
+    
+    if (req.body.created_at !== null) {
+        res.note.completed_at = req.body.complete;
+    } 
 
     try {
         const updatedNote = await res.note.save();
         res.json(updatedNote);
+
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
