@@ -183,8 +183,8 @@ export class NoteService {
     // ADD NEW NOTE
     addNote(note) {
         console.log('SERVICE addNote', note)
-        this.notes.push(note);
         this.storage.createNote(new Note(note));
+        this.notes.push(new Note(note));
     }
 
     // SAVE NOTE
