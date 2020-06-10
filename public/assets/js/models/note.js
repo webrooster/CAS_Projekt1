@@ -9,7 +9,7 @@
 export class Note {
     constructor({ title, description, created, importance, expire, complete, completed_at }) {
 
-      this.id = this.randomId();
+      // this.id = this.randomId();
       this.title = title;
       this.description = description;
       this.created = this.currentDate();

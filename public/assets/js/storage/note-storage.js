@@ -27,28 +27,28 @@ export class NoteStorage {
     }
 
     // UPDATE NOTE
-    async update(noteId) {
-        console.log('STORAGE update', noteId);
+    async update(note, noteId) {
+        console.log('STORAGE update', note, note.noteId);
         const options = {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
             },
 
-            body: JSON.stringify(noteId),
+            body: JSON.stringify(note),
 
           };
 
           try {
-              const url = 'http://localhost:3000/notes/' + noteId;
+              const url = `http://localhost:3000/notes/${noteId}`;
               const response = await fetch(url, options);
-              const noteId = await response.json();
-              return noteId;
+              const note = await response.json();
+              return note;
             
           } catch (err) {
             console.error('Error updating document', err);
           }
-        }
+    }
     
 
     // ADD NOTE
@@ -71,7 +71,7 @@ export class NoteStorage {
         }
     }
 
-    // ADD NOTE
+    // DELETE NOTE
     async deleteNote(note) {
         console.log('STORAGE deleteNote', note);
         const options = {

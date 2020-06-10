@@ -134,14 +134,16 @@ export class NoteService {
     }
 
     // NOTE UPDATE
-    updateNote(datas) {
-        console.log('updateNote', datas);
+    updateNote(datas, dataId) {
+        console.log('SERVICE updateNote', datas, dataId);
+        
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
-        this.notes[datas.noteIndex].expire = datas.expire;
         this.notes[datas.noteIndex].importance = datas.importance;
+        this.notes[datas.noteIndex].expire = datas.expire;
+        this.notes[datas.noteIndex].complete = datas.complete;
 
-        this.storage.update(this.notes);
+        this.storage.update(datas, dataId);
     }
 
     // GET NOTE DATAS
@@ -180,6 +182,7 @@ export class NoteService {
 
     // ADD NEW NOTE
     addNote(note) {
+        console.log('SERVICE addNote', note)
         this.notes.push(note);
         this.storage.createNote(new Note(note));
     }
