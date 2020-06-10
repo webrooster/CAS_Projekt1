@@ -78,13 +78,11 @@ export class NoteStorage {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-          },
-        //   body: JSON.stringify(note),
+          }
         };
         try {
             const url = `http://localhost:3000/notes/${note}`;
             const response = await fetch(url, options);
-            // const note = await response.json();
             return url;
           
         } catch (err) {
