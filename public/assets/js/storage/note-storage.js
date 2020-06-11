@@ -71,7 +71,6 @@ export class NoteStorage {
 
     // DELETE NOTE
     async deleteNote(note) {
-        console.log('STORAGE deleteNote', note);
         const options = {
           method: 'DELETE',
           headers: {
