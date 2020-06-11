@@ -262,8 +262,8 @@
                 {{#each notes}}
                 <li id="{{@index}}" class="note" data-index="{{ @index }}" data-id="{{ _id }}">
                     <div class="note__container">
-                        <div class="note__number {{#if complete}}note--completed{{/if}}">{{#if complete}}
-                            <i class="fas fa-check"></i>{{else}}<i class="fas fa-cogs"></i>{{/if}}</div>
+                        <div class="note__number {{#if complete}}note--completed{{/if}}">
+                            {{#if complete}}<i class="fas fa-check"></i>{{/if}}</div>
                         <div class="note__importance note--importance-{{ importance}}">{{ importance}}</div>
                         <div class="note__title">
                             <h2>{{ title }} {{message}}</h2>
