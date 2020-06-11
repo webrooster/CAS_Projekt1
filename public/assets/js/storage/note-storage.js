@@ -1,5 +1,3 @@
-'use strict';
-
 export class NoteStorage {
     constructor() {
         this.notes = JSON.parse(this.getJSONDatas(this.dataUrl));

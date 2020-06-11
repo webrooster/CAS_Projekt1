@@ -9,11 +9,15 @@
 .head__title p {
     font-family: 'Dancing Script', cursive;
     font-size: 1.5rem;
-    color: var(--success-color);
+    color: var(--opaque-color);
     
     padding-top: 1rem;
     transform: rotate(-7deg);
     text-shadow: 2px 1px 1px #000;
+}
+
+.note__sorting--title {
+    margin-bottom: .5rem;
 }
 
 .note__list {
@@ -46,10 +50,11 @@
 #status__panel {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: flex-end;
     height: 2vh;
     margin-top: .5rem;
-    padding-top: .75rem;
+    margin-right: 2rem;
+    padding-top: 0rem;
 }
 
 #status__panel span {
@@ -59,7 +64,7 @@
 
 #status__panel h3 {
     font-size: 4rem;
-    color: var(--success-color);
+    color: var(--opaque-color);
     text-shadow: 2px 2px 3px var(--background-color);
     margin-left: 1rem;
 }
@@ -68,7 +73,7 @@
     font-size: .875rem;
     font-weight: 300;
 
-    color: var(--success-color);
+    color: var(--opaque-color);
     text-shadow: 2px 2px 3px var(--background-color);
     margin-left: 1rem;
 }

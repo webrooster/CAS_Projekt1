@@ -1,50 +1,4 @@
-'use strict';
-
 import { Note } from '../models/note.js';
-
-/* MOCK DATAS */
-const mockdatas = [
-    {   
-        "id": "654654",
-        "title": "First note",
-        "created": "01.01.2020",
-        "description": "Bla bla bla hier, und blabla dort.",
-        "importance" : 3,
-        "expire": "date expire",
-        "complete": 0,
-        "completed_at": ""
-    },
-    {
-        "id": "645654",
-        "title": "Second note",
-        "created": "02.02.2020",
-        "description": "Auch hier darf eine Beschreibung rein, aber die Zeichenlänge muss begrenzt werden.",
-        "importance" : 2,
-        "expire": "date expire",
-        "complete": 1,
-        "completed_at": ""
-    },
-    {
-        "id": "78998",
-        "title": "Third note",
-        "created": "03.03.2020",
-        "description": "Lorem ipsum dolor sit amet",
-        "importance" : 5,
-        "expire": "date expire",
-        "complete": 1,
-        "completed_at": ""
-    },
-    {
-        "id": "789987",
-        "title": "Fourth note",
-        "created": "04.04.2020",
-        "description": "Lorem ipsum dolor sit amet",
-        "importance" : 4,
-        "expire": "date expire",
-        "complete": 0,
-        "completed_at": ""
-    },    
-  ];
 
 export class NoteService {
     constructor(noteStorage) {
@@ -120,23 +74,11 @@ export class NoteService {
     // LOAD DATA
     loadData() {
         this.notes = this.storage.getNotes();
-        /**
-         * MOCKDATAS
-         */ 
-        // if (this.notes.length === 0) {
-            //     mockdatas.forEach(mock => {
-            //         this.notes.push(new Note(mock));
-            //     });
-            //     this.saveNotes();
-        // }
-
         return this.notes;
     }
 
     // NOTE UPDATE
-    updateNote(datas, dataId) {
-        console.log('SERVICE updateNote', datas, dataId);
-        
+    updateNote(datas, dataId) {       
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].importance = datas.importance;
@@ -150,7 +92,6 @@ export class NoteService {
     // GET NOTE DATAS
     getNoteDatas(dataId, dataIndex) {
         const noteDatas = this.notes[dataId];
-        console.log('getNoteDatas', dataId, dataIndex);
         
         return {
             noteDatas,    
@@ -160,30 +101,20 @@ export class NoteService {
 
     // NOTE DELETE
     deleteNote(dataId, dataIndex) {
-        console.log('SERVICE deleteNote', dataId, dataIndex);
         this.notes.splice(dataId, 1);
         this.storage.deleteNote(dataIndex);
     }
 
     // NOTE COMPLETE
     completeNote(dataId, dataIndex) {
-        // console.log('SERVICE COMPLETE NOTE', dataId, dataIndex, this.notes[dataId].complete);
         this.notes[dataId].complete ^= true;
         this.notes[dataId].completed_at = new Date().toLocaleString('de-DE');
-
-        console.log('SERVICE AFTER', this.notes[dataId], this.notes[dataId].complete);
         this.storage.update(this.notes[dataId], dataIndex);
     }
 
     // ADD NEW NOTE
     addNote(note) {
-        console.log('SERVICE addNote', note)
         this.storage.createNote(new Note(note));
         this.notes.push(new Note(note));
-    }
-
-    // SAVE NOTE
-    saveNotes() {
-        this.storage.update(this.notes.map(note => note.toJSON()));
     }
 }

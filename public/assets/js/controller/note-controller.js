@@ -168,7 +168,7 @@ export class NoteController {
                         description: description, 
                         expire: expire, 
                         importance: importance,
-                        noteIndex: dataIndex 
+                        noteIndex: dataIndex
                     };
 
                     const dataId = {
@@ -208,7 +208,7 @@ export class NoteController {
             this.sort_completed.classList.toggle('active');
             this.noteService.sortCompleted(this.getFilterState(this.sort_completed));
 
-            if (this.noteService.notes.length === 0) this.message = 'List must have at least two finished notes!';
+            if (this.noteService.notes.length === 0) this.message = 'List must have at least one finished note!';
             this.renderNotes();          
         });
         
@@ -281,6 +281,9 @@ export class NoteController {
                 noteId: note.noteDatas.id,
                 dataIndex: note.dataId
             });
+
+            this.noteService.loadData();
+
         }
         
         // RENDER NOTES LIST

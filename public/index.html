@@ -23,7 +23,7 @@
         <header>
             <div class="head__title">
                 <h1>
-                    <span>notes</span>
+                    <span>my awesome</span>
                 </h1>
                 <p>The to do list to organize work & life.</p>
             </div>
@@ -220,7 +220,7 @@
             <div class="note__list">
 
                 <!-- TODAYS LIST -->
-                <h2 class="note__more">Sort your notes by:</h2>
+                <h2 class="note__sorting--title">Sort your notes by:</h2>
                 <!-- END TODAYS LIST -->
 
 
@@ -231,20 +231,17 @@
                             aria-hidden="true"></i> Created at
                     </label>
                     <label class="button__sorting" for="sort_importance">
-                        <input id="sort_importance" type="checkbox" value="1"><i class="fas fa-sort-amount-down"
-                            aria-hidden="true"></i> Importance
+                        <input id="sort_importance" type="checkbox" value="1"><i class="fas fa-exclamation" aria-hidden="true"></i> Importance
                     </label>
                     <label class="button__sorting" for="sort_completed">
-                        <input id="sort_completed" type="checkbox" value="1"><i class="fas fa-sort-amount-down"
-                            aria-hidden="true"></i> Finished
+                        <input id="sort_completed" type="checkbox" value="1"><i class="fas fa-check-circle" aria-hidden="true"></i> Finished
                     </label>
                     <label class="button__sorting" for="sort_finished_date">
-                        <input id="sort_finished_date" type="checkbox" value="1"><i class="fas fa-sort-amount-down"
-                            aria-hidden="true"></i> Finished date
+                        <input id="sort_finished_date" type="checkbox" value="1"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Finished date
                     </label>
                     <label class="button__sorting" for="sort_clear">
-                        <input id="sort_clear" type="checkbox" value="1"><i class="fas fa-sort-amount-down" aria-hidden="true"></i>
-                        Load Datas
+                        <input id="sort_clear" type="checkbox" value="1"><i class="fas fa-list" aria-hidden="true"></i>
+                        Clear filter
                     </label>
                 </div>
                 <!-- END UI SORTING ELEMENTS -->
@@ -265,8 +262,8 @@
                 {{#each notes}}
                 <li id="{{@index}}" class="note" data-index="{{ @index }}" data-id="{{ _id }}">
                     <div class="note__container">
-                        <div class="note__number {{#if complete}}note--completed{{/if}}">{{#if complete}}
-                            <i class="fas fa-check"></i>{{else}}<i class="fas fa-cogs"></i>{{/if}}</div>
+                        <div class="note__number {{#if complete}}note--completed{{/if}}">
+                            {{#if complete}}<i class="fas fa-check"></i>{{/if}}</div>
                         <div class="note__importance note--importance-{{ importance}}">{{ importance}}</div>
                         <div class="note__title">
                             <h2>{{ title }} {{message}}</h2>
