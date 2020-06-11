@@ -69,6 +69,8 @@ export class NoteController {
              */
             if (e.target.matches('.btn--edit')) {
                 const note = this.noteService.getNoteDatas(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
+                console.log('edit clicked', note.noteDatas._id, this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
+                this.noteEditId = this.getNoteIndex().dataId;
                 this.flip.classList.add('active');
                 this.renderNotes(note);
             }
@@ -76,7 +78,7 @@ export class NoteController {
             /**
              * COMPLETE NOTE
              */
-            if (event.target.matches('.btn--complete')) {            
+            if (event.target.matches('.btn--complete')) {         
                 this.noteService.completeNote(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.renderNotes();
             }
@@ -117,7 +119,7 @@ export class NoteController {
 
                 if (formStatus === true) {
                     const datas = {
-                        id: null, 
+                        // id: null, 
                         title: title, 
                         description: description, 
                         expire: expire, 
@@ -147,13 +149,15 @@ export class NoteController {
             if (event.target.matches('#submit__update')) {
                 event.preventDefault();
                 
+                console.log('UPDATE FORM EDIT', this.noteEditId);
+
                 const title = document.querySelector('#title__update').value;
                 const description = document.querySelector('#description__update').value;
                 const expire = document.querySelector('#expire__update').value;
                 const importance = parseInt(document.querySelector('#importance__update').value);
-                const noteId = document.querySelector('#note__updateId').value;
+                const noteId = document.querySelector('#note__updateId').value = this.noteEditId;
                 const dataIndex = document.querySelector('#note__updateIndex').value;
-                
+                                
                 let formStatus = false;
                 
                 if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteFormUpdateContainer.classList.remove('error');
@@ -164,11 +168,16 @@ export class NoteController {
                         description: description, 
                         expire: expire, 
                         importance: importance,
-                        noteId: noteId,
                         noteIndex: dataIndex 
+                    };
+
+                    const dataId = {
+                        noteId: noteId
                     }
                     
-                    this.noteService.updateNote(datas);
+                    console.log('UPDATE FORM', datas);
+                    
+                    this.noteService.updateNote(datas, noteId);
                     this.renderNotes();
 
                 } else {
@@ -249,7 +258,7 @@ export class NoteController {
         const notesExpireToday = this.noteService.expireToday();
 
         notesExpireToday.forEach(note => {
-            const todaysNote = document.querySelector(`[data-id='${note.id}']`);
+            const todaysNote = document.querySelector(`[data-id='${note._id}']`);
             if (todaysNote) todaysNote.classList.toggle('today');
         });
     }

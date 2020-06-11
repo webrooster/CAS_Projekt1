@@ -32,20 +32,14 @@
     margin: 0;
 }
 
-/* UI-BUTTONS */
-.ui-buttons {
+/* ui__buttons */
+.ui__buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;    
+    justify-content: space-between;    
+    align-items: stretch;
 
-    margin-bottom: 2rem;
-}
-
-.ui-buttons button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 0;
 }
 
 /* STATUS PANEL */

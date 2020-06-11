@@ -101,6 +101,7 @@ export class NoteService {
     // NOTE EXPIRE TODAY
     expireToday() {
         const sortingList = this.notes;
+        // console.log('expire', this.notes);
         const today = new Date();
         const notesExpireToday = [];
         
@@ -111,6 +112,7 @@ export class NoteService {
                 today.getFullYear() == expireDate.getFullYear() &&
                 note.complete === 0) notesExpireToday.push(note);
         });
+        // console.log(notesExpireToday);
 
         return notesExpireToday;
     }
@@ -132,18 +134,23 @@ export class NoteService {
     }
 
     // NOTE UPDATE
-    updateNote(datas) {
+    updateNote(datas, dataId) {
+        console.log('SERVICE updateNote', datas, dataId);
+        
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
-        this.notes[datas.noteIndex].expire = datas.expire;
         this.notes[datas.noteIndex].importance = datas.importance;
+        this.notes[datas.noteIndex].expire = datas.expire;
+        this.notes[datas.noteIndex].complete = datas.complete;
+        this.notes[datas.noteIndex].completed_at = datas.completed_at;
 
-        this.storage.update(this.notes);
+        this.storage.update(datas, dataId);
     }
 
     // GET NOTE DATAS
     getNoteDatas(dataId, dataIndex) {
         const noteDatas = this.notes[dataId];
+        console.log('getNoteDatas', dataId, dataIndex);
         
         return {
             noteDatas,    
@@ -153,27 +160,26 @@ export class NoteService {
 
     // NOTE DELETE
     deleteNote(dataId, dataIndex) {
-        if (this.notes[dataId].id === dataIndex) this.notes.splice(dataId, 1), this.storage.update(this.notes);
+        console.log('SERVICE deleteNote', dataId, dataIndex);
+        this.notes.splice(dataId, 1);
+        this.storage.deleteNote(dataIndex);
     }
 
     // NOTE COMPLETE
     completeNote(dataId, dataIndex) {
-        
-        if (this.notes[dataId].id === dataIndex && this.notes[dataId].completed_at == '') {
-            this.notes[dataId].completed_at = new Date().toLocaleString('de-DE'),
-            this.notes[dataId].complete ^= true,
-            this.storage.update(this.notes);
+        // console.log('SERVICE COMPLETE NOTE', dataId, dataIndex, this.notes[dataId].complete);
+        this.notes[dataId].complete ^= true;
+        this.notes[dataId].completed_at = new Date().toLocaleString('de-DE');
 
-        } else {
-            this.notes[dataId].completed_at = new Date().toLocaleString('de-DE'),
-            this.notes[dataId].complete ^= true,
-            this.storage.update(this.notes);
-        }    
+        console.log('SERVICE AFTER', this.notes[dataId], this.notes[dataId].complete);
+        this.storage.update(this.notes[dataId], dataIndex);
     }
 
     // ADD NEW NOTE
     addNote(note) {
+        console.log('SERVICE addNote', note)
         this.storage.createNote(new Note(note));
+        this.notes.push(new Note(note));
     }
 
     // SAVE NOTE

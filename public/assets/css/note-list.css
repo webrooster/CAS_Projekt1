@@ -17,7 +17,7 @@
 }
 
 .note.today .note__container {
-    background-color: var(--background-color);
+    background-color: var(--contrast-color);
 }
 
 .note__container {
@@ -109,6 +109,8 @@
 
     height: 3vh;
     margin-bottom: 2rem;
+    border-bottom: 1px solid var(--chromatic-light-color);
+    padding-bottom: .875rem;
 }
 
 .note__buttons {

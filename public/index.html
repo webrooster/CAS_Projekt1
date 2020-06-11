@@ -92,7 +92,7 @@
     
                     <fieldset>
                         <input id="note__updateId" 
-                            value="{{ noteId }}"                            
+                            value="{{ dataId }}"                            
                             type="hidden">
 
                         <input id="note__updateIndex" 
@@ -225,13 +225,27 @@
 
 
                 <!-- UI SORTING ELEMENTS -->
-                <div class="ui-buttons">
-                    <button id="sort_createdAt" type="submit"><i class="fas fa-sort-amount-down"></i>Created at</button>
-                    <button id="sort_importance" type="submit"><i class="fas fa-star"></i>Importance</button>
-                    <button id="sort_completed" type="submit"><i class="far fa-check-circle"></i>Finished</button>
-                    <button id="sort_finished_date" type="submit"><i class="fas fa-calendar-times"></i>Finished
-                        date</button>
-                    <button id="sort_clear" type="submit"><i class="fas fa-fast-backward"></i>Clear filter</button>
+                <div class="ui__buttons">
+                    <label class="button__sorting" for="sort_createdAt">
+                        <input id="sort_createdAt" type="checkbox" value="1"><i class="fas fa-sort-amount-down"
+                            aria-hidden="true"></i> Created at
+                    </label>
+                    <label class="button__sorting" for="sort_importance">
+                        <input id="sort_importance" type="checkbox" value="1"><i class="fas fa-sort-amount-down"
+                            aria-hidden="true"></i> Importance
+                    </label>
+                    <label class="button__sorting" for="sort_completed">
+                        <input id="sort_completed" type="checkbox" value="1"><i class="fas fa-sort-amount-down"
+                            aria-hidden="true"></i> Finished
+                    </label>
+                    <label class="button__sorting" for="sort_finished_date">
+                        <input id="sort_finished_date" type="checkbox" value="1"><i class="fas fa-sort-amount-down"
+                            aria-hidden="true"></i> Finished date
+                    </label>
+                    <label class="button__sorting" for="sort_clear">
+                        <input id="sort_clear" type="checkbox" value="1"><i class="fas fa-sort-amount-down" aria-hidden="true"></i>
+                        Load Datas
+                    </label>
                 </div>
                 <!-- END UI SORTING ELEMENTS -->
 
@@ -249,7 +263,7 @@
                 <!-- START LIST ITEMS -->
                 {{#if notes}}
                 {{#each notes}}
-                <li id="{{@index}}" class="note" data-index="{{ @index }}" data-id="{{ id }}">
+                <li id="{{@index}}" class="note" data-index="{{ @index }}" data-id="{{ _id }}">
                     <div class="note__container">
                         <div class="note__number {{#if complete}}note--completed{{/if}}">{{#if complete}}
                             <i class="fas fa-check"></i>{{else}}<i class="fas fa-cogs"></i>{{/if}}</div>
@@ -262,7 +276,7 @@
                             <span>Expire on</span>
                         </div>
                         <div class="note__dropdown">
-                            <button id="d-{{ id }}" class="btn--open"><i class="fa fa-arrow-down"></i></button>
+                            <button id="d-{{ _id }}" class="btn--open"><i class="fa fa-arrow-down"></i></button>
                         </div>
                     </div>
                     <div id="open-{{@index }}" class="note__content">

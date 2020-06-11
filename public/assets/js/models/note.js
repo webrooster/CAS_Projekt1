@@ -9,7 +9,7 @@
 export class Note {
     constructor({ title, description, created, importance, expire, complete, completed_at }) {
 
-      this.id = this.randomId();
+      // this.id = this.randomId();
       this.title = title;
       this.description = description;
       this.created = this.currentDate();
@@ -21,7 +21,7 @@ export class Note {
 
     toJSON() {
       return {
-        id: this.id,
+        _id: this.id,
         title: this.title,
         description: this.description,
         created: this.created,
@@ -33,7 +33,7 @@ export class Note {
     }
 
     currentDate() {
-      const today = new Date().toLocaleString('de-DE');
+      const today = new Date(); //.toLocaleString('de-DE');
       return today;
     }
 

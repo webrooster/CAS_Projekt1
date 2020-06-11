@@ -1,33 +1,42 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+'use strict'; 
 
-var app = express();
+const express = require('express');
+// const cors = require('cors');
+const path = require('path');
+const hbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const index = require('./routes/index');
+const db = require('./config/database');
+const notesRouter = require('./routes/notes');
+const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+// app.use(cors());
 
-app.use(logger('dev'));
-app.use(express.json());
+// HANDLEBARS TEMPLATES
+// app.set('view engine', 'hbs');
+// app.engine('.hbs', hbs({
+//   defaultLayout: 'main',
+//   extname: '.hbs',
+//   partialsDir: path.join(__dirname, 'views/partials')
+// }));
+// app.set('view engine', '.hbs');
+// app.set('views', path.join(__dirname, 'views'));
+
+// // STATIC FILES
+// app.use(express.static('public'));
+// app.use(express.static('files'));
 app.use(express.static(path.join(__dirname, 'public'), {index: 'index.html'}));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// ROUTES
+app.use('/notes', notesRouter);
+app.use(index);
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// STATUS 500
+app.use((err, req, res, next) => {
+  console.log(err)
+  res.status(500).send('Something broke!')
 });
 
 module.exports = app;
