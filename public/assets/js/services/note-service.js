@@ -167,27 +167,12 @@ export class NoteService {
 
     // NOTE COMPLETE
     completeNote(dataId, dataIndex) {
-        console.log('SERVICE COMPLETE NOTE', dataId, dataIndex);
-        
-        this.notes[datas.noteIndex].title = datas.title;
-        this.notes[datas.noteIndex].description = datas.description;
-        this.notes[datas.noteIndex].importance = datas.importance;
-        this.notes[datas.noteIndex].expire = datas.expire;
-        this.notes[datas.noteIndex].complete ^= true;
+        // console.log('SERVICE COMPLETE NOTE', dataId, dataIndex, this.notes[dataId].complete);
+        this.notes[dataId].complete ^= true;
         this.notes[dataId].completed_at = new Date().toLocaleString('de-DE');
 
-        this.storage.update(datas, dataId);
-        
-        // if (this.notes[dataId].id === dataIndex && this.notes[dataId].completed_at == '') {
-        //     this.notes[dataId].completed_at = new Date().toLocaleString('de-DE'),
-        //     this.notes[dataId].complete ^= true,
-        //     this.storage.update(dataIndex);
-
-        // } else {
-        //     this.notes[dataId].completed_at = new Date().toLocaleString('de-DE'),
-        //     this.notes[dataId].complete ^= true,
-        //     this.storage.update(dataIndex);
-        // }    
+        console.log('SERVICE AFTER', this.notes[dataId], this.notes[dataId].complete);
+        this.storage.update(this.notes[dataId], dataIndex);
     }
 
     // ADD NEW NOTE
