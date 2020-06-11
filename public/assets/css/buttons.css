@@ -153,6 +153,13 @@ input[type="checkbox"]:hover {
     cursor: pointer;
 }
 
+.button__sorting i {
+    font-size: 1rem;
+    color: var(--opaque-color);
+
+    padding-bottom: .5rem;
+}
+
 .button__sorting:hover {
     color: white;
     background-color: var(--button-hover-color);

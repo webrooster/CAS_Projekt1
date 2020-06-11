@@ -27,10 +27,10 @@ body {
     color: var(--font-color);
     /* background-color: var(--background-color); */
     background-color: #49735f8a;
-    background: url('../img/forrest.jpg');
+    background: var(--background-image);
     background-size: cover;
     background-attachment: fixed;
-    transition: background-color 1s ease-in;
+    transition: background-image 1s ease-in;
 
     margin: 0;
     padding: 0;

@@ -48,8 +48,8 @@ span {
     color: var(--font-lighter);
 }
 
-h1:before {
-    content: 'My awesome';
+h1:after {
+    content: 'Notes';
     animation-name: head;
     animation-duration: .5s;
     animation-iteration-count: 1;
@@ -64,7 +64,7 @@ h1:before {
     25% {
         font-size: 110%;
         opacity: 0;
-        content: 'Notes';
+        content: 'CAS-FEE-2020';
     }
 
     50% {

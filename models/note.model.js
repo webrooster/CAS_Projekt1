@@ -23,7 +23,7 @@ const noteSchema = new Schema({
     },
     complete: {
         type: Boolean,
-        required: true
+        required: false
     },
     completed_at: {
         type: String,

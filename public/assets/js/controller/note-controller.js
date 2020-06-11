@@ -1,3 +1,5 @@
+'use strict';
+
 export class NoteController {
     constructor(noteService) {
         this.noteService = noteService;
@@ -166,7 +168,7 @@ export class NoteController {
                         description: description, 
                         expire: expire, 
                         importance: importance,
-                        noteIndex: dataIndex 
+                        noteIndex: dataIndex
                     };
 
                     const dataId = {
@@ -279,6 +281,9 @@ export class NoteController {
                 noteId: note.noteDatas.id,
                 dataIndex: note.dataId
             });
+
+            this.noteService.loadData();
+
         }
         
         // RENDER NOTES LIST
@@ -307,8 +312,8 @@ export class NoteController {
         /**
          * RELOADING DATAS AND PAGE
          */
-        this.noteExpireToday();
         this.noteService.loadData();
+        this.noteExpireToday();
     }
 
     /**

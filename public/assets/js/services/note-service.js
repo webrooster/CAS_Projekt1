@@ -78,7 +78,7 @@ export class NoteService {
     }
 
     // NOTE UPDATE
-    updateNote(datas, dataId) {        
+    updateNote(datas, dataId) {       
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].importance = datas.importance;
@@ -116,10 +116,5 @@ export class NoteService {
     addNote(note) {
         this.storage.createNote(new Note(note));
         this.notes.push(new Note(note));
-    }
-
-    // SAVE NOTE
-    saveNotes() {
-        this.storage.update(this.notes.map(note => note.toJSON()));
     }
 }

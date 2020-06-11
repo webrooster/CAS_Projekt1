@@ -72,7 +72,7 @@
     font-size: .875rem;
     font-weight: 300;
 
-    color: var(--success-color);
+    color: var(--opaque-color);
     text-shadow: 2px 2px 3px var(--background-color);
     margin-left: 1rem;
 }
