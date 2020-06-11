@@ -50,10 +50,11 @@
 #status__panel {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: flex-end;
     height: 2vh;
     margin-top: .5rem;
-    padding-top: .75rem;
+    margin-right: 2rem;
+    padding-top: 0rem;
 }
 
 #status__panel span {
