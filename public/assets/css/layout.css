@@ -16,6 +16,10 @@
     text-shadow: 2px 1px 1px #000;
 }
 
+.note__sorting--title {
+    margin-bottom: .5rem;
+}
+
 .note__list {
     background: var(--chromatic-light-color);
     padding: 25px;

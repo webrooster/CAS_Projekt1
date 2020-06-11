@@ -15,15 +15,15 @@ const noteSchema = new Schema({
     },
     importance: {
         type: Number,
-        required: false
+        required: true
     },
     expire: {
         type: String,
-        required: false
+        required: true
     },
     complete: {
         type: Boolean,
-        required: false
+        required: true
     },
     completed_at: {
         type: String,

@@ -1,7 +1,4 @@
-'use strict'; 
-
 const express = require('express');
-// const cors = require('cors');
 const path = require('path');
 const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');

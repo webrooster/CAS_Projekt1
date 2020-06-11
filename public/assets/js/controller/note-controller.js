@@ -1,5 +1,3 @@
-'use strict';
-
 export class NoteController {
     constructor(noteService) {
         this.noteService = noteService;
@@ -309,8 +307,8 @@ export class NoteController {
         /**
          * RELOADING DATAS AND PAGE
          */
-        this.noteService.loadData();
         this.noteExpireToday();
+        this.noteService.loadData();
     }
 
     /**
