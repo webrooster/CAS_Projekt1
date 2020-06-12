@@ -116,6 +116,6 @@ export class NoteService {
     addNote(note) {
         this.storage.createNote(new Note(note));
         //this.notes.push(new Note(note));
-        window.location.reload(false);
+        // window.location.reload(false);
     }
 }

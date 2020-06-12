@@ -92,7 +92,7 @@ async function getNote(req, res, next) {
         if (note == null) {
             return res.status(404).json('This note does not exists');
         }
-    } catch {
+    } catch (err) {
         return res.status(500).json({ message: err.message });
     }
 
