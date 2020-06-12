@@ -1,5 +1,5 @@
 :root {
-    --background-image: url('../img/forrest.jpg');
+    --background-image: url('/assets/img/forrest.jpg');
     --background-color: rgba(73, 115, 95, 0.3);
     --font-color: #ACA57F;
     --font-lighter: #ded6a8;
@@ -26,7 +26,7 @@
 }
 
 body.theme__dark {
-    --background-image: url('../img/hsr-rapperwil.jpg');
+    --background-image: url('/assets/img/hsr-rapperwil.jpg');
     --background-color: rgba(255, 196, 50, .3);
     --font-color: #614c18;
     --font-lighter: #806a33;
