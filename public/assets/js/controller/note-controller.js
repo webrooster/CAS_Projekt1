@@ -128,9 +128,11 @@ export class NoteController {
                         completed_at: null
                     }
 
-                    this.noteService.addNote(datas);
-                    this.renderNotes();
-                    this.resetForm();
+                    this.noteService.addNote(datas).then(() => {
+                      this.renderNotes();
+                      this.resetForm();
+                    });
+                    
 
                 } else {
                     this.noteForm.classList.add('error');
@@ -177,9 +179,9 @@ export class NoteController {
                     
                     console.log('UPDATE FORM', datas);
                     
-                    this.noteService.updateNote(datas, noteId);
-                    this.renderNotes();
-
+                    this.noteService.updateNote(datas, noteId).then(() => {
+                      this.renderNotes();
+                    });
                 } else {
                     this.noteFormUpdateContainer.classList.add('error');
                 }                
