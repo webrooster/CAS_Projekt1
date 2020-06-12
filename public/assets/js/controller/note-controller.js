@@ -68,7 +68,6 @@ export class NoteController {
              */
             if (e.target.matches('.btn--edit')) {
                 const note = this.noteService.getNoteDatas(this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
-                console.log('edit clicked', note.noteDatas._id, this.getNoteIndex().dataIndex, this.getNoteIndex().dataId);
                 this.noteEditId = this.getNoteIndex().dataId;
                 this.flip.classList.add('active');
                 this.renderNotes(note);
@@ -149,8 +148,6 @@ export class NoteController {
             
             if (event.target.matches('#submit__update')) {
                 event.preventDefault();
-                
-                console.log('UPDATE FORM EDIT', this.noteEditId);
 
                 const title = document.querySelector('#title__update').value;
                 const description = document.querySelector('#description__update').value;

@@ -109,15 +109,12 @@ export class NoteService {
     completeNote(dataId, dataIndex) {
         this.notes[dataId].complete ^= true;
         this.notes[dataId].completed_at = new Date().toLocaleString('de-DE');
-
-        console.log('completeNote', this.notes[dataId].completed_at)
         this.storage.update(this.notes[dataId], dataIndex);
     }
 
     // ADD NEW NOTE
     async addNote(note) {
         let data = await this.storage.createNote(new Note(note));
-        // let data = await this.storage.createNote(note);
         this.notes.push(data);
     }
 }
