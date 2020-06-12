@@ -64,7 +64,7 @@ export class NoteService {
             if (today.getDate() == expireDate.getDate() &&
                 today.getMonth() == expireDate.getMonth() &&
                 today.getFullYear() == expireDate.getFullYear() &&
-                note.complete === 0) notesExpireToday.push(note);
+                note.complete === false) notesExpireToday.push(note);
         });
         // console.log(notesExpireToday);
 
