@@ -78,7 +78,7 @@ export class NoteService {
     }
 
     // NOTE UPDATE
-    updateNote(datas, dataId) {       
+    async updateNote(datas, dataId) {      
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].importance = datas.importance;
@@ -86,7 +86,7 @@ export class NoteService {
         this.notes[datas.noteIndex].complete = datas.complete;
         this.notes[datas.noteIndex].completed_at = datas.completed_at;
 
-        this.storage.update(datas, dataId);
+        await this.storage.update(datas, dataId);
     }
 
     // GET NOTE DATAS
@@ -113,9 +113,8 @@ export class NoteService {
     }
 
     // ADD NEW NOTE
-    addNote(note) {
-        this.storage.createNote(new Note(note));
-        //this.notes.push(new Note(note));
-        window.location.reload(false);
+    async addNote(note) {
+        let data = await this.storage.createNote(new Note(note));
+        this.notes.push(data);
     }
 }

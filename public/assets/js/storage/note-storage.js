@@ -1,6 +1,32 @@
 export class NoteStorage {
     constructor() {
-        this.notes = JSON.parse(this.getJSONDatas(this.dataUrl));
+        this.notes = [];
+    }
+
+    async initData() {
+      this.notes = await this.getAllNotes();
+    }
+  
+    static async create() {
+      const obj = new NoteStorage();
+      await obj.initData();
+      return obj;
+    }
+  
+    async getAllNotes() {
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      try {
+        let url = 'http://localhost:3000/notes';
+        const response = await fetch(url, options);
+        return await response.json();
+      } catch (err) {
+        console.error('Error getting documents', err);
+      }
     }
 
     // GET ALL NOTES
