@@ -72,13 +72,13 @@ export class NoteService {
     }
 
     // LOAD DATA
-    loadData() {
+    async loadData() {
         this.notes = this.storage.getNotes();
-        return this.notes;
+        await this.notes;
     }
 
     // NOTE UPDATE
-    async updateNote(datas, dataId) {      
+    async updateNote(datas, dataId) { 
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].importance = datas.importance;
@@ -109,12 +109,15 @@ export class NoteService {
     completeNote(dataId, dataIndex) {
         this.notes[dataId].complete ^= true;
         this.notes[dataId].completed_at = new Date().toLocaleString('de-DE');
+
+        console.log('completeNote', this.notes[dataId].completed_at)
         this.storage.update(this.notes[dataId], dataIndex);
     }
 
     // ADD NEW NOTE
     async addNote(note) {
         let data = await this.storage.createNote(new Note(note));
+        // let data = await this.storage.createNote(note);
         this.notes.push(data);
     }
 }

@@ -61,9 +61,9 @@ router.patch('/:id', getNote, async (req, res) => {
         res.note.complete = req.body.complete;
     }
     
-    // if (req.body.completed_at !== null) {
-    //     res.note.completed_at = req.body.completed_at;
-    // } 
+    if (req.body.completed_at !== null) {
+        res.note.completed_at = req.body.completed_at;
+    } 
 
     try {
         const updatedNote = await res.note.save();

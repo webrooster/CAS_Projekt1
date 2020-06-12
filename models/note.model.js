@@ -10,12 +10,12 @@ const noteSchema = new Schema({
         required: false
     },
     created: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true
     },
     importance: {
         type: Number,
-        required: false
+        required: true
     },
     expire: {
         type: String,
@@ -27,7 +27,7 @@ const noteSchema = new Schema({
     },
     completed_at: {
         type: String,
-        required: true
+        required: false
     }
 });
 

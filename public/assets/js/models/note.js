@@ -5,29 +5,16 @@
 */
 
 export class Note {
-    constructor({ title, description, created, importance, expire, complete, completed_at }) {
+    constructor({ title, description, created, importance, expire, complete }) {
 
       // this.id = this.randomId();
       this.title = title;
       this.description = description;
-      this.created = this.currentDate();
+      this.created = new Date().toLocaleString('de-DE');
       this.importance = importance;
       this.expire = expire; //this.convertExpireDate(expire);        
       this.complete = complete;
-      this.completed_at = this.currentDate(); // Set current date; prevents sorting bug without dates.     
-    }
-
-    toJSON() {
-      return {
-        _id: this.id,
-        title: this.title,
-        description: this.description,
-        created: this.created,
-        importance: this.importance,
-        expire: this.expire,
-        complete: this.complete,
-        completed_at: this.completed_at  
-      }
+      //this.completed_at = this.currentDate(); // Set current date; prevents sorting bug without dates.     
     }
 
     currentDate() {

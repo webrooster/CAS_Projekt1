@@ -17,7 +17,6 @@ export class NoteController {
         // HANDLEBARS FORM
         this.noteFormUpdateTemplate = Handlebars.compile(document.querySelector('#note__form--update-template').innerHTML);
         this.noteFormUpdateContainer = document.getElementById('note__form--update');
-
         
         // FORM ELEMENTS
         this.noteForm = document.querySelector('#note__form');
@@ -192,7 +191,6 @@ export class NoteController {
             }
         });
 
-
         // FILTER BUTTONS
         this.sort_createdAt.addEventListener('click', event => {
             this.sort_createdAt.classList.toggle('active');
@@ -291,8 +289,7 @@ export class NoteController {
         // RENDER NOTES LIST
         // console.log('message', this.noteService.notes.length, this.message);
 
-        if (this.noteService.notes.length === 0) this.message;
-
+        
         /**
          * NOTES LISTING
          */    
@@ -301,7 +298,7 @@ export class NoteController {
             loading: this.loading,
             message: this.message
         });
-
+        
         /**
          * STATUS PANEL
          */
@@ -310,12 +307,12 @@ export class NoteController {
             completed: this.noteService.statusPanel().notesCompleted,
             dateToday: this.currentDate()
         });
-
+        
         /**
          * RELOADING DATAS AND PAGE
          */
-        this.noteService.loadData();
         this.noteExpireToday();
+        if (this.noteService.notes.length === 0) this.message;
     }
 
     /**
@@ -338,7 +335,6 @@ export class NoteController {
     noteAction() {
         this.initEventHandlers();
         this.noteService.loadData();
-        this.noteExpireToday();
         this.noteService.statusPanel();
         this.renderNotes();
     }
