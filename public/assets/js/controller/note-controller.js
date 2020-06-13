@@ -41,9 +41,10 @@ export class NoteController {
         // FLIP FORM
         this.flip = document.querySelector('.flip-card');
 
-        // Handlebars.registerHelper('selected', function(importance, number) {
-        //     return importance == number  ? ' selected' : '';
-        // });
+        // HANDLEBAR HELPER - CONVERT DATE
+        Handlebars.registerHelper('formatTime', (created) => {
+            return new Date(created).toLocaleString('de-DE');
+        });
     }
 
     // INIT EVENTHANDLERS
@@ -289,7 +290,7 @@ export class NoteController {
         
         /**
          * NOTES LISTING
-         */    
+         */
         this.notesListContainer.innerHTML = this.noteListTemplate({ 
             notes: this.noteService.notes, 
             loading: this.loading,
