@@ -122,12 +122,10 @@ export class NoteController {
                 const expire =  this.expire.value;
                 const importance = parseInt(this.importance.value);
 
-                console.log('CONTROLLER expire', expire)
-
                 let formStatus = false;
 
                 // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
-                if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');          
+                if (title !== '' && /\d{4}\-\d{2}\-\d{2}/.test(expire) && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');          
 
                 if (formStatus === true) {
                     const datas = {

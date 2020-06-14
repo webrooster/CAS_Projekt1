@@ -60,13 +60,11 @@ export class NoteService {
         
         sortingList.forEach(note => {
             let expireDate = new Date(note.expire);
-            console.log(note.complete, note.title)
             if (today.getDate() == expireDate.getDate() &&
                 today.getMonth() == expireDate.getMonth() &&
                 today.getFullYear() == expireDate.getFullYear() &&
                 (note.complete == false || note.complete == undefined)) notesExpireToday.push(note);
         });
-        console.log(notesExpireToday)
         return notesExpireToday;
     }
 
