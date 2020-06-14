@@ -40,6 +40,11 @@ span {
     font-weight: 700;
 }
 
+.note__title {
+    font-size: .875rem;
+    font-weight: 700;
+}
+
 .note__title h2 {
     color: var(--font-lighter);
 }

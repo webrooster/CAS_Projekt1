@@ -64,7 +64,7 @@ export class NoteService {
             if (today.getDate() == expireDate.getDate() &&
                 today.getMonth() == expireDate.getMonth() &&
                 today.getFullYear() == expireDate.getFullYear() &&
-                note.complete === 0) notesExpireToday.push(note);
+                note.complete === false) notesExpireToday.push(note);
         });
         // console.log(notesExpireToday);
 
@@ -72,13 +72,13 @@ export class NoteService {
     }
 
     // LOAD DATA
-    loadData() {
+    async loadData() {
         this.notes = this.storage.getNotes();
-        return this.notes;
+        await this.notes;
     }
 
     // NOTE UPDATE
-    async updateNote(datas, dataId) {      
+    async updateNote(datas, dataId) { 
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].importance = datas.importance;

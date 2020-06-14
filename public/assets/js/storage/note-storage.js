@@ -52,7 +52,6 @@ export class NoteStorage {
 
     // UPDATE NOTE
     async update(note, noteId) {
-        console.log('STORAGE update', note, note.noteId);
         const options = {
             method: 'PATCH',
             headers: {
