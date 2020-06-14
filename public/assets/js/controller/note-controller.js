@@ -41,9 +41,20 @@ export class NoteController {
         // FLIP FORM
         this.flip = document.querySelector('.flip-card');
 
-        // HANDLEBAR HELPER - CONVERT DATE
+        // HANDLEBAR HELPER - CONVERT CREATED DATE
         Handlebars.registerHelper('formatTime', (created) => {
-            return new Date(created).toLocaleString('de-DE');
+            return new Date(created).toLocaleString('en-US');
+        });
+
+        // HANDLEBAR HELPER - CONVERT COMPLETED_AT
+        Handlebars.registerHelper('formatTime', (completed_at) => {
+            return new Date(completed_at).toLocaleString('en-US');
+        });
+
+        // HANDLEBAR HELPER - CONVERT EXPIRE DATE
+        Handlebars.registerHelper('formatExpire', (expire) => {
+            const expireLocalTime = expire.toLocaleString('en-US');
+            return new Date(expireLocalTime).toLocaleDateString('en-US');
         });
     }
 
@@ -108,8 +119,10 @@ export class NoteController {
 
                 const title = this.title.value;
                 const description = this.description.value;
-                const expire = this.expire.value;
+                const expire =  this.expire.value;
                 const importance = parseInt(this.importance.value);
+
+                console.log('CONTROLLER expire', expire)
 
                 let formStatus = false;
 

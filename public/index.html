@@ -69,7 +69,7 @@
                         <label for="expire__update">Expire <span>Required</span></label>
                         <input id="expire__update"
                             value="{{ expire }}"
-                            placeholder="dd-mm-yyyy"
+                            placeholder="yyyy-mm-dd"
                             type="date"
                             name="expire__update"
                             tabindex="7"
@@ -143,7 +143,7 @@
                             <fieldset>
                                 <label for="expire">Expire <span>Required</span></label>
                                 <input id="expire"
-                                    placeholder="dd-mm-yyyy"
+                                    placeholder="yyyy-mm-dd"
                                     type="date"
                                     name="expire"
                                     tabindex="3"
@@ -269,7 +269,7 @@
                             <h2>{{ title }} {{message}}</h2>
                         </div>
                         <div class="note__expire">
-                            <p>{{ expire }}</p>
+                            <p>{{ formatExpire expire }}</p>
                             <span>Expire on</span>
                         </div>
                         <div class="note__dropdown">
@@ -279,10 +279,10 @@
                     <div id="open-{{@index }}" class="note__content">
                         <div class="note__dates">
                             <div class="note__created"><span>Created on:</span>
-                                <p>{{ created }}</p>
+                                <p>{{ formatTime created }}</p>
                             </div>
                             <div class="note__completed"><span>Date Completed:</span>
-                                <p>{{#if complete}}{{ completed_at }}{{ else }}Not completed{{/if}}</p>
+                                <p>{{#if complete}}{{ formatTime completed_at }}{{ else }}Not completed{{/if}}</p>
                             </div>
                         </div>
                         <div class="note__description">
