@@ -55,7 +55,6 @@ export class NoteService {
     // NOTE EXPIRE TODAY
     expireToday() {
         const sortingList = this.notes;
-        // console.log('expire', this.notes);
         const today = new Date();
         const notesExpireToday = [];
         
@@ -64,10 +63,8 @@ export class NoteService {
             if (today.getDate() == expireDate.getDate() &&
                 today.getMonth() == expireDate.getMonth() &&
                 today.getFullYear() == expireDate.getFullYear() &&
-                note.complete === false) notesExpireToday.push(note);
+                note.complete == false || note.complete === undefined) notesExpireToday.push(note);
         });
-        // console.log(notesExpireToday);
-
         return notesExpireToday;
     }
 
@@ -78,14 +75,14 @@ export class NoteService {
     }
 
     // NOTE UPDATE
-    async updateNote(datas, dataId) { 
+    async updateNote(datas, dataId) {
+        
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].importance = datas.importance;
         this.notes[datas.noteIndex].expire = datas.expire;
         this.notes[datas.noteIndex].complete = datas.complete;
         this.notes[datas.noteIndex].completed_at = datas.completed_at;
-
         await this.storage.update(datas, dataId);
     }
 
@@ -108,7 +105,7 @@ export class NoteService {
     // NOTE COMPLETE
     completeNote(dataId, dataIndex) {
         this.notes[dataId].complete ^= true;
-        this.notes[dataId].completed_at = new Date().toLocaleString('de-DE');
+        this.notes[dataId].completed_at = new Date(); //new Date().toLocaleString('de-DE');
         this.storage.update(this.notes[dataId], dataIndex);
     }
 
