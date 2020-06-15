@@ -1,4 +1,3 @@
-'use strict';
 
 import { NoteStorage } from './storage/note-storage.js';
 import { NoteService } from './services/note-service.js';
@@ -15,5 +14,6 @@ class NotesApp {
 }
 
 const notesApp = new NotesApp();
+
 // LOADING APP
 document.addEventListener('DOMContentLoaded', notesApp.start());

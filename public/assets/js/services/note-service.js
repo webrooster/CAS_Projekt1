@@ -76,7 +76,6 @@ export class NoteService {
 
     // NOTE UPDATE
     async updateNote(datas, dataId) {
-        
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].importance = datas.importance;

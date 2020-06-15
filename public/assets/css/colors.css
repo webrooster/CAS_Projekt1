@@ -1,10 +1,10 @@
 :root {
-    --background-image: url('/assets/img/forrest.jpg');
-    --background-color: rgba(73, 115, 95, 0.3);
+    --background-image: url('/assets/img/flower-pattern.png');
+    --background-color: rgba(73, 115, 95, .5);
     --font-color: #ACA57F;
     --font-lighter: #ded6a8;
 
-    --contrast-color: #079BAB;
+    --contrast-color: rgba(7, 155, 171, 0.3);
 
     --white-color: #fff;
     --light-grey: #f2f2f2;
@@ -26,30 +26,30 @@
 }
 
 body.theme__dark {
-    --background-image: url('/assets/img/hsr-rapperwil.jpg');
-    --background-color: rgba(255, 196, 50, .3);
+    --background-image: url('/assets/img/flower-pattern-yellow.png');
+    --background-color: rgba(255, 197, 50, .5);
     --font-color: #614c18;
     --font-lighter: #806a33;
 
-    --contrast-color: #079BAB;
+    --contrast-color: rgba(7, 155, 171, 0.3);
 
     --white-color: #222;
     --light-grey: #f2f2f2;
 
-    --chromatic-light-color: rgba(255, 221, 142, 0.76);
+    --chromatic-light-color: rgba(255, 221, 142, 0.3);
     --chromatic-light-color-2: rgba(255, 213, 108, 0.3);
     --chromatic-light-color-3: #3e584b;
 
-    --success-color: #949e05;
+    --success-color: rgba(148, 158, 5, 0.2);
     --opaque-color: #949e05;
 
     --button-hover-color: #73614C;
 
-    --importance-1: #62bb00;
-    --importance-2: #96bb00;
-    --importance-3: #bbac00;
-    --importance-4: #bb3c00;
-    --importance-5: #bb002f;
+    --importance-1: rgba(98, 187, 0, 0.4); /* #62bb00; */
+    --importance-2: rgba(150, 187, 0, 0.4); /* #96bb00; */
+    --importance-3: rgba(187, 172, 0, 0.4); /* #bbac00; */
+    --importance-4: rgba(187, 60, 0, 0.4); /* #bb3c00; */
+    --importance-5: rgba(187, 0, 47, 0.4); /* #bb002f; */
 }
 
 .note--importance-5 {
