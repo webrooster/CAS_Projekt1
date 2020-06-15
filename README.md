@@ -13,10 +13,12 @@ Sort your notes by creation date, finished date, priority or simply list your co
 
 ### Prerequisites
 
-You need a pre-installed MONGODB and NODE.js. Instructions can be found on the Internet on how to install this database and NODE. So let's get started and take notes!
+You need a pre-installed MONGODB and NODE.js. Instructions can be found on the Internet on how to install this database and NODE.
 
 * mongodb
 * npm
+
+So let's get started and take notes!
 
 ### Installation
 1. Clone the repo
@@ -43,6 +45,8 @@ mongod-start
 ```sh
 npm start
 ```
+
+6. Visit your browser and type: localhost:3000
 
 <!-- LICENSE -->
 ## License
