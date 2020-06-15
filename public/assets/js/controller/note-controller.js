@@ -123,13 +123,13 @@ export class NoteController {
                 const importance = parseInt(this.importance.value);
 
                 let formStatus = false;
+                console.log('validate expire', /(0?[1-9]|1[012])[\/\-]\d{4}/.test(expire))
 
                 // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
-                if (title !== '' && /\d{4}\-\d{2}\-\d{2}/.test(expire) && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');          
+                if (title !== '' && /\d{4}\-\d{2,2}\-\d{2,2}/.test(expire) && Number.isInteger(importance)) formStatus = true, this.noteForm.classList.remove('error');          
 
                 if (formStatus === true) {
                     const datas = {
-                        // id: null, 
                         title: title, 
                         description: description, 
                         expire: expire, 
@@ -170,7 +170,7 @@ export class NoteController {
                                 
                 let formStatus = false;
                 
-                if (title !== '' && expire !== '' && Number.isInteger(importance)) formStatus = true, this.noteFormUpdateContainer.classList.remove('error');
+                if (title !== '' && /\d{4}\-\d{2,2}\-\d{2,2}/.test(expire) && Number.isInteger(importance)) formStatus = true, this.noteFormUpdateContainer.classList.remove('error');
                 
                 if (formStatus === true) {
                     const datas = {
@@ -272,6 +272,16 @@ export class NoteController {
         });
     }
 
+    // NOTE EXPIRE TODAY
+    noteExpireNext() {
+        const notesExpireNext = this.noteService.expireNext();
+
+        notesExpireNext.forEach(note => {
+            const nextNote = document.querySelector(`[data-id='${note._id}']`);
+            if (nextNote) nextNote.classList.toggle('next');
+        });
+    }
+
     // RENDER NOTES LIST
     renderNotes(note) {
 
@@ -321,6 +331,7 @@ export class NoteController {
          * RELOADING DATAS AND PAGE
          */
         this.noteExpireToday();
+        this.noteExpireNext();
         if (this.noteService.notes.length === 0) this.message;
     }
 
