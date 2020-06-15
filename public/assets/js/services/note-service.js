@@ -68,22 +68,6 @@ export class NoteService {
         return notesExpireToday;
     }
 
-    // NOTE EXPIRE TODAY
-    expireNext() {
-        const sortingList = this.notes.filter(a => a.expire);
-        const today = new Date().toLocaleString('en-US');
-        const notesExpireNext = [];    
-
-        const nextDate = sortingList.reduce((a, b) => {
-            // console.log('expireNext', today, a, b)
-            if(a > b) return a.expire;
-        })
-    
-        // console.log('expireNext', nextDate);
-
-        return notesExpireNext;
-    }
-
     // LOAD DATA
     async loadData() {
         this.notes = this.storage.getNotes();

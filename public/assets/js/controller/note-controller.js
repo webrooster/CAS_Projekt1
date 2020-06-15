@@ -199,16 +199,6 @@ export class NoteController {
         });
     }
 
-    // NOTE EXPIRE TODAY
-    noteExpireNext() {
-        const notesExpireNext = this.noteService.expireNext();
-
-        notesExpireNext.forEach(note => {
-            const nextNote = document.querySelector(`[data-id='${note._id}']`);
-            if (nextNote) nextNote.classList.toggle('next');
-        });
-    }
-
     // RENDER NOTES LIST
     renderNotes(note) {
 
@@ -258,7 +248,6 @@ export class NoteController {
          * RELOADING DATAS AND PAGE
          */
         this.noteExpireToday();
-        this.noteExpireNext();
         if (this.noteService.notes.length === 0) this.message;
     }
 
