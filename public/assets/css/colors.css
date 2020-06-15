@@ -1,10 +1,10 @@
 :root {
-    --background-image: url('/assets/img/forrest.jpg');
-    --background-color: rgba(73, 115, 95, 0.3);
+    --background-image: url('/assets/img/flower-pattern.png');
+    --background-color: rgba(73, 115, 95, .5);
     --font-color: #ACA57F;
     --font-lighter: #ded6a8;
 
-    --contrast-color: #079BAB;
+    --contrast-color: rgba(7, 155, 171, 0.3);
 
     --white-color: #fff;
     --light-grey: #f2f2f2;

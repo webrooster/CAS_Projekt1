@@ -28,7 +28,7 @@ body {
     /* background-color: var(--background-color); */
     background-color: #49735f8a;
     background: var(--background-image);
-    background-size: cover;
+    background-size: initial;
     background-attachment: fixed;
     transition: background-image 1s ease-in;
 

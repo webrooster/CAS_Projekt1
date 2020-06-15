@@ -12,8 +12,14 @@
     align-items: stretch;
     
     min-width: 100%;
-    margin: 0 0 3px 0;
+    margin: 0;
     padding: 0;
+}
+
+.note::before {
+    height: 3px;
+    content: '';
+    animation: slideInFromLeft 2s cubic-bezier(0, 0, 0, 1.27);
 }
 
 .note.today .note__container {
@@ -125,4 +131,40 @@
 
 .note__completed {
     flex: 1;
+}
+
+/* IMPORTANCE ANIMATIONS */
+.importance__bar--1::before {
+    width: 20%;
+    background-color: var(--importance-1);
+}
+
+.importance__bar--2::before {
+    width: 40%;
+    background-color: var(--importance-2);
+}
+
+.importance__bar--3::before {
+    width: 60%;
+    background-color: var(--importance-3);
+}
+
+.importance__bar--4::before {
+    width: 80%;
+    background-color: var(--importance-4);
+}
+
+.importance__bar--5::before {
+    width: 100%;
+    background-color: var(--importance-5);
+}
+
+@keyframes slideInFromLeft {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
