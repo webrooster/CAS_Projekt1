@@ -1,4 +1,4 @@
-
+// INIT APP
 import { NoteStorage } from './storage/note-storage.js';
 import { NoteService } from './services/note-service.js';
 import { NoteController } from './controller/note-controller.js';
@@ -16,4 +16,8 @@ class NotesApp {
 const notesApp = new NotesApp();
 
 // LOADING APP
-document.addEventListener('DOMContentLoaded', notesApp.start());
+(() => {
+    document.addEventListener('DOMContentLoaded', notesApp.start());
+})();
+
+

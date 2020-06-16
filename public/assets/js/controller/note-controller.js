@@ -12,23 +12,17 @@ export class NoteController {
     // INIT EVENTHANDLERS
     initEventHandlers() {
 
-        /**
-         * NOTES LIST ACTIONS
-         */
+        // NOTES LISTING - EVENTS
         element.notesListContainer.addEventListener('click', e => {
             e.preventDefault();
 
-            /**
-             * DELETE NOTE
-             */
+            // DELETE NOTE
             if (e.target.matches('.btn--delete')) {
                 this.noteService.deleteNote(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
                 this.renderNotes();
             }
 
-            /**
-             * EDIT NOTE
-             */
+            // EDIT NOTE
             if (e.target.matches('.btn--edit')) {
                 const note = this.noteService.getNoteDatas(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
                 this.noteEditId = helper.getNoteIndex().dataId;
@@ -36,16 +30,13 @@ export class NoteController {
                 this.renderNotes(note);
             }
 
-            /**
-             * COMPLETE NOTE
-             */
+            // COMPLETE NOTE
             if (event.target.matches('.btn--complete')) {         
                 this.noteService.completeNote(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
                 this.renderNotes();
             }
-            /**
-             * OPEN NOTE DETAILS
-             */
+            
+            // OPEN DESCRIPTION
             if (event.target.matches('.btn--open')) {
                 const dropDownId = event.target.parentElement.parentElement.nextElementSibling.getAttribute('id');
                 const openDropdownId = document.getElementById(dropDownId);
@@ -74,7 +65,6 @@ export class NoteController {
                 const importance = parseInt(element.importance.value);
 
                 let formStatus = false;
-                console.log('validate expire', /(0?[1-9]|1[012])[\/\-]\d{4}/.test(expire))
 
                 // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
                 if (title !== '' && /\d{4}\-\d{2,2}\-\d{2,2}/.test(expire) && Number.isInteger(importance)) formStatus = true, element.noteForm.classList.remove('error');          
@@ -225,47 +215,24 @@ export class NoteController {
         // RENDER NOTES LIST
         // console.log('message', this.noteService.notes.length, this.message);
 
-        
-        /**
-         * NOTES LISTING
-         */
+        // RENDER NOTES LISTING
         element.notesListContainer.innerHTML = template.noteListTemplate({ 
             notes: this.noteService.notes, 
             loading: this.loading,
             message: this.message
         });
         
-        /**
-         * STATUS PANEL
-         */
+        // RENDER STATUS PANEL
         element.statusPanelContainer.innerHTML = template.statusPanelTemplate({ 
             status: this.noteService.statusPanel().notesTotal, 
             completed: this.noteService.statusPanel().notesCompleted,
-            dateToday: this.currentDate()
+            dateToday: helper.currentDate()
         });
         
-        /**
-         * RELOADING DATAS AND PAGE
-         */
+        // RENDER NOTES EXPIRE
         this.noteExpireToday();
         if (this.noteService.notes.length === 0) this.message;
     }
-
-    /**
-     * STATUS PANEL CURRENT DATE
-     */
-    currentDate() {
-        let dateToday = new Date();
-        let today = dateToday.toLocaleString('de-DE', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        
-        return `${ today }`;
-    }
-
 
     // INIT APP
     noteAction() {

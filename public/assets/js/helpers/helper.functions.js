@@ -22,3 +22,16 @@ export const resetForm = () => {
     element.importance.selectedIndex = null;
     element.noteForm.classList.remove('error');
 }
+
+// STATUS PANEL CURRENT DATE
+export const currentDate = () => {
+    let dateToday = new Date();
+    let today = dateToday.toLocaleString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    
+    return `${ today }`;
+}

@@ -64,7 +64,7 @@
     align-items: center;
     flex: 10;
 
-    padding: 0 1rem;
+    padding: .75rem 1rem;
 }
 
 .note__expire {

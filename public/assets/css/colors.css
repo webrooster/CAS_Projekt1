@@ -15,7 +15,7 @@
     --success-color: rgba(148, 158, 5, 0.2); /* #949e05; */
     --opaque-color: #949e05;
 
-    --button-hover-color: #73614C;
+    --button-hover-color: rgba(115, 97, 76, 0.7);
 
     --importance-1: rgba(98, 187, 0, 0.4); /* #62bb00; */
     --importance-2: rgba(150, 187, 0, 0.4); /* #96bb00; */
@@ -41,7 +41,7 @@ body.theme__bright {
     --success-color: rgba(148, 158, 5, 0.2);
     --opaque-color: #949e05;
 
-    --button-hover-color: #73614C;
+    --button-hover-color: rgba(115, 97, 76, 0.7);
 
     --importance-1: rgba(98, 187, 0, 0.4); /* #62bb00; */
     --importance-2: rgba(150, 187, 0, 0.4); /* #96bb00; */

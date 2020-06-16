@@ -19,8 +19,8 @@ button {
 button:hover {
     color: var(--white-color);
     background-color: var(--button-hover-color);
-    -webkit-transition: background 0.3s ease-in-out;
-    -moz-transition: background 0.3s ease-in-out;
+    -webkit-transition: background-color 0.3s ease-in-out;
+    -moz-transition: background-color 0.3s ease-in-out;
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -149,6 +149,10 @@ input[type="checkbox"]:hover {
     white-space: nowrap;
     color: var(--font-color);
     background-color: var(--background-color);
+
+    transition: background-color 0.7s ease-in-out;
+    -webkit-transition: background-color 0.7s ease-in-out;
+    -moz-transition: background-color 0.7s ease-in-out;    
 
     cursor: pointer;
 }
