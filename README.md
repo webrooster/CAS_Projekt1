@@ -25,7 +25,11 @@ Sort your notes by creation date, finished date, priority or simply list your co
 * Highlighted notes of your daily workload.
 * Theme toggler - Switch theme between dark and bright colors.
 
-### Prerequisites
+<p align="center">
+  <img src="public/assets/img/project-1-yellow.png" alt="CAS-FEE-2020">
+</p>
+
+## Prerequisites
 
 You need a pre-installed MongoDB and NODE.js. The installation of these components is not covered by this documentation. Follow the instructions on the official websites of these components. So let's get started and take notes!
 
