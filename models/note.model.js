@@ -15,6 +15,8 @@ const noteSchema = new Schema({
     },
     importance: {
         type: Number,
+        min: 1,
+        max: 5,
         required: true
     },
     expire: {
