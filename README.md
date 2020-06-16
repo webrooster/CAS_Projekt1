@@ -23,6 +23,7 @@ Sort your notes by creation date, finished date, priority or simply list your co
 * Sort notes based on importance in ascending/descending order.
 * Complete notes.
 * Highlighted notes of your daily workload.
+* Theme toggler - Switch theme between dark and bright colors.
 
 ### Prerequisites
 
