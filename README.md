@@ -11,6 +11,10 @@ With this application you can manage your notes or to do's. Add new notes, set a
 
 Sort your notes by creation date, finished date, priority or simply list your completed tasks in ascending or descending order.
 
+<p align="center">
+  <img src="public/assets/img/project-1-printscreen.png" alt="CAS-FEE-2020">
+</p>
+
 ## Features
 * CRUD operations - add, update, delete notes.
 * Sort notes by date in ascending/descending order.
