@@ -5,20 +5,23 @@
 </p>
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Introduction
 
-With this application you can manage your notes. Add new notes, set an expiration date and a priority. Your daily tasks are marked, so you never lose track of your daily tasks. 
+With this application you can manage your notes or to do's. Add new notes, set an expiration date and a priority. Your daily tasks are marked, so you never lose track of your daily to do's. 
 
 Sort your notes by creation date, finished date, priority or simply list your completed tasks in ascending or descending order.
 
+## Features
+* CRUD operations - add, update, delete notes.
+* Sort notes by date in ascending/descending order.
+* Sort completed notes based on "completed date" in ascending/descending order.
+* Sort notes based on creation date in ascending/descending order.
+* Complete notes.
+* Highlighted notes of your daily workload.
+
 ### Prerequisites
 
-You need a pre-installed MONGODB and NODE.js. Instructions can be found on the Internet on how to install this database and NODE.
-
-* mongodb
-* npm
-
-So let's get started and take notes!
+You need a pre-installed MONGODB and NODE.js. The installation of these components is not covered by this documentation. Follow the instructions on the official websites of these components. So let's get started and take notes!
 
 ### Installation
 1. Clone the repo
@@ -26,7 +29,7 @@ So let's get started and take notes!
 git clone https://github.com/webrooster/CAS_Projekt1.git
 ```
 
-2. Access project
+2. Access directory
 ```sh
 cd CAS_Projekt1
 ```
@@ -36,7 +39,7 @@ cd CAS_Projekt1
 npm install
 ```
 
-4. Start your local MONGO-DB (MAC Brew example)
+4. Start your local MongoDB
 ```sh
 mongod-start
 ```
@@ -46,9 +49,29 @@ mongod-start
 npm start
 ```
 
-6. Visit your browser and type: localhost:3000
+6. Visit your browser and type
+```sh
+localhost:3000
+```
 
-<!-- LICENSE -->
+## Versions
+```sh
+Node Version: v12.14.0
+NPM Version: 6.13.4
+MongoDB Version: 4.2 Community Edition
+```
+
+## Browser Support
+* Firefox Quantum - Version 68.4.1esr (64-bit)
+* Google Chrome - Version 83.0.4103.97 (Official Build) (64-bit)
+* Safari - Version 13.1.1 (15609.2.9.1.2)
+
+## Known issues
+* No date picker support on Safari Browsers.
+
+## Author
+Roland von Aesch
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
