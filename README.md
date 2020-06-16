@@ -16,12 +16,13 @@ Sort your notes by creation date, finished date, priority or simply list your co
 * Sort notes by date in ascending/descending order.
 * Sort completed notes based on "completed date" in ascending/descending order.
 * Sort notes based on creation date in ascending/descending order.
+* Sort notes based on importance in ascending/descending order.
 * Complete notes.
 * Highlighted notes of your daily workload.
 
 ### Prerequisites
 
-You need a pre-installed MONGODB and NODE.js. The installation of these components is not covered by this documentation. Follow the instructions on the official websites of these components. So let's get started and take notes!
+You need a pre-installed MongoDB and NODE.js. The installation of these components is not covered by this documentation. Follow the instructions on the official websites of these components. So let's get started and take notes!
 
 ### Installation
 1. Clone the repo
