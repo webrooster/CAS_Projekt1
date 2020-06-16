@@ -179,7 +179,7 @@ export class NoteController {
         
         // THEME TOGGLER
         element.theme__toggler.addEventListener('click', event => {
-            document.body.classList.toggle('theme__dark');            
+            document.body.classList.toggle('theme__bright');            
         });
 
         // CLEAR FILTER

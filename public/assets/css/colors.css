@@ -1,6 +1,5 @@
 :root {
-    --background-image: url('/assets/img/flower-pattern.png');
-    --background-color: rgba(73, 115, 95, .5);
+    --background-color: rgba(73, 115, 95, 0.5);
     --font-color: #ACA57F;
     --font-lighter: #ded6a8;
 
@@ -25,9 +24,8 @@
     --importance-5: rgba(187, 0, 47, 0.4); /* #bb002f; */
 }
 
-body.theme__dark {
-    --background-image: url('/assets/img/flower-pattern-yellow.png');
-    --background-color: rgba(255, 197, 50, .5);
+body.theme__bright {
+    --background-color: rgba(255, 197, 50, 0.5);
     --font-color: #614c18;
     --font-lighter: #806a33;
 
