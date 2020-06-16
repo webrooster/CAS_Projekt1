@@ -64,7 +64,7 @@ npm start
 localhost:3000
 ```
 
-## Versions
+## Versioning
 ```sh
 Node Version: v12.14.0
 NPM Version: 6.13.4
