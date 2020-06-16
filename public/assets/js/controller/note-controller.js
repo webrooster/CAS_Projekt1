@@ -128,7 +128,9 @@ export class NoteController {
                     
                     this.noteService.updateNote(datas, noteId).then(() => {
                       this.renderNotes();
+                      element.flip.classList.toggle('active');
                     });
+
                 } else {
                     element.noteFormUpdateContainer.classList.add('error');
                 }                
@@ -181,7 +183,7 @@ export class NoteController {
 
     // NOTE EXPIRE TODAY
     noteExpireToday() {
-    const notesExpireToday = this.noteService.expireToday();
+        const notesExpireToday = this.noteService.expireToday();
 
         notesExpireToday.forEach(note => {
             const todaysNote = document.querySelector(`[data-id='${note._id}']`);
