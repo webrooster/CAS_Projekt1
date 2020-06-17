@@ -64,6 +64,9 @@
     flex: 1;
 
     color: white;
+
+    position: relative;
+    animation: slideEffect .6s cubic-bezier(0, 0, 0, 2);
 }
 
 .note__title {
@@ -84,7 +87,7 @@
     background: var(--note-expire);
 
     position: relative;
-    animation: slideEffect .5s cubic-bezier(0, 0, 0, 1.4);
+    animation: slideEffect .8s cubic-bezier(0, 0, 0, 1.4);
 }
 
 
