@@ -104,7 +104,7 @@ export class NoteService {
     // NOTE COMPLETE
     completeNote(dataId, dataIndex) {
         this.notes[dataId].complete ^= true;
-        this.notes[dataId].completed_at = new Date(); //new Date().toLocaleString('de-DE');
+        this.notes[dataId].completed_at = new Date();
         this.storage.update(this.notes[dataId], dataIndex);
     }
 

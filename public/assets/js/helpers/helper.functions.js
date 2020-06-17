@@ -26,7 +26,7 @@ export const resetForm = () => {
 // STATUS PANEL CURRENT DATE
 export const currentDate = () => {
     let dateToday = new Date();
-    let today = dateToday.toLocaleString('en-US', {
+    let today = dateToday.toLocaleString(getBrowserLanguage(), {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
@@ -34,4 +34,11 @@ export const currentDate = () => {
     });
     
     return `${ today }`;
+}
+
+export const getBrowserLanguage = () => {
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang == 'de') return 'de-CH';
+    if (userLang == 'en') return 'en-US';
+    if (userLang == 'fr') return 'de-DE';
 }

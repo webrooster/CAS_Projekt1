@@ -234,5 +234,6 @@ export class NoteController {
         this.noteService.loadData();
         this.noteService.statusPanel();
         this.renderNotes();
+        helper.getBrowserLanguage();
     }
 }
