@@ -14,12 +14,19 @@
     min-width: 100%;
     margin: 0;
     padding: 0;
+
+    animation: slideList 1s cubic-bezier(0, 0, 0, 1.27);
 }
 
 .note::before {
     height: 3px;
     content: '';
     animation: slideInFromLeft 2s cubic-bezier(0, 0, 0, 1.27);
+}
+
+.note.today {
+    position: relative;
+    animation: slideEffect 0.5s cubic-bezier(0, 0, 0, 1.3);
 }
 
 .note.today .note__container {
@@ -48,6 +55,8 @@
 
 .note--completed {
     background-color: var(--success-color);
+    position: relative;
+    animation: slideEffect .3s cubic-bezier(0, 0, 0, 1.7);
 }
 
 .note__importance {
@@ -75,6 +84,9 @@
     flex: 3;
 
     background: var(--note-expire);
+
+    position: relative;
+    animation: slideEffect .5s cubic-bezier(0, 0, 0, 1.4);
 }
 
 
@@ -166,5 +178,29 @@
     }
     to {
         opacity: 1;
+    }
+}
+
+@keyframes slideList {
+    from {
+        opacity: 0;
+        transform: rotateX(90deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+
+@keyframes slideEffect {
+    from {
+        opacity: 0;
+        left: -50px;
+        transform: rotateX(90deg);
+    }
+    to {
+        opacity: 1;
+        left: 0;
+        transform: rotateX(0deg);
     }
 }
