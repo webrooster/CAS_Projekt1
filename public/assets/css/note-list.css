@@ -14,8 +14,6 @@
     min-width: 100%;
     margin: 0;
     padding: 0;
-
-    animation: slideList 1s cubic-bezier(0, 0, 0, 1.27);
 }
 
 .note::before {
@@ -171,6 +169,7 @@
     background-color: var(--importance-5);
 }
 
+/* ANIMATION EFFECTS */
 @keyframes slideInFromLeft {
     from {
         width: 0;
@@ -195,7 +194,7 @@
 @keyframes slideEffect {
     from {
         opacity: 0;
-        left: -50px;
+        left: -75px;
         transform: rotateX(90deg);
     }
     to {

@@ -160,7 +160,6 @@ select {
 }
 
 .note__form.error {
-    /* transition: background-color 3s ease-in-out; */
     visibility: visible;
     animation-name: anger;
     animation-duration: .3s;
