@@ -2,10 +2,13 @@
 <html lang="en">
 
 <head>
+    <title>CAS-FEE-2020 - Project 1</title>
+    <meta name="description" content="Notes application build with node express, mongodb and vanilla js">
+    <meta name="keywords" content="nodejs, mongodb, javascript">
+    <meta name="author" content="Roland von Aesch">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAS-FEE-2020 - Project 1</title>
-
+    
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -240,7 +243,7 @@
                         <input id="sort_finished_date" type="checkbox" value="1"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Finished date
                     </label>
                     <label class="button__sorting" for="sort_clear">
-                        <input id="sort_clear" type="checkbox" value="1"><i class="fas fa-list" aria-hidden="true"></i>
+                        <input id="sort_clear" type="checkbox" value="1"><i class="fas fa-eraser"></i>
                         Clear filter
                     </label>
                 </div>
@@ -262,13 +265,14 @@
                 {{#each notes}}
                 <li id="{{@index}}" class="note importance__bar--{{ importance}}" data-index="{{ @index }}" data-id="{{ _id }}">
                     <div class="note__container">
-                        <div class="note__number {{#if complete}}note--completed{{/if}}">
+                        <div class="note__number {{#if complete }}note--completed{{/if}}">
                             {{#if complete}}<i class="fas fa-check"></i>{{/if}}</div>
-                        <div class="note__importance note--importance-{{ importance}}">{{ importance}}</div>
+                        <div class="note__importance note--importance-{{ importance }}">{{ importance}}</div>
                         <div class="note__title">
-                            <h2>{{ title }} {{message}}</h2>
+                            <h2>{{ title }}</h2>
                         </div>
                         <div class="note__expire">
+                            <p>{{ sorting }}</p>
                             <p>{{ formatExpire expire }}</p>
                             <span>Expire on</span>
                         </div>

@@ -3,11 +3,15 @@ const Schema = mongoose.Schema;
 const noteSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        minlength: 1,
+        maxlength: 100
     },
     description: {
         type: String,
-        required: false
+        required: false,
+        minlength: 1,
+        maxlength: 500
     },
     created: {
         type: String,

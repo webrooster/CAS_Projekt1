@@ -5,7 +5,6 @@ import * as hbs_helpers from '../helpers/handlebar.helpers.js';
 export class NoteController {
     constructor(noteService) {
         this.noteService = noteService;
-        this.loading = false;
         this.message = 'List is empty! Be the first and add a note!';
     }
 
@@ -164,8 +163,7 @@ export class NoteController {
         
         element.sort_finished_date.addEventListener('click', e => {   
             element.sort_finished_date.classList.toggle('active');
-            this.noteService.sortExpire(helper.getFilterState(element.sort_finished_date));
-            
+            this.noteService.sortExpire(helper.getFilterState(element.sort_finished_date));     
             this.renderNotes();
         });
         
@@ -195,10 +193,8 @@ export class NoteController {
     renderNotes(note) {
 
         // CLEAR LIST
-        element.notesListContainer.innerHTML = '';        
-        
-        // this.loading = true; LOADING SPINNER TBD
-        
+        element.notesListContainer.innerHTML = '';
+
         // RENDER FORM UPDATE        
         if (note) {
             element.noteFormUpdateContainer.innerHTML = template.noteFormUpdateTemplate({ 
@@ -214,13 +210,9 @@ export class NoteController {
 
         }
         
-        // RENDER NOTES LIST
-        // console.log('message', this.noteService.notes.length, this.message);
-
         // RENDER NOTES LISTING
         element.notesListContainer.innerHTML = template.noteListTemplate({ 
             notes: this.noteService.notes, 
-            loading: this.loading,
             message: this.message
         });
         
