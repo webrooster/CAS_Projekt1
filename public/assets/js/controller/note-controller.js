@@ -110,7 +110,9 @@ export class NoteController {
                                 
                 let formStatus = false;
                 
-                if (title !== '' && /\d{4}\-\d{2,2}\-\d{2,2}/.test(expire) && Number.isInteger(importance)) formStatus = true, element.noteFormUpdateContainer.classList.remove('error');
+                if (title !== '' && /\d{4}\-\d{2,2}\-\d{2,2}/.test(expire) && 
+                    Number.isInteger(importance)) formStatus = true, 
+                    element.noteFormUpdateContainer.classList.remove('error');
                 
                 if (formStatus === true) {
                     const datas = {
