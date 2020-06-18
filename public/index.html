@@ -267,7 +267,7 @@
                         <div class="note__title">
                             <h2>{{ title }}</h2>
                         </div>
-                        <div class="note__expire">
+                        <div class="note__date">
                             {{#ifEquals ../sorting 'created'}}
                                 <p>{{ formatExpire created }}</p>
                                 <span>Created on</span>
@@ -277,8 +277,13 @@
                                 <span>Expire on</span>
                             {{/ifEquals }}
                             {{#ifEquals ../sorting 'completed'}}
-                                <p>{{ formatExpire completed_at }}</p>
+                                {{#if complete}}
+                                <p>{{ formatTime completed_at }}</p>
                                 <span>Completed At</span>
+                                {{ else }}
+                                <p>{{ formatExpire expire }}</p>
+                                <span>Expire on</span>
+                                {{/if}}
                             {{/ifEquals}}
                             {{#ifEquals ../sorting 'expire'}}
                                 <p>{{ formatExpire expire }}</p>

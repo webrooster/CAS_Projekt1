@@ -77,7 +77,7 @@
     padding: .75rem 1rem;
 }
 
-.note__expire {
+.note__date {
     display: flex;
     flex-direction: column;
     justify-content: center;
