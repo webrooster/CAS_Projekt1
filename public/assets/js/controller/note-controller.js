@@ -6,6 +6,7 @@ export class NoteController {
     constructor(noteService) {
         this.noteService = noteService;
         this.message = 'List is empty! Be the first and add a note!';
+        this.sorting = 'expire';
     }
 
     // INIT EVENTHANDLERS
@@ -146,26 +147,28 @@ export class NoteController {
         element.sort_createdAt.addEventListener('click', e => {
             element.sort_createdAt.classList.toggle('active');
             this.noteService.sortCreatedAt(helper.getFilterState(element.sort_createdAt));
+            this.sorting = 'created';
             this.renderNotes();      
         });
 
         element.sort_importance.addEventListener('click', e => {
             element.sort_importance.classList.toggle('active'); 
             this.noteService.sortImportance(helper.getFilterState(element.sort_importance));
+            this.sorting = 'importance';
             this.renderNotes();           
         });
 
         element.sort_completed.addEventListener('click', e => {
             element.sort_completed.classList.toggle('active');
             this.noteService.sortCompleted(helper.getFilterState(element.sort_completed));
-
+            this.sorting = 'completed';
             if (this.noteService.notes.length === 0) this.message = 'List must have at least one finished note!';
             this.renderNotes();          
         });
         
         element.sort_finished_date.addEventListener('click', e => {   
             element.sort_finished_date.classList.toggle('active');
-            this.noteService.sortExpire(helper.getFilterState(element.sort_finished_date));     
+            this.noteService.sortExpire(helper.getFilterState(element.sort_finished_date));
             this.renderNotes();
         });
         
@@ -176,6 +179,7 @@ export class NoteController {
 
         // CLEAR FILTER
         element.sort_clear.addEventListener('click', e => {
+            this.sorting = 'expire';
             this.noteService.loadData();
             this.renderNotes();
         });
@@ -215,7 +219,8 @@ export class NoteController {
         // RENDER NOTES LISTING
         element.notesListContainer.innerHTML = template.noteListTemplate({ 
             notes: this.noteService.notes, 
-            message: this.message
+            message: this.message,
+            sorting: this.sorting
         });
         
         // RENDER STATUS PANEL

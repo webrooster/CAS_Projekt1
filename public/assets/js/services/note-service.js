@@ -8,20 +8,20 @@ export class NoteService {
 
     // SORT CREATED DATE
     sortExpire(sortState) {
-        const sortingList = this.notes.filter(a => a.expire);    
-        sortingList.sort((a, b) => {
+        const sortingExpire = this.notes.filter(a => a.expire);    
+        sortingExpire.sort((a, b) => {
             if (sortState === false) return new Date(b.expire) - new Date(a.expire);
             if (sortState === true) return new Date(a.expire) - new Date(b.expire);
         });
 
         // RENDER RESULT LIST
-        this.notes = sortingList;
+        this.notes = sortingExpire;
     }
 
     // SORT CREATED DATE
     sortCreatedAt(sortState) {
-        const sortingList = this.notes;
-        sortingList.sort((a, b) => {
+        const sortingCreatedAt = this.notes;
+        sortingCreatedAt.sort((a, b) => {
             if (sortState === false) return new Date(b.created) - new Date(a.created);
             if (sortState === true) return new Date(a.created) - new Date(b.created);
         });
@@ -29,13 +29,13 @@ export class NoteService {
 
     // SORT COMPLETED
     sortCompleted(sortState) {
-        const sortingList = this.notes.filter(a => a.complete);
-        sortingList.sort((a, b) => {
+        const sortComplete = this.notes.filter(a => a.complete);
+        sortComplete.sort((a, b) => {
             if (sortState === false) return  (b.complete - a.complete) + (new Date(b.completed_at) - new Date(a.completed_at));
             if (sortState === true) return  (a.complete - b.complete) + (new Date(a.completed_at) - new Date(b.completed_at));
         });
 
-        this.notes = sortingList;
+        this.notes = sortComplete;
     }
 
     // SORT IMPORTANCE

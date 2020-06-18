@@ -268,9 +268,22 @@
                             <h2>{{ title }}</h2>
                         </div>
                         <div class="note__expire">
-                            <p>{{ sorting }}</p>
-                            <p>{{ formatExpire expire }}</p>
-                            <span>Expire on</span>
+                            {{#ifEquals ../sorting 'created'}}
+                                <p>{{ formatExpire created }}</p>
+                                <span>Created on</span>
+                            {{/ifEquals }}
+                            {{#ifEquals ../sorting 'importance'}}
+                                <p>{{ formatExpire expire }}</p>
+                                <span>Expire on</span>
+                            {{/ifEquals }}
+                            {{#ifEquals ../sorting 'completed'}}
+                                <p>{{ formatExpire completed_at }}</p>
+                                <span>Completed At</span>
+                            {{/ifEquals}}
+                            {{#ifEquals ../sorting 'expire'}}
+                                <p>{{ formatExpire expire }}</p>
+                                <span>Expire on</span>
+                            {{/ifEquals}}
                         </div>
                         <div class="note__dropdown">
                             <button id="d-{{ _id }}" class="btn--open"><i class="fa fa-arrow-down"></i></button>
