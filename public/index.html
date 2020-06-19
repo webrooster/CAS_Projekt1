@@ -264,9 +264,6 @@
                         <div class="note__number {{#if complete }}note--completed{{/if}}">
                             {{#if complete}}<i class="fas fa-check"></i>{{/if}}</div>
                         <div class="note__importance note--importance-{{ importance }}">{{ importance}}</div>
-                        <div class="note__title">
-                            <h2>{{ title }}</h2>
-                        </div>
                         <div class="note__date">
                             {{#ifEquals ../sorting 'created'}}
                                 <p>{{ formatExpire created }}</p>
@@ -277,18 +274,27 @@
                                 <span>Expire on</span>
                             {{/ifEquals }}
                             {{#ifEquals ../sorting 'completed'}}
-                                {{#if complete}}
+                                {{#unless complete}}
                                 <p>{{ formatTime completed_at }}</p>
                                 <span>Completed At</span>
                                 {{ else }}
                                 <p>{{ formatExpire expire }}</p>
                                 <span>Expire on</span>
-                                {{/if}}
+                                {{/unless}}
                             {{/ifEquals}}
                             {{#ifEquals ../sorting 'expire'}}
                                 <p>{{ formatExpire expire }}</p>
                                 <span>Expire on</span>
                             {{/ifEquals}}
+                        </div>
+                        <div class="note__title">
+                            <h2>{{ title }}</h2>
+                        </div>
+                        <div class="note__date">
+                            {{#if complete}}
+                                <p>{{ formatTime completed_at }}</p>
+                                <span>Completed At</span>
+                            {{/if}}
                         </div>
                         <div class="note__dropdown">
                             <button id="d-{{ _id }}" class="btn--open"><i class="fa fa-arrow-down"></i></button>
