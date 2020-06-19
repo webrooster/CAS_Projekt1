@@ -55,7 +55,7 @@ body.theme__bright {
 
 /* HANDLE */
 ::-webkit-scrollbar-thumb {
-    background: var(--contrast-color); 
+    background: var(--opaque-color); 
 
     cursor: grab;
 }

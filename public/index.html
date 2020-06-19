@@ -264,7 +264,7 @@
                         <div class="note__number {{#if complete }}note--completed{{/if}}">
                             {{#if complete}}<i class="fas fa-check"></i>{{/if}}</div>
                         <div class="note__importance note--importance-{{ importance }}">{{ importance}}</div>
-                        <div class="note__date">
+                        <div class="note__date note--date">
                             {{#ifEquals ../sorting 'created'}}
                                 <p>{{ formatExpire created }}</p>
                                 <span>Created on</span>

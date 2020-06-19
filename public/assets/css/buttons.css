@@ -56,6 +56,9 @@ button > * {
 .note__dropdown .btn--open {
     margin: 10px;
 
+    min-width: 30px;
+    max-width: 30px;
+
     transform: rotate(90deg);
     transition: transform .3s ease;
 }
