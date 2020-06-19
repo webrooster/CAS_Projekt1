@@ -17,7 +17,7 @@
 }
 
 .note::before {
-    height: 3px;
+    height: 2px;
     content: '';
     animation: slideInFromLeft 2s cubic-bezier(0, 0, 0, 1.27);
 }
@@ -46,7 +46,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
+    flex: 2;
+
+    min-width: 50px;
+    max-width: 50px;
 
     color: var(--light-grey);
 }
@@ -61,7 +64,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
+    flex: 3;
+
+    min-width: 50px;
+    max-width: 50px;
 
     color: white;
 
@@ -72,24 +78,29 @@
 .note__title {
     display: flex;
     align-items: center;
-    flex: 10;
+    flex: 17;
 
     padding: .75rem 1rem;
 }
 
-.note__expire {
+.note__date {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 3;
+    flex: 10;
 
+    text-align: center;
     background: var(--note-expire);
 
     position: relative;
     animation: slideEffect .8s cubic-bezier(0, 0, 0, 1.4);
 }
 
+.note--date {
+    flex: 5;
+    background: var(--background-color);
+}
 
 .note__dropdown {
     display: flex;

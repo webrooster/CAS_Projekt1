@@ -34,14 +34,6 @@ export class NoteStorage {
         return this.notes;
     }
 
-    // GET ALL NOTES
-    getJSONDatas() {
-        var http_req = new XMLHttpRequest();
-        http_req.open("GET", 'http://localhost:3000/notes', false);
-        http_req.send(null);
-        return http_req.responseText;
-    }
-
     // SET STATUS
     getStatus() {
         return {
@@ -57,20 +49,18 @@ export class NoteStorage {
             headers: {
               'Content-Type': 'application/json',
             },
+            body: JSON.stringify(note)
+        };
 
-            body: JSON.stringify(note),
-
-          };
-
-          try {
-              const url = `http://localhost:3000/notes/${noteId}`;
-              const response = await fetch(url, options);
-              const note = await response.json();
-              return note;
-            
-          } catch (err) {
-            console.error('Error updating document', err);
-          }
+        try {
+            const url = `http://localhost:3000/notes/${noteId}`;
+            const response = await fetch(url, options);
+            const note = await response.json();
+            return note;
+          
+        } catch (err) {
+          console.error('Error updating document', err);
+        }
     }
     
 
