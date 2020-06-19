@@ -35,6 +35,5 @@ export const template = {
     statusPanelTemplate: Handlebars.compile(document.querySelector('#status-panel-template').innerHTML),
     
     // HANDLEBARS FORM
-    noteFormUpdateTemplate: Handlebars.compile(document.querySelector('#note__form--update-template').innerHTML),
-    
+    noteFormUpdateTemplate: Handlebars.compile(document.querySelector('#note__form--update-template').innerHTML)   
 }
