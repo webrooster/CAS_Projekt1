@@ -150,9 +150,7 @@ input[type="checkbox"]:hover {
     font-size: .6rem;
     
     width: 100%;
-    padding: .5rem 0 1rem;
-    margin-bottom: 1rem;
-    white-space: nowrap;
+    padding: 0 0 .5rem; 
     color: var(--font-color);
     background-color: var(--background-color);
 
@@ -176,10 +174,23 @@ input[type="checkbox"]:hover {
     font-size: 1rem;
     color: var(--opaque-color);
 
-    padding-bottom: .5rem;
+    padding-bottom: .2rem;
 }
 
 .button__sorting:hover {
-    color: white;
     background-color: var(--button-hover-color);
+}
+
+.toggle__arrow::after {
+    display: flex;
+    justify-content: flex-end;
+    
+    content:  '▼';
+
+    font-size: .75rem;
+    margin-left: .3rem;
+}
+
+.button__sorting input:checked ~ .toggle__arrow::after {
+    content: "▲";
 }

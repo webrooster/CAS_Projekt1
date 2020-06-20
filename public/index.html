@@ -201,7 +201,8 @@
 
             <!-- NOTES STATUS PANEL TEMPLATE -->
             <script id="status-panel-template" type="text/x-handlebars-template">
-                <span>today in</span><h5>focus</h5>
+                {{#if todaysNote}}<span>today in</span><h5>focus</h5>{{/if}}
+                {{#ifEquals todaysNote 'focus' }}<span>today in</span><h5>focus</h5>{{/ifEquals}}
                 <span>total notes</span><h3>{{ status }}</h3>
                 <span>completed</span><h3>{{ completed }}</h3>
                 <span>date</span><h4>{{ dateToday }}</h4> 
@@ -213,6 +214,7 @@
                 {{#if status }}{{ status }}{{/if}}
                 {{#if completed }}{{ completed }}{{ else }}0{{/if}}
                 {{ dateToday }}
+                {{ todaysNote }}
             </div>
             <!-- END STATUS PANEL CONTAINER -->
 
@@ -227,21 +229,28 @@
                 <!-- UI SORTING ELEMENTS -->
                 <div class="ui__buttons">
                     <label class="button__sorting" for="sort_createdAt">
-                        <input id="sort_createdAt" type="checkbox" value="1"><i class="fas fa-sort-amount-down"
-                            aria-hidden="true"></i> Created on
+                        <input id="sort_createdAt" type="checkbox" value="1">
+                        <i class="fas fa-sort-amount-down"></i>Created on
+                        <div class="toggle__arrow"></div>
                     </label>
                     <label class="button__sorting" for="sort_importance">
-                        <input id="sort_importance" type="checkbox" value="1"><i class="fas fa-exclamation" aria-hidden="true"></i> Importance
+                        <input id="sort_importance" type="checkbox" value="1">
+                        <i class="fas fa-exclamation"></i>Importance
+                        <div class="toggle__arrow"></div>
                     </label>
                     <label class="button__sorting" for="sort_completed">
-                        <input id="sort_completed" type="checkbox" value="1"><i class="fas fa-check-circle" aria-hidden="true"></i> Finished
+                        <input id="sort_completed" type="checkbox" value="1">
+                        <i class="fas fa-check-circle"></i>Finished
+                        <div class="toggle__arrow"></div>
                     </label>
                     <label class="button__sorting" for="sort_finished_date">
-                        <input id="sort_finished_date" type="checkbox" value="1"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Finished date
+                        <input id="sort_finished_date" type="checkbox" value="1">
+                        <i class="fas fa-calendar-alt"></i>Finished date
+                        <div class="toggle__arrow"></div>
                     </label>
                     <label class="button__sorting" for="sort_clear">
-                        <input id="sort_clear" type="checkbox" value="1"><i class="fas fa-eraser"></i>
-                        Clear filter
+                        <input id="sort_clear" type="checkbox" value="1">
+                        <i class="fas fa-eraser"></i>Clear filter
                     </label>
                 </div>
                 <!-- END UI SORTING ELEMENTS -->
