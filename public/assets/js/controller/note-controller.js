@@ -169,6 +169,7 @@ export class NoteController {
         element.sort_finished_date.addEventListener('click', e => {   
             element.sort_finished_date.classList.toggle('active');
             this.noteService.sortExpire(helper.getFilterState(element.sort_finished_date));
+            this.sorting = 'expire';
             this.renderNotes();
         });
         

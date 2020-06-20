@@ -16,7 +16,7 @@ export const handlebar_helper_expire = Handlebars.registerHelper('formatExpire',
     return new Date(expireLocalTime).toLocaleDateString(helper.getBrowserLanguage());
 });
 
-// HANDLEBAR HELPER - SORTING STATES
+// HANDLEBAR HELPER - SORTING STATE
 export const handlebar_equals = Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });

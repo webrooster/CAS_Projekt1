@@ -1,4 +1,5 @@
 import { Note } from '../models/note.js';
+import * as filter from '../helpers/helper.functions.js';
 
 export class NoteService {
     constructor(noteStorage) {
@@ -6,25 +7,21 @@ export class NoteService {
         this.notes = [];
     }
 
-    // SORT CREATED DATE
+    // SORT EXPIRE DATE
     sortExpire(sortState) {
-        const sortingExpire = this.notes.filter(a => a.expire);    
-        sortingExpire.sort((a, b) => {
-            if (sortState === false) return new Date(b.expire) - new Date(a.expire);
-            if (sortState === true) return new Date(a.expire) - new Date(b.expire);
-        });
+        const sortingTypeKey = 'expire';
+        const sortingList = this.notes.filter(a => a.expire);    
+        filter.sortingDatesBy(sortingList, sortState, sortingTypeKey);
 
-        // RENDER RESULT LIST
-        this.notes = sortingExpire;
+        // RENDER RESULT LIST    
+        this.notes = sortingList;
     }
 
     // SORT CREATED DATE
     sortCreatedAt(sortState) {
-        const sortingCreatedAt = this.notes;
-        sortingCreatedAt.sort((a, b) => {
-            if (sortState === false) return new Date(b.created) - new Date(a.created);
-            if (sortState === true) return new Date(a.created) - new Date(b.created);
-        });
+        const sortingTypeKey = 'created';
+        const sortingList = this.notes;
+        filter.sortingDatesBy(sortingList, sortState, sortingTypeKey);
     }
 
     // SORT COMPLETED
