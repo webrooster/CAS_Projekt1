@@ -278,14 +278,9 @@
                                 <p>{{ formatExpire expire }}</p>
                                 <span>Expire on</span>
                             {{/ifEquals }}
-                            {{#ifEquals ../sorting 'completed'}}
-                                {{#unless complete}}
-                                <p>{{ formatTime completed_at }}</p>
-                                <span>Completed At</span>
-                                {{ else }}
+                            {{#ifEquals ../sorting 'completed'}}                                
                                 <p>{{ formatExpire expire }}</p>
                                 <span>Expire on</span>
-                                {{/unless}}
                             {{/ifEquals}}
                             {{#ifEquals ../sorting 'expire'}}
                                 <p>{{ formatExpire expire }}</p>

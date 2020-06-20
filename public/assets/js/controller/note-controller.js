@@ -129,8 +129,9 @@ export class NoteController {
                     }
                     
                     this.noteService.updateNote(datas, noteId).then(() => {
-                      this.renderNotes();
-                      element.flip.classList.toggle('active');
+                        this.noteService.loadData();
+                        this.renderNotes();
+                        element.flip.classList.toggle('active');
                     });
 
                 } else {
