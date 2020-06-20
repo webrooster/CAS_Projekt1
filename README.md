@@ -5,41 +5,42 @@
 </p>
 
 <!-- GETTING STARTED -->
-## Introduction
+## Overview
 
-With this application you can manage your notes or to do's. Add new notes, set an expiration date and a priority. Your daily tasks are marked, so you never lose track of your daily to do's. 
+This application can manage your notes. Add new notes, set an expiration date and a priority. Your daily tasks are marked, so you never lose track of your daily to-dos. 
 
-Sort your notes by creation date, finished date, priority or simply list your completed tasks in ascending or descending order.
+Sorting is supported by creation date, finished date, priority or simply list your completed tasks in ascending or descending order. You can run it locally and access it with your preferred Browser (see support list below).
 
 <p align="center">
-  <img src="public/assets/img/project-1-printscreen.png" alt="CAS-FEE-2020">
+  <img src="public/assets/img/overview-notes-and-tasks.png" alt="CAS-FEE-2020">
 </p>
 
 ## Features
-* CRUD operations - add, update, delete notes.
-* Sort notes by date in ascending/descending order.
-* Sort completed notes based on "completed date" in ascending/descending order.
-* Sort notes based on creation date in ascending/descending order.
-* Sort notes based on importance in ascending/descending order.
-* Complete notes.
-* Highlighted notes of your daily workload.
+* CRUD operations - add, read, edit and delete notes.
+* Notes due today are hightlighted.
 * Theme toggler - Switch theme between dark and bright colors.
 
+## Sort notes by different criteria
+* by creation date
+* creation date
+* priority
+* completion date
+
 <p align="center">
-  <img src="public/assets/img/project-1-yellow.png" alt="CAS-FEE-2020">
+  <img src="public/assets/img/overview-notes-and-tasks-2.png" alt="CAS-FEE-2020">
 </p>
 
-## Prerequisites
+## Installation
+### Prerequisites
 
-You need a pre-installed MongoDB and NODE.js. The installation of these components is not covered by this documentation. Follow the instructions on the official websites of these components. So let's get started and take notes!
+Mongodb and Node.js are needed locally. The installation of these components is not covered by this documentation. Follow the instructions on the official websites of these components. So let's get started and take notes!
 
-### Installation
 1. Clone the repo
 ```sh
 git clone https://github.com/webrooster/CAS_Projekt1.git
 ```
 
-2. Access directory
+2. Change into the directory
 ```sh
 cd CAS_Projekt1
 ```
@@ -54,7 +55,7 @@ npm install
 mongod-start
 ```
 
-5. Start app
+5. Start the application
 ```sh
 npm start
 ```
@@ -75,13 +76,10 @@ MongoDB Version: 4.2 Community Edition
 * Firefox Quantum - Version 68.4.1esr (64-bit)
 * Google Chrome - Version 83.0.4103.97 (Official Build) (64-bit)
 * Safari - Version 13.1.1 (15609.2.9.1.2)
+* Windows Edge Browser (latest)
 
-## Known issues
+## Known Issues
 * No date picker support on Safari Browsers.
 
 ## Author
 Roland von Aesch
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
