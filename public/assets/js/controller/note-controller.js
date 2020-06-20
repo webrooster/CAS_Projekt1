@@ -19,6 +19,7 @@ export class NoteController {
             // DELETE NOTE
             if (e.target.matches('.btn--delete')) {
                 this.noteService.deleteNote(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
+                element.sort_clear.click();
                 this.renderNotes();
             }
 
@@ -28,6 +29,7 @@ export class NoteController {
                 this.noteEditId = helper.getNoteIndex().dataId;
                 element.flip.classList.add('active');
                 this.renderNotes(note);
+                this.noteService.loadData();
             }
 
             // COMPLETE NOTE
@@ -55,9 +57,10 @@ export class NoteController {
 
         // NOTE FORM
         element.noteForm.addEventListener('click', e => {
-
+            
             if (e.target.matches('#form__submit')) {
                 e.preventDefault();
+                element.sort_clear.click();
 
                 const title = element.title.value;
                 const description = element.description.value;
@@ -80,8 +83,9 @@ export class NoteController {
                     }
 
                     this.noteService.addNote(datas).then(() => {
-                      this.renderNotes();
-                      helper.resetForm();
+                        this.noteService.loadData();
+                        this.renderNotes();
+                        helper.resetForm();
                     });
                     
 
@@ -101,6 +105,7 @@ export class NoteController {
             
             if (e.target.matches('#submit__update')) {
                 e.preventDefault();
+                element.sort_clear.click();
 
                 const title = document.querySelector('#title__update').value;
                 const description = document.querySelector('#description__update').value;
@@ -133,7 +138,8 @@ export class NoteController {
                         this.renderNotes();
                         element.flip.classList.toggle('active');
                     });
-
+                    
+                    
                 } else {
                     element.noteFormUpdateContainer.classList.add('error');
                 }                

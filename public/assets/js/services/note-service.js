@@ -94,8 +94,8 @@ export class NoteService {
 
     // NOTE DELETE
     deleteNote(dataId, dataIndex) {
-        this.notes.splice(dataId, 1);
         this.storage.deleteNote(dataIndex);
+        this.notes.splice(dataId, 1);
     }
 
     // NOTE COMPLETE
