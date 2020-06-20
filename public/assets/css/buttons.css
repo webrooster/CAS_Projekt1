@@ -59,7 +59,7 @@ button > * {
     min-width: 30px;
     max-width: 30px;
 
-    transform: rotate(90deg);
+    transform: rotate(180deg);
     transition: transform .3s ease;
 }
 
@@ -67,7 +67,7 @@ button > * {
     color: var(--white-color);
     background-color: var(--button-hover-color);
     
-    transform: rotate(0deg);
+    transform: rotate(-270deg);
     transition: transform .5s ease;
 }
 
@@ -150,7 +150,7 @@ input[type="checkbox"]:hover {
     font-size: .6rem;
     
     width: 100%;
-    padding: 0 0 .5rem; 
+    padding: .3rem 0 .5rem;
     color: var(--font-color);
     background-color: var(--background-color);
 
@@ -162,16 +162,13 @@ input[type="checkbox"]:hover {
 }
 
 .button__sorting.active {
-    color: var(--chromatic-light-color-3);
+    color: var(--white-color);
     background-color: var(--opaque-color);
 }
 
-.button__sorting.active i {
-    color: var(--white-color);
-}
-
 .button__sorting i {
-    font-size: 1rem;
+    font-weight: 300;
+    font-size: 1.5rem;
     color: var(--opaque-color);
 
     padding-bottom: .2rem;
@@ -181,16 +178,24 @@ input[type="checkbox"]:hover {
     background-color: var(--button-hover-color);
 }
 
-.toggle__arrow::after {
+.button__sorting .toggle__arrow::after {
     display: flex;
     justify-content: flex-end;
-    
+
     content:  '▼';
+    opacity: .2;
 
     font-size: .75rem;
     margin-left: .3rem;
+    transition: opacity .5s ease-in-out;
+}
+
+.button__sorting:hover .toggle__arrow::after {
+    opacity: 1;
 }
 
 .button__sorting input:checked ~ .toggle__arrow::after {
     content: "▲";
+    opacity: 1;
+    transition: opacity .5s ease-in-out;
 }

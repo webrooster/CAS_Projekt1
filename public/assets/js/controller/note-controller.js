@@ -182,6 +182,12 @@ export class NoteController {
             this.sorting = 'expire';
             this.noteService.loadData();
             this.renderNotes();
+
+            // UNCHECK SORTING BUTTONS
+            element.sort_createdAt.checked = false;
+            element.sort_importance.checked = false;
+            element.sort_completed.checked = false;
+            element.sort_finished_date.checked = false;
         });
     }
 

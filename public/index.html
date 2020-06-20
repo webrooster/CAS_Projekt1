@@ -11,7 +11,6 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
@@ -229,28 +228,24 @@
                 <!-- UI SORTING ELEMENTS -->
                 <div class="ui__buttons">
                     <label class="button__sorting" for="sort_createdAt">
-                        <input id="sort_createdAt" type="checkbox" value="1">
-                        <i class="fas fa-sort-amount-down"></i>Created on
-                        <div class="toggle__arrow"></div>
+                        <input id="sort_createdAt" type="checkbox">
+                        <i>◴</i>Created on<div class="toggle__arrow"></div>
                     </label>
                     <label class="button__sorting" for="sort_importance">
-                        <input id="sort_importance" type="checkbox" value="1">
-                        <i class="fas fa-exclamation"></i>Importance
-                        <div class="toggle__arrow"></div>
+                        <input id="sort_importance" type="checkbox">
+                        <i>⚠</i>Importance<div class="toggle__arrow"></div>
                     </label>
                     <label class="button__sorting" for="sort_completed">
-                        <input id="sort_completed" type="checkbox" value="1">
-                        <i class="fas fa-check-circle"></i>Finished
-                        <div class="toggle__arrow"></div>
+                        <input id="sort_completed" type="checkbox">
+                        <i>✓</i>Finished<div class="toggle__arrow"></div>
                     </label>
                     <label class="button__sorting" for="sort_finished_date">
-                        <input id="sort_finished_date" type="checkbox" value="1">
-                        <i class="fas fa-calendar-alt"></i>Finished date
-                        <div class="toggle__arrow"></div>
+                        <input id="sort_finished_date" type="checkbox">
+                        <i>◴</i>Finished date<div class="toggle__arrow"></div>
                     </label>
                     <label class="button__sorting" for="sort_clear">
-                        <input id="sort_clear" type="checkbox" value="1">
-                        <i class="fas fa-eraser"></i>Clear filter
+                        <input id="sort_clear" type="checkbox">
+                        <i>↻</i>Clear filter
                     </label>
                 </div>
                 <!-- END UI SORTING ELEMENTS -->
@@ -272,7 +267,7 @@
                 <li id="{{@index}}" class="note importance__bar--{{ importance}}" data-index="{{ @index }}" data-id="{{ _id }}">
                     <div class="note__container">
                         <div class="note__number {{#if complete }}note--completed{{/if}}">
-                            {{#if complete}}<i class="fas fa-check"></i>{{/if}}</div>
+                            {{#if complete}}<i>✓</i>{{/if}}</div>
                         <div class="note__importance note--importance-{{ importance }}">{{ importance}}</div>
                         <div class="note__date note--date">
                             {{#ifEquals ../sorting 'created'}}
@@ -307,7 +302,7 @@
                             {{/if}}
                         </div>
                         <div class="note__dropdown">
-                            <button id="d-{{ _id }}" class="btn--open"><i class="fa fa-arrow-down"></i></button>
+                            <button id="d-{{ _id }}" class="btn--open"><i>➔</i></button>
                         </div>
                     </div>
                     <div id="open-{{@index }}" class="note__content">

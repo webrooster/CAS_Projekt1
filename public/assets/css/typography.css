@@ -26,6 +26,12 @@ span {
     font-size: .75rem;
 }
 
+i {
+    font-style: normal;
+}
+
+/* CUSTOM FONT STYLES */
+
 .note p {
     color: var(--font-lighter);
 }
