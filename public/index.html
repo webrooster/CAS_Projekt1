@@ -251,18 +251,19 @@
                 <!-- END UI SORTING ELEMENTS -->
 
 
+                <!-- LOADING SPNNER -->
+                <div id="loading__spinner">
+                    <div id="loader"></div>
+                </div>
+                <!-- END LOADING SPNNER -->
+
+
                 <!-- HANDLEBAR TEMPLATE - LIST ITEM -->
                 <script id="notes-list-template" type="text/x-handlebars-template">
 
-                    <!-- LOADING SPNNER -->
-                    {{#if loading}}
-                    <div class="loader"></div>
-                    {{/if}}
-                    <!-- END LOADING SPNNER -->
-
-
                 <!-- START LIST ITEMS -->
                 {{#if notes}}
+                
                 {{#each notes}}
                 <li id="{{@index}}" class="note importance__bar--{{ importance}}" data-index="{{ @index }}" data-id="{{ _id }}">
                     <div class="note__container">
@@ -278,14 +279,9 @@
                                 <p>{{ formatExpire expire }}</p>
                                 <span>Expire on</span>
                             {{/ifEquals }}
-                            {{#ifEquals ../sorting 'completed'}}
-                                {{#unless complete}}
-                                <p>{{ formatTime completed_at }}</p>
-                                <span>Completed At</span>
-                                {{ else }}
+                            {{#ifEquals ../sorting 'completed'}}                                
                                 <p>{{ formatExpire expire }}</p>
                                 <span>Expire on</span>
-                                {{/unless}}
                             {{/ifEquals}}
                             {{#ifEquals ../sorting 'expire'}}
                                 <p>{{ formatExpire expire }}</p>
@@ -329,8 +325,8 @@
                 {{else}}
                 <li id="{{@index}}" class="note" data-index="{{ @index }}">
                     <div class="note__container">
-                        <div class="note__number"><i class="fas fa-info"></i></div>
-                        <div class="note__importance note--importance-1"><i class="fas fa-exclamation-triangle"></i>
+                        <div class="note__number"></div>
+                        <div class="note__importance note--importance-1">⚠</i>
                         </div>
                         <div class="note__title">
                             <h2 class="note__title">{{ message }}</h2>

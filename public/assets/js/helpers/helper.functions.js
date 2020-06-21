@@ -11,6 +11,16 @@ export const getNoteIndex = () => {
     }
 }
 
+// DATE FILTER
+export const sortingDatesBy = (sortingList, sortState, sortingTypeKey) => {
+    sortingList.sort((a, b) => {
+        if (sortState === false) return new Date(b[sortingTypeKey]) - new Date(a[sortingTypeKey]);
+        if (sortState === true) return new Date(a[sortingTypeKey]) - new Date(b[sortingTypeKey]);
+    });
+
+    return sortingList;
+}
+
 // FILTER BUTTON STATE
 export const getFilterState = (button) => {
     return button.classList.contains('active');

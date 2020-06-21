@@ -1,4 +1,5 @@
 import { Note } from '../models/note.js';
+import * as filter from '../helpers/helper.functions.js';
 
 export class NoteService {
     constructor(noteStorage) {
@@ -6,25 +7,21 @@ export class NoteService {
         this.notes = [];
     }
 
-    // SORT CREATED DATE
+    // SORT EXPIRE DATE
     sortExpire(sortState) {
-        const sortingExpire = this.notes.filter(a => a.expire);    
-        sortingExpire.sort((a, b) => {
-            if (sortState === false) return new Date(b.expire) - new Date(a.expire);
-            if (sortState === true) return new Date(a.expire) - new Date(b.expire);
-        });
+        const sortingTypeKey = 'expire';
+        const sortingList = this.notes.filter(a => a.expire);    
+        filter.sortingDatesBy(sortingList, sortState, sortingTypeKey);
 
-        // RENDER RESULT LIST
-        this.notes = sortingExpire;
+        // RENDER RESULT LIST    
+        this.notes = sortingList;
     }
 
     // SORT CREATED DATE
     sortCreatedAt(sortState) {
-        const sortingCreatedAt = this.notes;
-        sortingCreatedAt.sort((a, b) => {
-            if (sortState === false) return new Date(b.created) - new Date(a.created);
-            if (sortState === true) return new Date(a.created) - new Date(b.created);
-        });
+        const sortingTypeKey = 'created';
+        const sortingList = this.notes;
+        filter.sortingDatesBy(sortingList, sortState, sortingTypeKey);
     }
 
     // SORT COMPLETED
@@ -76,12 +73,16 @@ export class NoteService {
 
     // NOTE UPDATE
     async updateNote(datas, dataId) {
+
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].importance = datas.importance;
         this.notes[datas.noteIndex].expire = datas.expire;
-        this.notes[datas.noteIndex].complete = datas.complete;
-        this.notes[datas.noteIndex].completed_at = datas.completed_at;
+
+        if (this.notes[datas.noteIndex].complete == undefined) datas.complete = false;
+        if (this.notes[datas.noteIndex].complete === (true || 1)) datas.complete = true;
+        if (datas.completed_at == undefined) datas.completed_at = this.notes[datas.noteIndex].completed_at;
+
         await this.storage.update(datas, dataId);
     }
 
@@ -97,8 +98,8 @@ export class NoteService {
 
     // NOTE DELETE
     deleteNote(dataId, dataIndex) {
-        this.notes.splice(dataId, 1);
         this.storage.deleteNote(dataIndex);
+        this.notes.splice(dataId, 1);
     }
 
     // NOTE COMPLETE

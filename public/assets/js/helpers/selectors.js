@@ -23,8 +23,9 @@ export const element = {
         statusPanelContainer: document.getElementById('status__panel'),
         noteFormUpdateContainer: document.getElementById('note__form--update'),
 
-        // THEME TOGGLER
+        // THEME ELEMENTS
         theme__toggler: document.querySelector('#theme__toggler'),
+        loading__spinner: document.getElementById('loading__spinner'),
 }
 
 export const template = {

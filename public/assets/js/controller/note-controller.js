@@ -19,6 +19,7 @@ export class NoteController {
             // DELETE NOTE
             if (e.target.matches('.btn--delete')) {
                 this.noteService.deleteNote(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
+                element.sort_clear.click();
                 this.renderNotes();
             }
 
@@ -33,6 +34,7 @@ export class NoteController {
             // COMPLETE NOTE
             if (e.target.matches('.btn--complete')) {         
                 this.noteService.completeNote(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
+                element.sort_clear.click();
                 this.renderNotes();
             }
             
@@ -55,9 +57,10 @@ export class NoteController {
 
         // NOTE FORM
         element.noteForm.addEventListener('click', e => {
-
+            
             if (e.target.matches('#form__submit')) {
                 e.preventDefault();
+                element.sort_clear.click();
 
                 const title = element.title.value;
                 const description = element.description.value;
@@ -80,8 +83,9 @@ export class NoteController {
                     }
 
                     this.noteService.addNote(datas).then(() => {
-                      this.renderNotes();
-                      helper.resetForm();
+                        this.noteService.loadData();
+                        this.renderNotes();
+                        helper.resetForm();
                     });
                     
 
@@ -101,6 +105,7 @@ export class NoteController {
             
             if (e.target.matches('#submit__update')) {
                 e.preventDefault();
+                element.sort_clear.click();
 
                 const title = document.querySelector('#title__update').value;
                 const description = document.querySelector('#description__update').value;
@@ -129,10 +134,12 @@ export class NoteController {
                     }
                     
                     this.noteService.updateNote(datas, noteId).then(() => {
-                      this.renderNotes();
-                      element.flip.classList.toggle('active');
+                        this.noteService.loadData();
+                        this.renderNotes();
+                        element.flip.classList.toggle('active');
                     });
-
+                    
+                    
                 } else {
                     element.noteFormUpdateContainer.classList.add('error');
                 }                
@@ -169,6 +176,7 @@ export class NoteController {
         element.sort_finished_date.addEventListener('click', e => {   
             element.sort_finished_date.classList.toggle('active');
             this.noteService.sortExpire(helper.getFilterState(element.sort_finished_date));
+            this.sorting = 'expire';
             this.renderNotes();
         });
         
@@ -179,15 +187,16 @@ export class NoteController {
 
         // CLEAR FILTER
         element.sort_clear.addEventListener('click', e => {
-            this.sorting = 'expire';
-            this.noteService.loadData();
-            this.renderNotes();
-
             // UNCHECK SORTING BUTTONS
             element.sort_createdAt.checked = false;
             element.sort_importance.checked = false;
             element.sort_completed.checked = false;
             element.sort_finished_date.checked = false;
+
+            this.sorting = 'expire';
+            this.noteService.loadData();
+            this.renderNotes();
+
         });
     }
 
@@ -204,31 +213,38 @@ export class NoteController {
     // RENDER NOTES LIST
     renderNotes(note) {
 
-        // CLEAR LIST
+        // CLEAR LIST SHOW LOADING SPINNER
         element.notesListContainer.innerHTML = '';
-
-        // RENDER FORM UPDATE        
-        if (note) {
-            element.noteFormUpdateContainer.innerHTML = template.noteFormUpdateTemplate({ 
-                title: note.noteDatas.title,
-                description: note.noteDatas.description,
-                expire: note.noteDatas.expire,
-                importance: note.noteDatas.importance,
-                noteId: note.noteDatas.id,
-                dataIndex: note.dataId
+        element.loading__spinner.classList.remove('hide'); 
+        
+        setTimeout(() => {
+            // RENDER FORM UPDATE        
+            if (note) {
+                element.noteFormUpdateContainer.innerHTML = template.noteFormUpdateTemplate({ 
+                    title: note.noteDatas.title,
+                    description: note.noteDatas.description,
+                    expire: note.noteDatas.expire,
+                    importance: note.noteDatas.importance,
+                    noteId: note.noteDatas.id,
+                    dataIndex: note.dataId
+                });
+            }        
+        
+            // RENDER NOTES LISTING
+            element.notesListContainer.innerHTML = template.noteListTemplate({ 
+                notes: this.noteService.notes, 
+                message: this.message,
+                sorting: this.sorting,
             });
 
-            this.noteService.loadData();
+            element.loading__spinner.classList.add('hide');
 
-        }
-        
-        // RENDER NOTES LISTING
-        element.notesListContainer.innerHTML = template.noteListTemplate({ 
-            notes: this.noteService.notes, 
-            message: this.message,
-            sorting: this.sorting
-        });
-        
+            if (this.sorting == 'completed') this.noteService.loadData();
+
+            this.noteExpireToday();
+
+        }, 200);
+
         // RENDER STATUS PANEL
         element.statusPanelContainer.innerHTML = template.statusPanelTemplate({ 
             status: this.noteService.statusPanel().notesTotal, 
@@ -236,8 +252,6 @@ export class NoteController {
             dateToday: helper.currentDate()
         });
         
-        // RENDER NOTES EXPIRE
-        this.noteExpireToday();
         if (this.noteService.notes.length === 0) this.message;
     }
 

@@ -10,7 +10,7 @@ const noteSchema = new Schema({
     description: {
         type: String,
         required: false,
-        minlength: 1,
+        minlength: 0,
         maxlength: 500
     },
     created: {

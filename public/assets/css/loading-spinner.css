@@ -1,4 +1,15 @@
-.loader {
+#loading__spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+#loading__spinner.hide {
+  display: none;
+}
+
+#loader {
     border: 5px solid var(--contrast-color);
     border-radius: 50%;
     border-top: 5px solid var(--font-lighter);
@@ -6,8 +17,8 @@
     height: 50px;
     -webkit-animation: spin .5s linear infinite; /* Safari */
     animation: spin .5s linear infinite;
-  }
-  
+}
+ 
   /* Safari */
   @-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); }
