@@ -34,8 +34,8 @@ export class NoteController {
             // COMPLETE NOTE
             if (e.target.matches('.btn--complete')) {         
                 this.noteService.completeNote(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
-                element.sort_clear.click();
                 this.renderNotes();
+                element.sort_clear.click();
             }
             
             // OPEN DESCRIPTION
@@ -187,6 +187,7 @@ export class NoteController {
 
         // CLEAR FILTER
         element.sort_clear.addEventListener('click', e => {
+            
             // UNCHECK SORTING BUTTONS
             element.sort_createdAt.checked = false;
             element.sort_importance.checked = false;
@@ -238,9 +239,7 @@ export class NoteController {
             });
 
             element.loading__spinner.classList.add('hide');
-
-            if (this.sorting == 'completed') this.noteService.loadData();
-
+            this.noteService.loadData();
             this.noteExpireToday();
 
         }, 200);
