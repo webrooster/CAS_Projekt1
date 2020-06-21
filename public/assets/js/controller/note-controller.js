@@ -213,28 +213,38 @@ export class NoteController {
     // RENDER NOTES LIST
     renderNotes(note) {
 
-        // CLEAR LIST
+        // CLEAR LIST SHOW LOADING SPINNER
         element.notesListContainer.innerHTML = '';
+        element.loading__spinner.classList.remove('hide'); 
         
-        // RENDER FORM UPDATE        
-        if (note) {
-            element.noteFormUpdateContainer.innerHTML = template.noteFormUpdateTemplate({ 
-                title: note.noteDatas.title,
-                description: note.noteDatas.description,
-                expire: note.noteDatas.expire,
-                importance: note.noteDatas.importance,
-                noteId: note.noteDatas.id,
-                dataIndex: note.dataId
+        setTimeout(() => {
+            // RENDER FORM UPDATE        
+            if (note) {
+                element.noteFormUpdateContainer.innerHTML = template.noteFormUpdateTemplate({ 
+                    title: note.noteDatas.title,
+                    description: note.noteDatas.description,
+                    expire: note.noteDatas.expire,
+                    importance: note.noteDatas.importance,
+                    noteId: note.noteDatas.id,
+                    dataIndex: note.dataId
+                });
+            }        
+        
+            // RENDER NOTES LISTING
+            element.notesListContainer.innerHTML = template.noteListTemplate({ 
+                notes: this.noteService.notes, 
+                message: this.message,
+                sorting: this.sorting,
             });
-        }
-        
-        // RENDER NOTES LISTING
-        element.notesListContainer.innerHTML = template.noteListTemplate({ 
-            notes: this.noteService.notes, 
-            message: this.message,
-            sorting: this.sorting
-        });
-        
+
+            element.loading__spinner.classList.add('hide');
+
+            if (this.sorting == 'completed') this.noteService.loadData();
+
+            this.noteExpireToday();
+
+        }, 200);
+
         // RENDER STATUS PANEL
         element.statusPanelContainer.innerHTML = template.statusPanelTemplate({ 
             status: this.noteService.statusPanel().notesTotal, 
@@ -242,9 +252,6 @@ export class NoteController {
             dateToday: helper.currentDate()
         });
         
-        // RENDER NOTES EXPIRE
-        this.noteService.loadData();
-        this.noteExpireToday();
         if (this.noteService.notes.length === 0) this.message;
     }
 

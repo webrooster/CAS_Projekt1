@@ -251,18 +251,19 @@
                 <!-- END UI SORTING ELEMENTS -->
 
 
+                <!-- LOADING SPNNER -->
+                <div id="loading__spinner">
+                    <div id="loader"></div>
+                </div>
+                <!-- END LOADING SPNNER -->
+
+
                 <!-- HANDLEBAR TEMPLATE - LIST ITEM -->
                 <script id="notes-list-template" type="text/x-handlebars-template">
 
-                    <!-- LOADING SPNNER -->
-                    {{#if loading}}
-                    <div class="loader"></div>
-                    {{/if}}
-                    <!-- END LOADING SPNNER -->
-
-
                 <!-- START LIST ITEMS -->
                 {{#if notes}}
+                
                 {{#each notes}}
                 <li id="{{@index}}" class="note importance__bar--{{ importance}}" data-index="{{ @index }}" data-id="{{ _id }}">
                     <div class="note__container">

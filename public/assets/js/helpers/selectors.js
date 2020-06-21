@@ -18,16 +18,14 @@ export const element = {
         sort_finished_date: document.querySelector('#sort_finished_date'),
         sort_clear: document.querySelector('#sort_clear'),
 
-        // EDIT COMPLETE
-        button_edit: document.querySelector('.btn--edit'),
-
         // HANDLEBAR SELECTORS
         notesListContainer: document.getElementById('standard__list'),
         statusPanelContainer: document.getElementById('status__panel'),
         noteFormUpdateContainer: document.getElementById('note__form--update'),
 
-        // THEME TOGGLER
+        // THEME ELEMENTS
         theme__toggler: document.querySelector('#theme__toggler'),
+        loading__spinner: document.getElementById('loading__spinner'),
 }
 
 export const template = {
