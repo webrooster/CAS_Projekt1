@@ -73,12 +73,16 @@ export class NoteService {
 
     // NOTE UPDATE
     async updateNote(datas, dataId) {
+
         this.notes[datas.noteIndex].title = datas.title;
         this.notes[datas.noteIndex].description = datas.description;
         this.notes[datas.noteIndex].importance = datas.importance;
         this.notes[datas.noteIndex].expire = datas.expire;
-        this.notes[datas.noteIndex].complete = datas.complete;
-        this.notes[datas.noteIndex].completed_at = datas.completed_at;
+
+        if (this.notes[datas.noteIndex].complete == undefined) datas.complete = false;
+        if (this.notes[datas.noteIndex].complete === (true || 1)) datas.complete = true;
+        if (datas.completed_at == undefined) datas.completed_at = this.notes[datas.noteIndex].completed_at;
+
         await this.storage.update(datas, dataId);
     }
 

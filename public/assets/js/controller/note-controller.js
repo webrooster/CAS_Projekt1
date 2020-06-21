@@ -29,7 +29,6 @@ export class NoteController {
                 this.noteEditId = helper.getNoteIndex().dataId;
                 element.flip.classList.add('active');
                 this.renderNotes(note);
-                this.noteService.loadData();
             }
 
             // COMPLETE NOTE
