@@ -41,7 +41,7 @@ i {
 }
 
 .note__date span {
-    color: var(--font-color);
+    color: var(--white-color);
     font-size: .6rem;
     text-transform: uppercase;
 }

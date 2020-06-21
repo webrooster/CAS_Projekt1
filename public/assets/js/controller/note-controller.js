@@ -34,6 +34,7 @@ export class NoteController {
             // COMPLETE NOTE
             if (e.target.matches('.btn--complete')) {         
                 this.noteService.completeNote(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
+                element.sort_clear.click();
                 this.renderNotes();
             }
             
@@ -186,15 +187,16 @@ export class NoteController {
 
         // CLEAR FILTER
         element.sort_clear.addEventListener('click', e => {
-            this.sorting = 'expire';
-            this.noteService.loadData();
-            this.renderNotes();
-
             // UNCHECK SORTING BUTTONS
             element.sort_createdAt.checked = false;
             element.sort_importance.checked = false;
             element.sort_completed.checked = false;
             element.sort_finished_date.checked = false;
+
+            this.sorting = 'expire';
+            this.noteService.loadData();
+            this.renderNotes();
+
         });
     }
 
@@ -213,7 +215,7 @@ export class NoteController {
 
         // CLEAR LIST
         element.notesListContainer.innerHTML = '';
-
+        
         // RENDER FORM UPDATE        
         if (note) {
             element.noteFormUpdateContainer.innerHTML = template.noteFormUpdateTemplate({ 
@@ -224,9 +226,6 @@ export class NoteController {
                 noteId: note.noteDatas.id,
                 dataIndex: note.dataId
             });
-
-            this.noteService.loadData();
-
         }
         
         // RENDER NOTES LISTING
@@ -244,6 +243,7 @@ export class NoteController {
         });
         
         // RENDER NOTES EXPIRE
+        this.noteService.loadData();
         this.noteExpireToday();
         if (this.noteService.notes.length === 0) this.message;
     }
