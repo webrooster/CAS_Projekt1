@@ -9,14 +9,14 @@ export class NoteService {
 
     // SORT EXPIRE DATE
     sortExpire(sortState) {
-        const sortingTypeKey = 'expire';
+        const sortingTypeKey = filter.sortingState.expire;
         const sortingList = this.notes;
         filter.sortingDatesBy(sortingList, sortState, sortingTypeKey);
     }
 
     // SORT CREATED DATE
     sortCreatedAt(sortState) {
-        const sortingTypeKey = 'created';
+        const sortingTypeKey = filter.sortingState.created;
         const sortingList = this.notes;
         filter.sortingDatesBy(sortingList, sortState, sortingTypeKey);
     }

@@ -27,7 +27,6 @@ export class NoteController {
             if (e.target.matches('.btn--edit')) {
                 const note = this.noteService.getNoteDatas(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
                 this.noteEditId = helper.getNoteIndex().dataId;
-                element.sort_clear.click();
                 element.flip.classList.add(helper.activeClass);
                 this.renderNotes(note);
             }
@@ -136,7 +135,6 @@ export class NoteController {
                     }
                     
                     this.noteService.updateNote(datas, noteId).then(() => {
-                        this.noteService.loadData();
                         this.renderNotes();
                         element.flip.classList.toggle(helper.activeClass);
                     });
