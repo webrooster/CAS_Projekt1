@@ -90,6 +90,10 @@ export class NoteController {
                     
                 } else {
                     element.noteForm.classList.add(helper.errorClass);
+
+                    setTimeout(() => {
+                        element.noteForm.classList.remove(helper.errorClass);
+                    }, 300);
                 }
             }
 
@@ -104,7 +108,6 @@ export class NoteController {
             
             if (e.target.matches('#submit__update')) {
                 e.preventDefault();
-                element.noteFormUpdateContainer.classList.remove(helper.errorClass);
                 
                 const title = document.querySelector('#title__update').value;
                 const description = document.querySelector('#description__update').value;
@@ -141,6 +144,10 @@ export class NoteController {
                     
                 } else {
                     element.noteFormUpdateContainer.classList.add(helper.errorClass);
+
+                    setTimeout(() => {
+                        element.noteFormUpdateContainer.classList.remove(helper.errorClass);
+                    }, 300);
                 }                
             }
             
