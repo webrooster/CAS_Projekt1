@@ -167,7 +167,7 @@ input[type="checkbox"]:hover {
 }
 
 .button__sorting.active i {
-    color: var(--chromatic-light-color-3);
+    color: var(--font-lighter);
 }
 
 .button__sorting i {

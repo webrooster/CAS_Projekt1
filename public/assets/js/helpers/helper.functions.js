@@ -46,9 +46,21 @@ export const currentDate = () => {
     return `${ today }`;
 }
 
+// GET BROWSER LANGUAGE
 export const getBrowserLanguage = () => {
     const userLang = navigator.language || navigator.userLanguage;
     if (userLang == 'de') return 'de-CH';
     if (userLang == 'en') return 'en-US';
     if (userLang == 'fr') return 'de-DE';
+}
+
+// CLEAR SORTING
+export const clearSorting = () => {
+    // UNCHECK SORTING BUTTONS
+    element.sort_createdAt.checked = false;
+    element.sort_importance.checked = false;
+    element.sort_completed.checked = false;
+    element.sort_finished_date.checked = false;
+    element.sort_completed.parentElement.classList.remove('active');
+    element.sort_clear.parentElement.classList.remove('active');
 }

@@ -186,19 +186,11 @@ export class NoteController {
 
         // CLEAR FILTER
         element.sort_clear.addEventListener('click', e => {
-            
-            // UNCHECK SORTING BUTTONS
-            element.sort_createdAt.checked = false;
-            element.sort_importance.checked = false;
-            element.sort_completed.checked = false;
-            element.sort_finished_date.checked = false;
-            element.sort_completed.parentElement.classList.remove('active');
-            element.sort_clear.parentElement.classList.remove('active');
+            helper.clearSorting();
 
             this.sorting = 'expire';
             this.noteService.loadData();
             this.renderNotes();
-
         });
     }
 
