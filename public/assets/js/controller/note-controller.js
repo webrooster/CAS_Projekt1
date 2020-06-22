@@ -27,6 +27,7 @@ export class NoteController {
             if (e.target.matches('.btn--edit')) {
                 const note = this.noteService.getNoteDatas(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
                 this.noteEditId = helper.getNoteIndex().dataId;
+                element.sort_clear.click();
                 element.flip.classList.add('active');
                 this.renderNotes(note);
             }
@@ -163,6 +164,7 @@ export class NoteController {
 
         element.sort_completed.addEventListener('click', e => {
             element.sort_completed.classList.toggle('active');
+            element.sort_completed.parentElement.classList.add('active');
             this.noteService.sortCompleted(helper.getFilterState(element.sort_completed));
             this.sorting = 'completed';
             if (this.noteService.notes.length === 0) this.message = 'List must have at least one finished note!';
@@ -189,6 +191,7 @@ export class NoteController {
             element.sort_importance.checked = false;
             element.sort_completed.checked = false;
             element.sort_finished_date.checked = false;
+            element.sort_completed.parentElement.classList.remove('active');
 
             this.sorting = 'expire';
             this.noteService.loadData();
