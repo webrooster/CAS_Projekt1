@@ -104,6 +104,8 @@ export class NoteController {
             
             if (e.target.matches('#submit__update')) {
                 e.preventDefault();
+                element.noteFormUpdateContainer.classList.remove(helper.errorClass);
+                
                 const title = document.querySelector('#title__update').value;
                 const description = document.querySelector('#description__update').value;
                 const expire = document.querySelector('#expire__update').value;
@@ -115,7 +117,7 @@ export class NoteController {
                 
                 if (title !== '' && /\d{4}\-\d{2,2}\-\d{2,2}/.test(expire) && 
                     Number.isInteger(importance)) formStatus = true, 
-                    element.noteFormUpdateContainer.classList.remove(helper.errorclass);
+                    element.noteFormUpdateContainer.classList.remove(helper.errorClass);
                 
                 if (formStatus === true) {
                     const datas = {
@@ -138,7 +140,7 @@ export class NoteController {
                     
                     
                 } else {
-                    element.noteFormUpdateContainer.classList.add(helper.errorclass);
+                    element.noteFormUpdateContainer.classList.add(helper.errorClass);
                 }                
             }
             

@@ -61,7 +61,6 @@ export const clearSorting = () => {
     element.sort_importance.checked = false;
     element.sort_completed.checked = false;
     element.sort_finished_date.checked = false;
-    // element.sort_completed.parentElement.classList.remove('active');
     element.sort_clear.parentElement.classList.remove('active');
 }
 
@@ -85,7 +84,7 @@ export const removeActiveState = () => {
 
 // SORTING BUTTON STATES
 export const sortingButtonState = (button) => {
-    button === sortingState.expire ? element.sort_createdAt.parentElement.classList.add(activeClass) 
+    button === sortingState.created ? element.sort_createdAt.parentElement.classList.add(activeClass) 
         : element.sort_createdAt.parentElement.classList.remove(activeClass);
     button === sortingState.importance ? element.sort_importance.parentElement.classList.add(activeClass) 
         : element.sort_importance.parentElement.classList.remove(activeClass);
