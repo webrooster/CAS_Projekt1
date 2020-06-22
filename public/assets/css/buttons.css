@@ -163,7 +163,7 @@ input[type="checkbox"]:hover {
 
 .button__sorting.active {
     color: var(--white-color);
-    background-color: var(--opaque-color);
+    background-color: var(--button-hover-color);
 }
 
 .button__sorting.active i {

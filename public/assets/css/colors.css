@@ -15,9 +15,9 @@
     --success-color: rgba(148, 158, 5, 0.2); /* #949e05; */
     --opaque-color: #949e05;
 
-    --button-hover-color: rgba(115, 97, 76, 0.7);
+    --button-hover-color: rgba(148, 158, 5, 0.397);
 
-    --importance-1: rgba(98, 187, 0, 0.4); /* #62bb00; */
+    --importance-1: rgba(97, 187, 0, 0.514); /* #62bb00; */
     --importance-2: rgba(150, 187, 0, 0.4); /* #96bb00; */
     --importance-3: rgba(187, 172, 0, 0.4); /* #bbac00; */
     --importance-4: rgba(187, 60, 0, 0.4); /* #bb3c00; */

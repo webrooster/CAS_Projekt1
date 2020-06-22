@@ -165,6 +165,7 @@ export class NoteController {
         element.sort_completed.addEventListener('click', e => {
             element.sort_completed.classList.toggle('active');
             element.sort_completed.parentElement.classList.add('active');
+            element.sort_clear.parentElement.classList.add('active');
             this.noteService.sortCompleted(helper.getFilterState(element.sort_completed));
             this.sorting = 'completed';
             if (this.noteService.notes.length === 0) this.message = 'List must have at least one finished note!';
@@ -192,6 +193,7 @@ export class NoteController {
             element.sort_completed.checked = false;
             element.sort_finished_date.checked = false;
             element.sort_completed.parentElement.classList.remove('active');
+            element.sort_clear.parentElement.classList.remove('active');
 
             this.sorting = 'expire';
             this.noteService.loadData();
