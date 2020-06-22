@@ -61,6 +61,38 @@ export const clearSorting = () => {
     element.sort_importance.checked = false;
     element.sort_completed.checked = false;
     element.sort_finished_date.checked = false;
-    element.sort_completed.parentElement.classList.remove('active');
+    // element.sort_completed.parentElement.classList.remove('active');
     element.sort_clear.parentElement.classList.remove('active');
+}
+
+// UI INTERACTION CLASSES
+export const activeClass = 'active';
+export const errorClass = 'error';
+export const sortingState = {
+    created: 'created',
+    importance: 'importance',
+    completed: 'completed',
+    expire: 'expire'
+}
+
+// SORTING BUTTONS - REMOVE ACTIVE CLASSES
+export const removeActiveState = () => {
+    const elems = document.querySelectorAll('.button__sorting');
+    return [].forEach.call(elems, (button) => {
+        button.classList.remove(activeClass);
+    });
+}
+
+// SORTING BUTTON STATES
+export const sortingButtonState = (button) => {
+    button === sortingState.expire ? element.sort_createdAt.parentElement.classList.add(activeClass) 
+        : element.sort_createdAt.parentElement.classList.remove(activeClass);
+    button === sortingState.importance ? element.sort_importance.parentElement.classList.add(activeClass) 
+        : element.sort_importance.parentElement.classList.remove(activeClass);
+    button === sortingState.expire ? element.sort_finished_date.parentElement.classList.add(activeClass) 
+        : element.sort_finished_date.parentElement.classList.remove(activeClass);
+    button === sortingState.completed ? element.sort_completed.parentElement.classList.add(activeClass) 
+        : false;
+
+    if (button === 'clear') removeActiveState();
 }

@@ -28,7 +28,7 @@ export class NoteController {
                 const note = this.noteService.getNoteDatas(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
                 this.noteEditId = helper.getNoteIndex().dataId;
                 element.sort_clear.click();
-                element.flip.classList.add('active');
+                element.flip.classList.add(helper.activeClass);
                 this.renderNotes(note);
             }
 
@@ -46,14 +46,14 @@ export class NoteController {
                 openDropdownId.classList.toggle('note--open');
                 const currentButtonId = e.target.id;
                 const activeButton = document.getElementById(currentButtonId);
-                activeButton.classList.toggle('active');
+                activeButton.classList.toggle(helper.activeClass);
             }  
         });
         
         // ON KEYPRESS REMOVE ERROR CLASS
         document.addEventListener('keydown', e => {
-            element.noteForm.classList.remove('error');
-            element.noteFormUpdateContainer.classList.remove('error');
+            element.noteForm.classList.remove(helper.errorclass);
+            element.noteFormUpdateContainer.classList.remove(helper.errorclass);
         });
 
         // NOTE FORM
@@ -61,7 +61,6 @@ export class NoteController {
             
             if (e.target.matches('#form__submit')) {
                 e.preventDefault();
-                element.sort_clear.click();
 
                 const title = element.title.value;
                 const description = element.description.value;
@@ -71,7 +70,7 @@ export class NoteController {
                 let formStatus = false;
 
                 // FORM VALIDATION - SEND WHEN IMPORTANCE IS NUMBER AND SET
-                if (title !== '' && /\d{4}\-\d{2,2}\-\d{2,2}/.test(expire) && Number.isInteger(importance)) formStatus = true, element.noteForm.classList.remove('error');          
+                if (title !== '' && /\d{4}\-\d{2,2}\-\d{2,2}/.test(expire) && Number.isInteger(importance)) formStatus = true, element.noteForm.classList.remove(helper.errorclass);          
 
                 if (formStatus === true) {
                     const datas = {
@@ -83,13 +82,14 @@ export class NoteController {
                         completed_at: null
                     }
 
+                    element.sort_clear.click();
                     this.noteService.addNote(datas).then(() => {
-                        this.renderNotes();
-                        helper.resetForm();
-                    });
+                    this.renderNotes();
+                    helper.resetForm();
+                });
                     
                 } else {
-                    element.noteForm.classList.add('error');
+                    element.noteForm.classList.add(helper.errorClass);
                 }
             }
 
@@ -115,7 +115,7 @@ export class NoteController {
                 
                 if (title !== '' && /\d{4}\-\d{2,2}\-\d{2,2}/.test(expire) && 
                     Number.isInteger(importance)) formStatus = true, 
-                    element.noteFormUpdateContainer.classList.remove('error');
+                    element.noteFormUpdateContainer.classList.remove(helper.errorclass);
                 
                 if (formStatus === true) {
                     const datas = {
@@ -133,49 +133,56 @@ export class NoteController {
                     this.noteService.updateNote(datas, noteId).then(() => {
                         this.noteService.loadData();
                         this.renderNotes();
-                        element.flip.classList.toggle('active');
+                        element.flip.classList.toggle(helper.activeClass);
                     });
                     
                     
                 } else {
-                    element.noteFormUpdateContainer.classList.add('error');
+                    element.noteFormUpdateContainer.classList.add(helper.errorclass);
                 }                
             }
             
             if (e.target.matches('#clear__update')) {
-                element.flip.classList.toggle('active');
+                element.flip.classList.toggle(helper.activeClass);
             }
         });
 
         // FILTER BUTTONS
         element.sort_createdAt.addEventListener('click', e => {
-            element.sort_createdAt.classList.toggle('active');
+            element.sort_createdAt.classList.toggle(helper.activeClass);
+            helper.sortingButtonState(helper.sortingState.created);
+
             this.noteService.sortCreatedAt(helper.getFilterState(element.sort_createdAt));
-            this.sorting = 'created';
+            this.sorting = helper.sortingState.created;
             this.renderNotes();      
         });
 
         element.sort_importance.addEventListener('click', e => {
-            element.sort_importance.classList.toggle('active'); 
+            element.sort_importance.classList.toggle(helper.activeClass);
+            helper.sortingButtonState(helper.sortingState.importance);
+            
             this.noteService.sortImportance(helper.getFilterState(element.sort_importance));
-            this.sorting = 'importance';
+            this.sorting = helper.sortingState.importance;
             this.renderNotes();           
         });
 
         element.sort_completed.addEventListener('click', e => {
-            element.sort_completed.classList.toggle('active');
-            element.sort_completed.parentElement.classList.add('active');
-            element.sort_clear.parentElement.classList.add('active');
+            element.sort_completed.classList.toggle(helper.activeClass);
+            helper.sortingButtonState(helper.sortingState.completed);
+
+            element.sort_clear.parentElement.classList.add(helper.activeClass);
             this.noteService.sortCompleted(helper.getFilterState(element.sort_completed));
-            this.sorting = 'completed';
+            this.sorting = helper.sortingState.completed;
             if (this.noteService.notes.length === 0) this.message = 'List must have at least one finished note!';
             this.renderNotes();          
         });
         
         element.sort_finished_date.addEventListener('click', e => {   
-            element.sort_finished_date.classList.toggle('active');
+            element.sort_finished_date.classList.toggle(helper.activeClass);
+            helper.sortingButtonState(helper.sortingState.expire);
+            
             this.noteService.sortExpire(helper.getFilterState(element.sort_finished_date));
-            this.sorting = 'expire';
+            this.sorting = helper.sortingState.expire;
             this.renderNotes();
         });
         
@@ -187,8 +194,9 @@ export class NoteController {
         // CLEAR FILTER
         element.sort_clear.addEventListener('click', e => {
             helper.clearSorting();
+            helper.sortingButtonState('clear');
 
-            this.sorting = 'expire';
+            this.sorting = helper.sortingState.expire;
             this.noteService.loadData();
             this.renderNotes();
         });
