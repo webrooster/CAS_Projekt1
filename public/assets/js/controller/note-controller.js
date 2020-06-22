@@ -83,12 +83,10 @@ export class NoteController {
                     }
 
                     this.noteService.addNote(datas).then(() => {
-                        this.noteService.loadData();
                         this.renderNotes();
                         helper.resetForm();
                     });
                     
-
                 } else {
                     element.noteForm.classList.add('error');
                 }
@@ -105,8 +103,6 @@ export class NoteController {
             
             if (e.target.matches('#submit__update')) {
                 e.preventDefault();
-                element.sort_clear.click();
-
                 const title = document.querySelector('#title__update').value;
                 const description = document.querySelector('#description__update').value;
                 const expire = document.querySelector('#expire__update').value;
@@ -239,7 +235,6 @@ export class NoteController {
             });
 
             element.loading__spinner.classList.add('hide');
-            this.noteService.loadData();
             this.noteExpireToday();
 
         }, 200);

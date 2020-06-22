@@ -10,11 +10,8 @@ export class NoteService {
     // SORT EXPIRE DATE
     sortExpire(sortState) {
         const sortingTypeKey = 'expire';
-        const sortingList = this.notes.filter(a => a.expire);    
+        const sortingList = this.notes;
         filter.sortingDatesBy(sortingList, sortState, sortingTypeKey);
-
-        // RENDER RESULT LIST    
-        this.notes = sortingList;
     }
 
     // SORT CREATED DATE
