@@ -195,7 +195,7 @@ export class NoteController {
         
         // THEME TOGGLER
         element.theme__toggler.addEventListener('click', e => {
-            document.body.classList.toggle('theme__bright');            
+            document.body.classList.toggle(helper.themeToggleClass);
         });
 
         // CLEAR FILTER
@@ -215,7 +215,7 @@ export class NoteController {
 
         notesExpireToday.forEach(note => {
             const todaysNote = document.querySelector(`[data-id='${note._id}']`);
-            if (todaysNote) todaysNote.classList.toggle('today');
+            if (todaysNote) todaysNote.classList.toggle(helper.todayClass);
         });
     }
 
@@ -224,8 +224,8 @@ export class NoteController {
 
         // CLEAR LIST SHOW LOADING SPINNER
         element.notesListContainer.innerHTML = '';
-        element.loading__spinner.classList.remove('hide'); 
-        
+        element.loading__spinner.classList.remove(helper.hideClass);
+            
         setTimeout(() => {
             // RENDER FORM UPDATE        
             if (note) {
@@ -246,7 +246,7 @@ export class NoteController {
                 sorting: this.sorting,
             });
 
-            element.loading__spinner.classList.add('hide');
+            element.loading__spinner.classList.add(helper.hideClass);
             this.noteExpireToday();
 
         }, 200);

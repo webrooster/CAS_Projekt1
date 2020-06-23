@@ -67,6 +67,10 @@ export const clearSorting = () => {
 // UI INTERACTION CLASSES
 export const activeClass = 'active';
 export const errorClass = 'error';
+export const hideClass = 'hide';
+export const todayClass = 'today';
+export const themeToggleClass = 'theme__bright';
+
 export const sortingState = {
     created: 'created',
     importance: 'importance',
