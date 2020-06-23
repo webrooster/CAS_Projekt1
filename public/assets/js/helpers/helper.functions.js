@@ -75,7 +75,8 @@ export const sortingState = {
     created: 'created',
     importance: 'importance',
     completed: 'completed',
-    expire: 'expire'
+    expire: 'expire',
+    clear: 'clear'
 }
 
 // SORTING BUTTONS - REMOVE ACTIVE CLASSES

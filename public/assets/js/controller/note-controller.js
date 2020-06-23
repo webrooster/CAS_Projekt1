@@ -35,7 +35,6 @@ export class NoteController {
             if (e.target.matches('.btn--complete')) {         
                 this.noteService.completeNote(helper.getNoteIndex().dataIndex, helper.getNoteIndex().dataId);
                 this.renderNotes();
-                element.sort_clear.click();
             }
             
             // OPEN DESCRIPTION
@@ -107,7 +106,7 @@ export class NoteController {
             
             if (e.target.matches('#submit__update')) {
                 e.preventDefault();
-                console.log(this.noteEditId);
+
                 const title = document.querySelector('#title__update').value;
                 const description = document.querySelector('#description__update').value;
                 const expire = document.querySelector('#expire__update').value;
@@ -203,7 +202,8 @@ export class NoteController {
             helper.clearSorting();
             helper.sortingButtonState('clear');
 
-            this.sorting = helper.sortingState.expire;
+            // this.sorting = helper.sortingState.expire;
+            this.sorting = helper.sortingState.clear;
             this.noteService.loadData();
             this.renderNotes();
         });
@@ -259,6 +259,7 @@ export class NoteController {
         });
         
         if (this.noteService.notes.length === 0) this.message;
+
     }
 
     // INIT APP

@@ -289,6 +289,10 @@
                                 <p>{{ formatExpire expire }}</p>
                                 <span>Expire on</span>
                             {{/ifEquals}}
+                            {{#ifEquals ../sorting 'clear'}}
+                                <p>{{ formatExpire expire }}</p>
+                                <span>Expire on</span>
+                            {{/ifEquals}}
                         </div>
                         <div class="note__title">
                             <h2>{{ title }}</h2>
@@ -317,9 +321,13 @@
                         </div>
                         <div class="note__buttons">
                             <button class="btn--edit">Edit</button>
-                            <button class="btn--complete">{{#if complete}}Note is
-                                completed{{else}}Complete{{/if}}</button>
-                            <button class="btn--delete"><i class="far fa-trash-alt"></i> Delete</button>
+                            <button class="btn--complete">{{#if complete}}Note is completed{{else}}Complete{{/if}}</button>
+                            {{#ifEquals ../sorting 'clear'}}
+                            <button class="btn--delete">Delete</button>
+                            {{ else }}
+                            <button class="btn--delete" disabled>Delete (disabled)</button>
+                            {{/ifEquals}}
+
                         </div>
                     </div>
                 </li>

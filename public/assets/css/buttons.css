@@ -38,6 +38,11 @@ button > * {
     pointer-events: none; 
 }
 
+button:disabled,
+button[disabled] {
+    background-color: var(--chromatic-light-color-3);
+}
+
 /* CUSTOM BUTTONS */
 .note__buttons button {
     margin-right: .3rem;

@@ -65,7 +65,6 @@ export class NoteService {
     // LOAD DATA
     async loadData() {
         this.notes = this.storage.getNotes();
-        await this.notes;
     }
 
     // NOTE UPDATE
