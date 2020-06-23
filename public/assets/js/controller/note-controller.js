@@ -107,7 +107,7 @@ export class NoteController {
             
             if (e.target.matches('#submit__update')) {
                 e.preventDefault();
-                
+                console.log(this.noteEditId);
                 const title = document.querySelector('#title__update').value;
                 const description = document.querySelector('#description__update').value;
                 const expire = document.querySelector('#expire__update').value;
@@ -225,7 +225,7 @@ export class NoteController {
         // CLEAR LIST SHOW LOADING SPINNER
         element.notesListContainer.innerHTML = '';
         element.loading__spinner.classList.remove(helper.hideClass);
-            
+
         setTimeout(() => {
             // RENDER FORM UPDATE        
             if (note) {

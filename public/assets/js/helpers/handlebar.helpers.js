@@ -20,3 +20,14 @@ export const handlebar_helper_expire = Handlebars.registerHelper('formatExpire',
 export const handlebar_equals = Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
+
+// SET IMPORTANCE VALUE
+export const handlebar_select = Handlebars.registerHelper('select', (importance, options) => {
+    return options.fn()
+        .split('\n')
+        .map(function (v) {
+            let t = 'value="' + importance + '"';
+            return RegExp(t).test(v) ? v.replace(t, t + ' selected="selected"') : v;
+        })
+        .join('\n');
+});
