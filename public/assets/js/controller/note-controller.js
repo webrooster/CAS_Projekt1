@@ -201,8 +201,6 @@ export class NoteController {
         element.sort_clear.addEventListener('click', e => {
             helper.clearSorting();
             helper.sortingButtonState('clear');
-
-            // this.sorting = helper.sortingState.expire;
             this.sorting = helper.sortingState.clear;
             this.noteService.loadData();
             this.renderNotes();
