@@ -266,6 +266,7 @@ export class NoteController {
     noteAction() {
         this.initEventHandlers();
         this.noteService.loadData();
+        this.noteService.sortCreatedAt(false);
         this.noteService.statusPanel();
         this.renderNotes();
         helper.getBrowserLanguage();
